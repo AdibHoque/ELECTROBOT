@@ -1,11 +1,11 @@
 const {MessageEmbed} = require("discord.js")
 const {RedditSimple} = require('reddit-simple')
 module.exports = {
-    name: "",
+    name: "upskirt",
     category: "NSFW",
-    description: "",
+    description: "Skirts goes up, pussy shows up!",
     aliases: [""],
-    Usage: "",
+    Usage: "upskirt",
     run: async (client, message, args, nsfwembed) => { 
     if (message.channel.nsfw === true) {
      /*var subreddits = [
