@@ -3,7 +3,7 @@ const {RedditSimple} = require('reddit-simple')
 module.exports = {
     name: "milf",
     category: "NSFW",
-    description: "",
+    description: "Milf nude images & gifs!",
     aliases: [""],
     Usage: "milf",
     run: async (client, message, args, nsfwembed) => { 
