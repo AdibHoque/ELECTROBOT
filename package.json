@@ -24,6 +24,9 @@
     "express": "^4.17.1"
   },
   "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  }, 
   "keywords": [
     "Discord",
     "ELECTRO Bot",
