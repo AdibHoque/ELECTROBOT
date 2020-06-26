@@ -106,7 +106,7 @@ client.on("message", async(message) => {
 
 client.on("messageDelete", message => {
   if (message.author.bot) return;
-  db.set(`snipe${message.channel.id}`, {mc: message.content, sa: message.author.username+message.author.discriminator, saav: message.author.avatarURL(), time: message.createdAt});
+  db.set(`snipe${message.channel.id}`, {mc: message.content, sa: message.author.username+"#"+message.author.discriminator, saav: message.author.avatarURL(), time: message.createdAt});
 }); 
 
 client.on("messageReactionAdd",(reaction, user) => {
