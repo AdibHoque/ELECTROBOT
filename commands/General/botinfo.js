@@ -10,7 +10,7 @@ const v = require("./../../package.json");
 
 module.exports = {
     name: "botinfo",
-    category: "utility",
+    category: "General",
     description: "See the info of the bot!",
     aliases: ["info"],
     Usage: "botinfo",

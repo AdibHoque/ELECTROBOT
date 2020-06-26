@@ -20,7 +20,11 @@
     "ms": "^2.1.2",
     "moment-duration-format": "*",
     "reddit-simple": "^1.1.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "relevant-urban": "^2.0.0",
+    "node-fetch": "^2.6.0",
+    "query-string": "^6.13.1",
+    "alexa-bot-api": "^0.1.2"
   },
   "devDependencies": {},
   "scripts": {
