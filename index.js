@@ -122,7 +122,7 @@ client.on("messageReactionAdd",(reaction, user) => {
     if (stars) {
       const star = /^\⭐\s([0-9]{1,3})\s\|\s([0-9]{17,20})/.exec(stars.embeds[0].footer.text);
       const foundStar = stars.embeds[0];
-      const image = message.attachments.size > 0 ? this.extension(reaction, message.attachments.array()[0].url) : '';
+      const image = message.attachments.size > 0 ? this.extension(reaction, message.attachments.first().attachment) : '';
       const embed = new MessageEmbed()
         .setColor(foundStar.color)
         .setDescription(foundStar.description)
@@ -134,7 +134,7 @@ client.on("messageReactionAdd",(reaction, user) => {
       starMsg.edit(embed);
     }
     if (!stars) {
-      const image = message.attachments.size > 0 ? this.extension(reaction, message.attachments.array()[0].url) : '';
+      const image = message.attachments.size > 0 ? this.extension(reaction, message.attachments.first().attachment) : '';
       if (image === '' && message.cleanContent.length < 1) return;
       const embed = new MessageEmbed()
         .setColor(15844367)
