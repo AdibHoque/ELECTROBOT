@@ -1,1 +1,1 @@
-worker: npm i pornhub.js
+worker: npm start
