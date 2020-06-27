@@ -7,7 +7,7 @@ app.get("/", (request, response) => {
 });
 app.listen(process.env.PORT);
 setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+  http.get(`https://electrojs.herokuapp.com/`);
 }, 280000);
 
 const {Discord, MessageEmbed} = require("discord.js");
