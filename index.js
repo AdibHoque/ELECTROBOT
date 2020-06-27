@@ -106,7 +106,7 @@ client.on("message", async(message) => {
 
 client.on("messageDelete", message => {
   if (message.author.bot) return;
-  db.set(`snipe${message.channel.id}`, {mc: message.content, sa: message.author.username+"#"+message.author.discriminator, saav: message.author.avatarURL(), time: message.createdAt});
+  db.set(`snipe${message.channel.id}`, {mc: message.content, sa: message.author.username+message.author.discriminator, saav: message.author.avatarURL(), time: message.createdAt});
 }); 
 
 client.on("messageReactionAdd",(reaction, user) => {
@@ -181,8 +181,17 @@ function extension(reaction, attachment) {
     return attachment;
   };
 
+const activities_list = [
+    "Switching to d.js v12", 
+    "Remaking py commands in js",
+    "Converting d.js v11 to v12"
+    ]; 
+
 client.on("ready", async() => {
-  client.user.setActivity(`Switching from d.py async & d.js v11 to d.js v12`)
+  setInterval(() => {
+        const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
+        client.user.setActivity(activities_list[index]); // sets bot's activities to one of the phrases in the arraylist.
+    }, 12000); 
     console.log(`Logged in as ${client.user.tag}, with ${client.guilds.cache.size} guilds, ${client.users.cache.size} users, ${client.channels.cache.size} channels.`);
 });
 
