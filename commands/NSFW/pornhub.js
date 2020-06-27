@@ -21,7 +21,7 @@ module.exports = {
             .setColor(`#ffbf00`)
             .setFooter(`Duration: ` + item.duration)
             .setImage(`${item. preview}`)
-          message.channel.send(`embed`);
+          message.channel.send(embed);
         });
       });
     }

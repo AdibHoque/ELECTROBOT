@@ -1,5 +1,10 @@
 const {MessageEmbed} = require("discord.js")
 const {RedditSimple} = require('reddit-simple')
+
+String.prototype.endsWith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+}; 
+
 module.exports = {
     name: "blowjob",
     category: "NSFW",
@@ -24,8 +29,8 @@ module.exports = {
       const post = await RedditSimple.RandomPost("blowjobs");
       const title = post[0].data.title;
       const thumb = post[0].data.url;
-      if(thumb.endsWith(".gif")) { 
-        return message.channel.send(thumb) 
+      if(thumb.endsWith(".gifv")) { 
+        return message.channel.send(`**${title}**\n${thumb}`) 
                                  }
       if(thumb.startsWith("https://redgifs.com/")) { return message.channel.send(thumb) }
       
