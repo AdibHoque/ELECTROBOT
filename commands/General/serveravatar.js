@@ -6,7 +6,7 @@ module.exports = {
     category: "General",
     description: "Check Your Avatar!",
     aliases: ["serverav", "sav"],
-    Usage: "e!serveravatar",
+    Usage: "serveravatar",
     run: async(client, message, args) => {
     const embed = new MessageEmbed()
     .setTitle(`${message.guild.name}`)

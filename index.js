@@ -66,7 +66,15 @@ client.on("message", async(message) => {
       );
     message.channel.send(`${message.author}`, embed);
   }
-    const prefix = await db.fetch(`prefix_${message.guild.id}`) || "eb!"
+    const p = [
+      "eb!",
+      "<@715843336417837156>"
+      ]
+    const pr = [
+      await db.fetch(`prefix_${message.guild.id}`),
+      "<@715843336417837156>"
+      ]
+    const prefix = await db.fetch(`prefix_${message.guild.id}`) || "eb!" || "<@715843336417837156>"
     //if(!prefix) prefix = process.env.Prefix
     const nsfwembed = new MessageEmbed()
   .setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`)
@@ -106,7 +114,7 @@ client.on("message", async(message) => {
 
 client.on("messageDelete", message => {
   if (message.author.bot) return;
-  db.set(`snipe${message.channel.id}`, {mc: message.content, sa: message.author.username+message.author.discriminator, saav: message.author.avatarURL(), time: message.createdAt});
+  db.set(`snipe${message.channel.id}`, {mc: message.content, sa: message.author.username+message.author.discriminator, saav: message.author.avatarURL(), time: `${message.createdAt.toLocaleString()} GMT+0000`});
 }); 
 
 client.on("messageReactionAdd",(reaction, user) => {
@@ -186,6 +194,17 @@ const activities_list = [
     "Remaking py commands in js",
     "Converting d.js v11 to v12"
     ]; 
+
+setInterval(() => {
+        const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
+        client.user.setActivity(activities_list[index]); // sets bot's activities to one of the phrases in the arraylist.
+    }, 12000); // Runs this every 10 seconds.
+ 
+setInterval(() => {
+        http.get(`http://electrobeta.glitch.me/`)
+    }, 60000); 
+ 
+
 
 client.on("ready", async() => {
   setInterval(() => {

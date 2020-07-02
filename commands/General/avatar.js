@@ -6,7 +6,7 @@ module.exports = {
     category: "General",
     description: "Check Your Avatar!",
     aliases: ["av", ""],
-    Usage: "e!avatar or e!avatar <@user>",
+    Usage: "avatar [@user]",
     run: async(client, message, args) => {
       const user = message.mentions.users.first() || message.author
     if(!user) {

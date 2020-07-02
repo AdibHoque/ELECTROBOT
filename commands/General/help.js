@@ -4,12 +4,12 @@ const db = require("quick.db")
 
 module.exports = {
   name: "help",
-  category: "Utility",
+  category: "General",
   description: "Returns all commands, or one specific command info",
-  usage: "[command | alias]",
+  usage: "help [command | alias]",
   run: async (client, message, args) => {
-    const prefix = db.fetch(`prefix_${message.guild.id}`)
-    if (!prefix) prefix = 'eb!'
+    const prefix = await db.fetch(`prefix_${message.guild.id}`) || 'eb!'
+   // if (!prefix) prefix = 'eb!'
     if (args[0]) {
       return getCMD(client, message, args[0]);
     } else {
@@ -78,9 +78,9 @@ function getCMD(client, message, input) {
     info += `\n<:Aliases:722467861590704239> **Aliases**: ${cmd.aliases.map(a => `\`${a}\``).join(", ")}`;
   if (cmd.description) info += `\n<:Description:722467727700394072> **Description**: \`${cmd.description}\``;
   if (cmd.usage) {
-    const prefix = db.fetch(`prefix_${message.guild.id}`)
-    if(!prefix) prefix = "eb!"
-    info += `\n<:Usage:722468096362676234> **Usage**: \`${prefix}${cmd.name} ${cmd.usage}\``;
+    const prefix = db.fetch(`prefix_${message.guild.id}`) || "eb!"
+   // if(!prefix) prefix = "eb!"
+    info += `\n<:Usage:722468096362676234> **Usage**: \`${prefix}${cmd.usage}\``;
   }
 
   return message.channel.send(embed.setFooter(`Syntax: <> = required, [] = optional`).setColor("#ffbf00").setAuthor(`Detailed Help`).setDescription(info));

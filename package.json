@@ -25,7 +25,8 @@
     "node-fetch": "^2.6.0",
     "query-string": "^6.13.1",
     "alexa-bot-api": "^0.1.2",
-    "pornhub.js": "github:pionxzh/pornhub.js"
+    "pornhub.js": "github:pionxzh/pornhub.js",
+    "snekfetch": "^4.0.4"
   },
   "devDependencies": {},
   "scripts": {

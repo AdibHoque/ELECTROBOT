@@ -4,7 +4,7 @@ module.exports = {
     category: "Utility",
     aliases: ["pong"],
     description: "Returns The Bot Ping Lantency!",
-    usage: "eb!ping",
+    usage: "ping",
     run: async(client, message, args) => {
         const embed = new MessageEmbed()
         .setColor(`#ffbf00`)

@@ -11,6 +11,7 @@ module.exports = {
     run: async(client, message, args) => {
     const msg = message
     const s = await db.fetch(`snipe${msg.channel.id}.mc`);
+    if(!s) return message.channel.send("Nothing to snipe here!");
     const a = await db.fetch(`snipe${msg.channel.id}.sa`);
     const t = await db.fetch(`snipe${msg.channel.id}.time`);
     const av = await db.fetch(`snipe${msg.channel.id}.saav`);
