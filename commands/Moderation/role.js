@@ -27,7 +27,7 @@ module.exports = {
             return message.reply(fail+" I do not have permissions the `MANAGER_ROLES`.").then(m => m.delete(5000));
         }
 
-        const therole = message.guild.roles.cache.get(args[1]) || message.guild.roles.cache.find(role => role.name === args.slice(1).join(" ")) || message.mentions.roles.first()
+        const therole = message.guild.roles.cache.get(args[1]) || message.guild.roles.cache.find(role => role.name === args[1]) || message.mentions.roles.first()
         const theuser = message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(role => role.name === args[0]) || message.mentions.users.first()
 
         // No member found
