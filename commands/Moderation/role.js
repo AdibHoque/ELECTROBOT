@@ -13,18 +13,18 @@ module.exports = {
 
         // No args
         if (!args[1]) {
-            return message.reply(fail+" Please provide a role name or ID.").then(m => m.delete(5000));
+            return message.reply(fail+" Please provide a role name or ID.").then(m => m.delete({timeout:5000}));
         }
  
 
         // No author permissions
         if (!message.member.hasPermission("MANAGE_ROLES")) {
-            return message.reply(fail+" You do not have the permission to `MANAGE_ROLES`.").then(m => m.delete(5000));
+            return message.reply(fail+" You do not have the permission to `MANAGE_ROLES`.").then(m => m.delete({timeout: 5000}));
 
         }
         // No bot permissions
         if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
-            return message.reply(fail+" I do not have permissions the `MANAGER_ROLES`.").then(m => m.delete(5000));
+            return message.reply(fail+" I do not have permissions the `MANAGER_ROLES`.").then(m => m.delete({timeout: 5000}));
         }
 
         const therole = message.guild.roles.cache.get(args[1]) || message.guild.roles.cache.find(role => role.name === args[1]) || message.mentions.roles.first()
@@ -32,12 +32,12 @@ module.exports = {
 
         // No member found
         if (!therole) {
-            return message.reply(fail+" INVALID ROLE.").then(m => m.delete(5000));
+            return message.reply(fail+" INVALID ROLE.").then(m => m.delete({timeout:5000}));
         }
 
         // Can't give urself
         if (theuser.id === message.author.id) {
-           return message.reply(fail+" You can't give roles to yourself.").then(m => m.delete(5000));
+           return message.reply(fail+" You can't give roles to yourself.").then(m => m.delete({timeout:5000}));
         }
       
       if(theuser.roles.cache.has(therole.id)) {
