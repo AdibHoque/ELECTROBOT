@@ -135,7 +135,7 @@ client.on("messageDelete", message => {
   if (message.author.bot) return;
   db.set(`snipe${message.channel.id}`, {
     mc: message.content,
-    sa: message.author.username + message.author.discriminator,
+    sa: message.author.username + `#` + message.author.discriminator,
     saav: message.author.avatarURL(),
     time: `${message.createdAt.toLocaleString()} GMT+0000`
   });
@@ -144,7 +144,7 @@ client.on("messageDelete", message => {
 client.on('messageUpdate', (oldMessage, newMessage) => {
    if (oldMessage.author.bot) return; 
   const msg = oldMessage
-  db.set(`editsnipe${msg.channel.id}`, {mc: msg.content, sa: msg.author.username+msg.author.discriminator, saav: msg.author.avatarURL(), time: `${msg.createdAt.toLocaleString()} GMT+0000`, after: newMessage.content })
+  db.set(`editsnipe${msg.channel.id}`, {mc: msg.content, sa: msg.author.username+`#`+msg.author.discriminator, saav: msg.author.avatarURL(), time: `${msg.createdAt.toLocaleString()} GMT+0000`, after: newMessage.content })
 })
 
 client.on("messageReactionAdd", (reaction, user) => {
