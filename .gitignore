@@ -12,6 +12,7 @@
 
 # OS or Editor folders
 package-lock.json
+shrinkwrap.yaml
 .DS_Store
 .cache
 .project
