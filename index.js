@@ -141,6 +141,12 @@ client.on("messageDelete", message => {
   });
 });
 
+client.on('messageUpdate', (oldMessage, newMessage) => {
+   if (oldMessage.author.bot) return; 
+  const msg = oldMessage
+  db.set(`editsnipe${msg.channel.id}`, {mc: msg.content, sa: msg.author, saav: msg.author.avatarURL(), time: `${msg.createdAt.toLocaleString()} GMT+0000`, after: newMessage })
+})
+
 client.on("messageReactionAdd", (reaction, user) => {
   const message = reaction.message;
   if (reaction.emoji.name !== "⭐") return;

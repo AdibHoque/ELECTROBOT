@@ -12,7 +12,7 @@ module.exports = {
     if(!user) {
         return message.reply('Please mention the user who you want the avatar from.');
     }
-    if(!user.avatarURL()) {
+    if(!user.avatarURL) {
         return message.channel.send(`That user does not have an avatar`)
     }
     const embed = new MessageEmbed()
