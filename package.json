@@ -27,7 +27,8 @@
     "alexa-bot-api": "^0.1.2",
     "pornhub.js": "github:pionxzh/pornhub.js",
     "snekfetch": "^4.0.4",
-    "mathjs": "^7.0.2"
+    "mathjs": "^7.0.2",
+    "decode-encode-binary": "^1.4.13"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
