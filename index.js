@@ -1,14 +1,14 @@
 const http = require("http");
 const express = require("express");
 const app = express();
-app.get("/", (request, response) => {
+/*app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
   response.sendStatus(200);
 });
 app.listen(process.env.PORT);
 setInterval(() => {
   http.get(`https://electrojs.herokuapp.com/`);
-}, 280000);
+}, 280000);*/
 
 const { Discord, MessageEmbed } = require("discord.js");
 const Client = require("./Classes/Client");
