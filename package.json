@@ -1,7 +1,7 @@
 {
   "name": "ELECTROBETA",
   "version": "0.0.1",
-  "description": "Clean Your Server",
+  "description": "Electrify & Boost Up Your Discord Server!",
   "main": "index.js",
   "engines": {
     "node": "^12.x"
@@ -28,7 +28,6 @@
     "pornhub.js": "github:pionxzh/pornhub.js",
     "snekfetch": "^4.0.4"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
