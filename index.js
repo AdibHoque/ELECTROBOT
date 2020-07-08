@@ -47,6 +47,10 @@ const applyText = (canvas, text, defaultFontSize) => {
   return ctx.font;
 };
 
+client.on("warn", console.warn);
+
+client.on("error", console.error);
+
 client.on("message", async message => {
   if (message.author.bot) return;
   if (
@@ -136,7 +140,7 @@ client.on("message", async message => {
   try {
     cmd.run(client, message, args, prefix);
   } catch (err) {
-    console.log(`An error occured. Please report to the developers.`);
+    console.log(`An error occured. ${err}`);
   }
 });
 
@@ -167,7 +171,7 @@ client.on("guildMemberAdd", async member => {
     let canvas = Canvas.createCanvas(1024, 450),
       ctx = canvas.getContext("2d");
     let background = await Canvas.loadImage(
-      "https://cdn.glitch.com/5c8b778c-3aaa-4253-b149-acb8c9267727%2FWELCOME.png?v=1585391650755"
+      "https://cdn.discordapp.com/attachments/656517276832366595/693406590291935252/WELCOME.png"
     );
     // This uses the canvas dimensions to stretch the image onto the entire canvas
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
@@ -212,7 +216,7 @@ client.on("guildMemberAdd", async member => {
     // Clip off the region you drew on
     ctx.clip();
 
-    let avatar = await Canvas.loadImage(member.user.avatarURL);
+    let avatar = await Canvas.loadImage(member.user.avatarURL());
     // Move the image downwards vertically and constrain its height to 200, so it"s a square
     ctx.drawImage(avatar, 45, 90, 270, 270);
     member.guild.channels.get(wChan).send(`${member} JUST JOINED THE SERVER!`, {
@@ -244,7 +248,7 @@ client.on("guildMemberRemove", async member => {
     let canvas = Canvas.createCanvas(1024, 450),
       ctx = canvas.getContext("2d");
     let background = await Canvas.loadImage(
-      "https://cdn.glitch.com/5c8b778c-3aaa-4253-b149-acb8c9267727%2FGOODBYE.png?v=1585391659519"
+      "https://cdn.discordapp.com/attachments/656517276832366595/693406591197904917/GOODBYE.png"
     );
     // This uses the canvas dimensions to stretch the image onto the entire canvas
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
@@ -282,7 +286,7 @@ client.on("guildMemberRemove", async member => {
     // Clip off the region you drew on
     ctx.clip();
 
-    let avatar = await Canvas.loadImage(member.user.avatarURL);
+    let avatar = await Canvas.loadImage(member.user.avatarURL());
     // Move the image downwards vertically and constrain its height to 200, so it"s a square
     ctx.drawImage(avatar, 45, 90, 270, 270);
     member.guild.channels
