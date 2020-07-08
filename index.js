@@ -181,7 +181,7 @@ client.on("guildMemberAdd", async member => {
     ctx.fillText(member.user.username, canvas.width - 660, canvas.height - 248);
     // Draw server name
     ctx.font = applyText(canvas, "text", 53);
-    ctx.fillText("TO " + member.guild, canvas.width - 690, canvas.height - 65);
+    ctx.fillText("TO " + member.guild.name, canvas.width - 690, canvas.height - 65);
     // Draw discriminator
     ctx.font = "40px Sans-Serif";
     ctx.fillText(
