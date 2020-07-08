@@ -219,7 +219,7 @@ client.on("guildMemberAdd", async member => {
     let avatar = await Canvas.loadImage(member.user.avatarURL({format: "png", dynamic: true}));
     // Move the image downwards vertically and constrain its height to 200, so it"s a square
     ctx.drawImage(avatar, 45, 90, 270, 270);
-    member.guild.channels.get(wChan).send(`${member} JUST JOINED THE SERVER!`, {
+    member.guild.channels.cache.get(wChan).send(`${member} JUST JOINED THE SERVER!`, {
       files: [
         {
           attachment: canvas.toBuffer(),
@@ -289,9 +289,7 @@ client.on("guildMemberRemove", async member => {
     let avatar = await Canvas.loadImage(member.user.avatarURL({format: "png", dynamic: true}));
     // Move the image downwards vertically and constrain its height to 200, so it"s a square
     ctx.drawImage(avatar, 45, 90, 270, 270);
-    member.guild.channels
-      .get(lChan)
-      .send(
+    member.guild.channels.cache.get(lChan).send(
         `${member.user.username}#${member.user.discriminator} JUST LEFT THE SERVER!`,
         {
           files: [
