@@ -11,15 +11,14 @@ module.exports = {
     aliases: ["urban", "df", "ud"],
     usage: "define <word>",
     run: async(client, message, args) => {
-        /*let worder = args;
+        let worder = args;
     if (!worder) {
-      return message.channel.send("Specify a word");
+      return message.channel.send("Specify a word to define!");
     }
     let defin = await ud(worder).catch(err => {
       message.channel.send("Word not found");
       return;
     });
-    console.log(defin)
     const embed = new MessageEmbed()
       .setTitle(defin.word)
       .setAuthor(defin.author)
@@ -29,8 +28,9 @@ module.exports = {
       .setFooter(`👍` + defin.thumbsUp + ` | ` + `👎` + defin.thumbsDown)
       .setColor(`#FFBF00`);
     message.channel.send(embed);
-  }*/
-  if (!args.length) {
+  }
+}
+  /*if (!args.length) {
     return message.channel.send('You need to supply a search term!');
   }
 
@@ -64,4 +64,4 @@ message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
   })
  
 } 
-    }
+    }*/

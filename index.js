@@ -19,6 +19,7 @@ const check = "<a:ElectroCheck:709464171825201315>";
 const fail = "<a:ElectroFail:656772856184832025>";
 let alexa = require("alexa-bot-api");
 let ai = new alexa("aw2plm");
+const Canvas = require("canvas");
 
 loadCMD(client);
 
@@ -37,6 +38,14 @@ function clean(text) {
       .replace(/@/g, "@" + String.fromCharCode(8203));
   else return text;
 }
+
+const applyText = (canvas, text, defaultFontSize) => {
+  const ctx = canvas.getContext("2d");
+  do {
+    ctx.font = `${(defaultFontSize -= 10)}px Bold`;
+  } while (ctx.measureText(text).width > 600);
+  return ctx.font;
+};
 
 client.on("message", async message => {
   if (message.author.bot) return;
@@ -147,6 +156,158 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
   db.set(`editsnipe${msg.channel.id}`, {mc: msg.content, sa: msg.author.username+`#`+msg.author.discriminator, saav: msg.author.avatarURL(), time: `${msg.createdAt.toLocaleString()} GMT+0000`, after: newMessage.content })
 })
 
+client.on("guildMemberAdd", async member => {
+  let wChan = await db.fetch(`jc${member.guild.id}`);
+
+  if (wChan == null) return;
+
+  if (!wChan) return;
+  try {
+    // Background language
+    let canvas = Canvas.createCanvas(1024, 450),
+      ctx = canvas.getContext("2d");
+    let background = await Canvas.loadImage(
+      "https://cdn.glitch.com/5c8b778c-3aaa-4253-b149-acb8c9267727%2FWELCOME.png?v=1585391650755"
+    );
+    // This uses the canvas dimensions to stretch the image onto the entire canvas
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    // Draw username
+    ctx.fillStyle = "#ffffff";
+    ctx.font = applyText(canvas, member.user.username, 48);
+    ctx.fillText(member.user.username, canvas.width - 660, canvas.height - 248);
+    // Draw server name
+    ctx.font = applyText(canvas, "text", 53);
+    ctx.fillText("TO " + member.guild, canvas.width - 690, canvas.height - 65);
+    // Draw discriminator
+    ctx.font = "40px Sans-Serif";
+    ctx.fillText(
+      member.user.discriminator,
+      canvas.width - 623,
+      canvas.height - 178
+    );
+    // Draw number
+    ctx.font = "22px Bold";
+    ctx.fillText(
+      " -" + member.guild.memberCount + "TH MEMBER",
+      40,
+      canvas.height - 50
+    );
+    // Draw # for discriminator
+    ctx.fillStyle = "#ffbf00";
+    ctx.font = "75px SketchMatch";
+    ctx.fillText("#", canvas.width - 690, canvas.height - 165);
+
+    // Pick up the pen
+    ctx.beginPath();
+    //Define Stroke Line
+    ctx.lineWidth = 10;
+    //Define Stroke Style
+    ctx.strokeStyle = "#ffbf00";
+    // Start the arc to form a circle
+    ctx.arc(180, 225, 135, 0, Math.PI * 2, true);
+    // Draw Stroke
+    ctx.stroke();
+    // Put the pen down
+    ctx.closePath();
+    // Clip off the region you drew on
+    ctx.clip();
+
+    let avatar = await Canvas.loadImage(member.user.avatarURL);
+    // Move the image downwards vertically and constrain its height to 200, so it"s a square
+    ctx.drawImage(avatar, 45, 90, 270, 270);
+    member.guild.channels.get(wChan).send(`${member} JUST JOINED THE SERVER!`, {
+      files: [
+        {
+          attachment: canvas.toBuffer(),
+          name: "ELECTRO-WELCOME.png"
+        }
+      ]
+    });
+  } catch (e) {
+    console.log(e);
+    // dont do anything if error occurs
+    // if this occurs bot probably can't send images or messages
+  }
+  /*let mChan = await db.fetch(`mc${member.guild.id}`);
+  const c = member.guild.channels.find("id", `${mChan}`)
+    c.setName(`membercount-${member.guild.memberCount}`);*/
+});
+
+client.on("guildMemberRemove", async member => {
+  let lChan = await db.fetch(`lc${member.guild.id}`);
+
+  if (lChan == null) return;
+
+  if (!lChan) return;
+  try {
+    // Background language
+    let canvas = Canvas.createCanvas(1024, 450),
+      ctx = canvas.getContext("2d");
+    let background = await Canvas.loadImage(
+      "https://cdn.glitch.com/5c8b778c-3aaa-4253-b149-acb8c9267727%2FGOODBYE.png?v=1585391659519"
+    );
+    // This uses the canvas dimensions to stretch the image onto the entire canvas
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    // Draw username
+    ctx.fillStyle = "#ffffff";
+    ctx.font = applyText(canvas, member.user.username, 48);
+    ctx.fillText(member.user.username, canvas.width - 660, canvas.height - 248);
+    // Draw server name
+    ctx.font = applyText(canvas, "text", 53);
+    ctx.fillText("WE WILL MISS YOU :(", canvas.width - 690, canvas.height - 65);
+    // Draw discriminator
+    ctx.font = "40px Sans-Serif";
+    ctx.fillText(
+      member.user.discriminator,
+      canvas.width - 623,
+      canvas.height - 178
+    );
+    // Draw # for discriminator
+    ctx.fillStyle = "#ffbf00";
+    ctx.font = "75px SketchMatch";
+    ctx.fillText("#", canvas.width - 690, canvas.height - 165);
+
+    // Pick up the pen
+    ctx.beginPath();
+    //Define Stroke Line
+    ctx.lineWidth = 10;
+    //Define Stroke Style
+    ctx.strokeStyle = "#ffbf00";
+    // Start the arc to form a circle
+    ctx.arc(180, 225, 135, 0, Math.PI * 2, true);
+    // Draw Stroke
+    ctx.stroke();
+    // Put the pen down
+    ctx.closePath();
+    // Clip off the region you drew on
+    ctx.clip();
+
+    let avatar = await Canvas.loadImage(member.user.avatarURL);
+    // Move the image downwards vertically and constrain its height to 200, so it"s a square
+    ctx.drawImage(avatar, 45, 90, 270, 270);
+    member.guild.channels
+      .get(lChan)
+      .send(
+        `${member.user.username}#${member.user.discriminator} JUST LEFT THE SERVER!`,
+        {
+          files: [
+            {
+              attachment: canvas.toBuffer(),
+              name: "ELECTRO-GOODBYE.png"
+            }
+          ]
+        }
+      );
+  } catch (e) {
+    console.log(e);
+    // dont do anything if error occurs
+    // if this occurs bot probably can't send images or messages
+  }
+  /*let mChan = await db.fetch(`mc${member.guild.id}`);
+  const c = member.guild.channels.find("id", `${mChan}`)
+    c.setName(`membercount-${member.guild.memberCount}`);*/
+});
+
 client.on("messageReactionAdd", (reaction, user) => {
   const message = reaction.message;
   if (reaction.emoji.name !== "⭐") return;
@@ -246,14 +407,14 @@ const activities_list = [
   "Converting d.js v11 to v12"
 ];
 
-setInterval(() => {
+/*setInterval(() => {
   const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
   client.user.setActivity(activities_list[index]); // sets bot's activities to one of the phrases in the arraylist.
 }, 12000); // Runs this every 10 seconds.
 
 setInterval(() => {
   http.get(`http://electrobeta.glitch.me/`);
-}, 60000);
+}, 60000);*/
 
 client.on("ready", async () => {
   setInterval(() => {

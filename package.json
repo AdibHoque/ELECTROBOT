@@ -28,7 +28,8 @@
     "pornhub.js": "github:pionxzh/pornhub.js",
     "snekfetch": "^4.0.4",
     "mathjs": "^7.0.2",
-    "decode-encode-binary": "^1.4.13"
+    "decode-encode-binary": "^1.4.13",
+    "canvas": "^2.6.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
