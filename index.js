@@ -216,7 +216,7 @@ client.on("guildMemberAdd", async member => {
     // Clip off the region you drew on
     ctx.clip();
 
-    let avatar = await Canvas.loadImage(member.user.avatarURL());
+    let avatar = await Canvas.loadImage(member.user.avatarURL({format: "png", dynamic: true}));
     // Move the image downwards vertically and constrain its height to 200, so it"s a square
     ctx.drawImage(avatar, 45, 90, 270, 270);
     member.guild.channels.get(wChan).send(`${member} JUST JOINED THE SERVER!`, {
@@ -286,7 +286,7 @@ client.on("guildMemberRemove", async member => {
     // Clip off the region you drew on
     ctx.clip();
 
-    let avatar = await Canvas.loadImage(member.user.avatarURL());
+    let avatar = await Canvas.loadImage(member.user.avatarURL({format: "png", dynamic: true}));
     // Move the image downwards vertically and constrain its height to 200, so it"s a square
     ctx.drawImage(avatar, 45, 90, 270, 270);
     member.guild.channels
