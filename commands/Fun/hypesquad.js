@@ -15,7 +15,7 @@ module.exports = {
     if (args[0] === "brilliance") {
       ameApi
       .generate("discordhouse", {
-        url: mention.user.avatarURL(),
+        url: mention.user.avatarURL({size: 1024, format: "png", dynamic: false}),
         house: "brilliance"
       })
       .then(image => {
@@ -36,7 +36,7 @@ module.exports = {
     if (args[0] === "bravery") {
       ameApi
       .generate("discordhouse", {
-        url: mention.user.avatarURL(),
+        url: mention.user.avatarURL({size: 1024, format: "png", dynamic: false}),
         house: "bravery"
       })
       .then(image => {
@@ -57,7 +57,7 @@ module.exports = {
     if (args[0] === "balance") {
       ameApi
       .generate("discordhouse", {
-        url: mention.user.avatarURL(),
+        url: mention.user.avatarURL({size: 1024, format: "png", dynamic: false}),
         house: "balance"
       })
       .then(image => {

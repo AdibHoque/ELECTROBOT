@@ -14,7 +14,7 @@ module.exports = {
         let mention = message.mentions.members.first() || message.member;
     ameApi
       .generate("burn", {
-        url: mention.user.avatarURL()
+        url: mention.user.avatarURL({size: 1024, format: "png", dynamic: false})
       })
       .then(image => {
         msg.channel.send({
