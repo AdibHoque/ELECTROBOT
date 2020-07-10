@@ -100,12 +100,12 @@ module.exports = {
         "<a:ElectroFail:656772856184832025> | **PLEASE JOIN A VC TO BE ABLE TO USE THIS COMMAND!**"
       );
     const permissions = voiceChannel.permissionsFor(msg.client.user);
-    if (!permissions.has("CONNECT")) {
+    if (!voiceChannel.me.hasPermission("CONNECT")) {
       return msg.channel.send(
         "<a:ElectroFail:656772856184832025> | **I NEED THE `CONNECT` PERMISSION IN THAT VC TO WORK!**"
       );
     }
-    if (!permissions.has("SPEAK")) {
+    if (!voiceChannel.me.hasPermission("SPEAK")) {
       return msg.channel.send(
         "<a:ElectroFail:656772856184832025> | **I NEED THE `SPEAK` PERMISSION IN THAT VC TO WORK!**"
       );
