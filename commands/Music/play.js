@@ -94,7 +94,7 @@ module.exports = {
         const searchString = kargs.slice(1).join(" ");
         const url = kargs[1] ? kargs[1].replace(/<(.+)>/g, "$1") : "";
         const serverQueue = queue.get(msg.guild.id);
-        const voiceChannel = msg.member.voice;
+        const voiceChannel = msg.member.voiceChannel;
     if (!voiceChannel)
       return msg.channel.send(
         "<a:ElectroFail:656772856184832025> | **PLEASE JOIN A VC TO BE ABLE TO USE THIS COMMAND!**"
