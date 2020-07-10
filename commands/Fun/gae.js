@@ -13,7 +13,7 @@ module.exports = {
         const msg = message 
         let mention = message.mentions.members.first() || message.member;
     ameApi
-      .generate("gae", {
+      .generate("gay", {
         url: mention.user.avatarURL({size: 1024, format: "png", dynamic: false})
       })
       .then(image => {
