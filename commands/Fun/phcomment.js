@@ -1,5 +1,6 @@
 const {Discord, MessageEmbed} = require("discord.js");
 const RichEmbed = MessageEmbed
+const fetch = require("node-fetch");
 
 module.exports = {
     name: "phcomment",
