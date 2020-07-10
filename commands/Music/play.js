@@ -31,7 +31,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
     queueConstruct.songs.push(song);
 
     try {
-      var connection = await msg.member.voiceChannel.join();
+      var connection = await msg.member.voice.channel.join();
       queueConstruct.connection = connection;
       play(msg.guild, queueConstruct.songs[0]);
     } catch (error) {
@@ -94,7 +94,7 @@ module.exports = {
         const searchString = kargs.slice(1).join(" ");
         const url = kargs[1] ? kargs[1].replace(/<(.+)>/g, "$1") : "";
         const serverQueue = queue.get(msg.guild.id);
-        const voiceChannel = msg.member.voice;
+        const voiceChannel = msg.member.voice.channel;
     if (!voiceChannel)
       return msg.channel.send(
         "<a:ElectroFail:656772856184832025> | **PLEASE JOIN A VC TO BE ABLE TO USE THIS COMMAND!**"
@@ -118,10 +118,10 @@ module.exports = {
         await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
       }
       return msg.channel.send(
-        `✅ Playlist: **${playlist.title}** has been added to the queue!`
+        `${process.env.G} Playlist: **${playlist.title}** has been added to the queue!`
       );
       return msg.channel.send(
-        `✅ Playlist: **${playlist.title}** has been added to the queue!`
+        `${process.env.G} Playlist: **${playlist.title}** has been added to the queue!`
       );
     } else {
       try {
