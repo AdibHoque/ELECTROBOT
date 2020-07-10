@@ -31,7 +31,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
     queueConstruct.songs.push(song);
 
     try {
-      var connection = await msg.member.voice.join();
+      var connection = await msg.member.voiceChannel.join();
       queueConstruct.connection = connection;
       play(msg.guild, queueConstruct.songs[0]);
     } catch (error) {
