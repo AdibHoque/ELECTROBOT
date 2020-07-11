@@ -124,11 +124,14 @@ module.exports = {
       return msg.channel.send(
         `${process.env.G} Playlist: **${playlist.title}** has been added to the queue!`
       );
-    } else {
-      try {
-        var video = await youtube.getVideo(url);
-      } catch (error) {
-          var videos = await youtube.searchVideos(searchString, 10);
+    } 
+    if (url.match(/^https?:\/\/(www.youtu.be|youtu.be)\$/)) {
+      const vid = await youtube.getVideo(url)
+      const vid2 = await youtube.getVideoByID(vid.id);
+      return await handleVideo(vid2, msg, voiceChannel); 
+    }
+    else {
+      var videos = await youtube.searchVideos(searchString, 1);
           /*let index = 0;
           const embed = new MessageEmbed()
             .setTitle(`SONG SELECTION`)
@@ -161,7 +164,7 @@ module.exports = {
           message.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, { max: 1, time: 30000, errors: ['time'] })
 		.then(response => {
           const videoIndex = parseInt(response.first().content);*/
-          var video = youtube.getVideoByID(videos[1].id);
+          var video = youtube.getVideoByID(videos.id);
         /*})
     .catch(err => {
           console.error(err);
@@ -172,7 +175,7 @@ module.exports = {
             console.error(err);
           }
       }*/
-      return handleVideo(video, msg, voiceChannel);
+      return await handleVideo(video, msg, voiceChannel);
     
         }
-    } }}
+    } }
