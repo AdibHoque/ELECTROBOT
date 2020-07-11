@@ -144,7 +144,7 @@ module.exports = {
             .setColor(`#ffbf00`);
           msg.channel.send(embed);
           // eslint-disable-next-line max-depth
-          try {
+          /*try {
             var response = await msg.channel.awaitMessages(
               msg2 => msg2.content > 0 && msg2.content < 11,
               {
@@ -158,15 +158,20 @@ module.exports = {
             return msg.channel.send(
               "<a:ElectroFail:656772856184832025> | **SONG SELECTION TIMED OUT, CANCELLING SONG SELECTION!**"
             );
-          }
+          }*/
+          message.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, { max: 1, time: 30000, errors: ['time'] })
+		.then(response => {
           const videoIndex = parseInt(response.first().content);
-          var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
-        } catch (err) {
+          var video = youtube.getVideoByID(videos[videoIndex - 1].id);
+        })
+    .catch(err => {
           console.error(err);
           return msg.channel.send(
             "<a:ElectroFail:656772856184832025> | **I COULD NOT OBTAIN ANY SEARCH RESULTS, PLEASE PROVIDE VALID SONG NAMES!**"
           );
-        }
+        })} catch (err) {
+            console.error(err);
+          }
       }
       return handleVideo(video, msg, voiceChannel);
     }
