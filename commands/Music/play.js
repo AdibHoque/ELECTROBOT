@@ -161,7 +161,7 @@ module.exports = {
           message.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, { max: 1, time: 30000, errors: ['time'] })
 		.then(response => {
           const videoIndex = parseInt(response.first().content);*/
-          var video = youtube.getVideoByID(videos.first().id);
+          var video = youtube.getVideoByID(videos[1].id);
         /*})
     .catch(err => {
           console.error(err);
