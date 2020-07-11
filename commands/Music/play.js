@@ -128,9 +128,8 @@ module.exports = {
       try {
         var video = await youtube.getVideo(url);
       } catch (error) {
-        try {
           var videos = await youtube.searchVideos(searchString, 10);
-          let index = 0;
+          /*let index = 0;
           const embed = new MessageEmbed()
             .setTitle(`SONG SELECTION`)
             .setDescription(
@@ -142,7 +141,7 @@ module.exports = {
               `Please provide a value to select one of the search results ranging from 1-10.`
             )
             .setColor(`#ffbf00`);
-          msg.channel.send(embed);
+          msg.channel.send(embed);*/
           // eslint-disable-next-line max-depth
           /*try {
             var response = await msg.channel.awaitMessages(
@@ -158,12 +157,12 @@ module.exports = {
             return msg.channel.send(
               "<a:ElectroFail:656772856184832025> | **SONG SELECTION TIMED OUT, CANCELLING SONG SELECTION!**"
             );
-          }*/
+          }
           message.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, { max: 1, time: 30000, errors: ['time'] })
 		.then(response => {
-          const videoIndex = parseInt(response.first().content);
-          var video = youtube.getVideoByID(videos[videoIndex - 1].id);
-        })
+          const videoIndex = parseInt(response.first().content);*/
+          var video = youtube.getVideoByID(videos.first().id);
+        /*})
     .catch(err => {
           console.error(err);
           return msg.channel.send(
@@ -172,8 +171,8 @@ module.exports = {
         })} catch (err) {
             console.error(err);
           }
-      }
+      }*/
       return handleVideo(video, msg, voiceChannel);
-    }
+    
         }
-    } 
+    } }}
