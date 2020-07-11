@@ -127,55 +127,12 @@ module.exports = {
     } 
     if (url.match(/^https?:\/\/(www.youtu.be|youtu.be)\/(.*)$/)) {
       const vid = await youtube.getVideo(url)
-      const vid2 = await youtube.getVideoByID(vid.id);
-      return await handleVideo(vid2, msg, voiceChannel); 
+      //const vid2 = await youtube.getVideoByID(vid.id);
+      return await handleVideo(vid, msg, voiceChannel); 
     }
-    else {
-      var videos = await youtube.searchVideos(searchString, 10);
-          /*let index = 0;
-          const embed = new MessageEmbed()
-            .setTitle(`SONG SELECTION`)
-            .setDescription(
-              `${videos
-                .map(video2 => `**${++index} -** ${video2.title}`)
-                .join("\n")}`
-            )
-            .setFooter(
-              `Please provide a value to select one of the search results ranging from 1-10.`
-            )
-            .setColor(`#ffbf00`);
-          msg.channel.send(embed);*/
-          // eslint-disable-next-line max-depth
-          /*try {
-            var response = await msg.channel.awaitMessages(
-              msg2 => msg2.content > 0 && msg2.content < 11,
-              {
-                maxMatches: 1,
-                time: 30000,
-                errors: ["time"]
-              }
-            );
-          } catch (err) {
-            console.error(err);
-            return msg.channel.send(
-              "<a:ElectroFail:656772856184832025> | **SONG SELECTION TIMED OUT, CANCELLING SONG SELECTION!**"
-            );
-          }
-          message.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, { max: 1, time: 30000, errors: ['time'] })
-		.then(response => {
-          const videoIndex = parseInt(response.first().content);*/
-          var video = youtube.getVideoByID(videos[1].id);
-        /*})
-    .catch(err => {
-          console.error(err);
-          return msg.channel.send(
-            "<a:ElectroFail:656772856184832025> | **I COULD NOT OBTAIN ANY SEARCH RESULTS, PLEASE PROVIDE VALID SONG NAMES!**"
-          );
-        })} catch (err) {
-            console.error(err);
-          }
-      }*/
-      return await handleVideo(video, msg, voiceChannel);
+    var videos = await youtube.searchVideos(args.join(" "), 10);
+    var video = youtube.getVideoByID(videos[1].id);
+    return await handleVideo(video, msg, voiceChannel);
     
         }
-    } }
+    } 
