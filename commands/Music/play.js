@@ -4,6 +4,7 @@ const ytdl = require("ytdl-core");
 const YouTube = require("simple-youtube-api");
 const youtube = new YouTube(process.env.YOUTUBEAPIKEY);
 const queue = new Map();
+const {ffmpeg, avconv}  = require('ffmpeg')
 
 async function handleVideo(video, msg, voiceChannel, playlist = false) {
   const serverQueue = queue.get(msg.guild.id);
