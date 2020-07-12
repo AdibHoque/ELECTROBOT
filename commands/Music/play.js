@@ -117,22 +117,21 @@ module.exports = {
       for (const video of Object.values(videos)) {
         const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
         await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
-      }
       return msg.channel.send(
         `${process.env.G} Playlist: **${playlist.title}** has been added to the queue!`
       );
-      return msg.channel.send(
-        `${process.env.G} Playlist: **${playlist.title}** has been added to the queue!`
-      );
+    }
     } 
     if (url.match(/^https?:\/\/(www.youtu.be|youtu.be)\/(.*)$/)) {
       const vid = await youtube.getVideo(url)
       //const vid2 = await youtube.getVideoByID(vid.id);
+      message.channel.send(`🔎 Searching \`${url}\``)
       return await handleVideo(vid, msg, voiceChannel); 
     }
+    else {
     var videos = await youtube.searchVideos(args.join(" "), 10);
-    var video = youtube.getVideoByID(videos[1].id);
-    return await handleVideo(video, msg, voiceChannel);
-    
+    var video = youtube.getVideoByID(videos[0].id);
+    await handleVideo(video, msg, voiceChannel);
+    }
         }
     } 
