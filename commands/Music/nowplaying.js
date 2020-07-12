@@ -99,8 +99,10 @@ module.exports = {
       return msg.channel.send(
         "<a:ElectroFail:656772856184832025> **NOTHING IS BEEN PLAYED RIGHT NOW!**"
       );
+      else {
     return msg.channel.send(
       `🎶 Now playing: **${serverQueue.songs[0].title}**`
     );
+      }
         }
     } 
