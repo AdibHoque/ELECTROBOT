@@ -128,7 +128,7 @@ module.exports = {
       message.channel.send(`🔎 Searching \`${url}\``)
       return await handleVideo(vid, msg, voiceChannel); 
     }
-    else {
+    if(!url) {
     var videos = await youtube.searchVideos(args.join(" "), 10);
     var video = youtube.getVideoByID(videos[0].id);
     await handleVideo(video, msg, voiceChannel);
