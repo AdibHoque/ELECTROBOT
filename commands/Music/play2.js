@@ -28,7 +28,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
       playing: true
     };
     queue.set(msg.guild.id, queueConstruct);
-
+    msg.channel.send(`👍 **Joined** \`${voiceChannel.name}\` 📄 **And bound to** \`${msg.channel.name}\``)
     queueConstruct.songs.push(song);
 
     try {
@@ -84,11 +84,11 @@ function play(guild, song) {
 
 
 module.exports = {
-    name: "play2",
+    name: "play",
     category: "Music",
-    description: "test!",
+    description: "Play music from Youtube!",
     aliases: [],
-    usage: "play2",
+    usage: "play",
     run: async(client, message, args) => {
         const msg = message 
         const kargs = msg.content.split(" ");
@@ -96,13 +96,22 @@ module.exports = {
         const url = kargs[1] ? kargs[1].replace(/<(.+)>/g, "$1") : "";
         const serverQueue = queue.get(msg.guild.id);
         const voiceChannel = msg.member.voice.channel;
+      if(!voiceChannel) {
+        return message.channel.send(`${process.env.R} **PLEASE JOIN A VC FIRST!**`)
+      }
+      if(!args) {
+        return message.channel.send(`${process.env.R} **PLEASE SPECIFY A SEARCH WORD OR A URL!**`)
+      }
+      if(args) {
+        message.channel.send(`<:YouTube:732182704904470539> **Searching** 🔎\`${searchString}\`!`)
+      }
     try {
         var video = await youtube.getVideo(url);
       } catch (error) {
         try {
           var videos = await youtube.searchVideos(searchString, 10);
           let index = 0;
-          const embed = new MessageEmbed()
+          /*const embed = new MessageEmbed()
             .setTitle(`SONG SELECTION`)
             .setDescription(
               `${videos
@@ -113,7 +122,7 @@ module.exports = {
               `Please provide a value to select one of the search results ranging from 1-10.`
             )
             .setColor(`#ffbf00`);
-          msg.channel.send(embed);
+          msg.channel.send(embed);*/
           // eslint-disable-next-line max-depth
           /*try {
             var response = await msg.channel.awaitMessages(

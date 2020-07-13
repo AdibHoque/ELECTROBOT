@@ -84,9 +84,9 @@ function play(guild, song) {
 
 
 module.exports = {
-    name: "play",
+    name: "playlist",
     category: "Music",
-    description: "Play music from YouTube!",
+    description: "Play list music from YouTube!",
     aliases: [],
     usage: "play <search string/YouTube link>",
     run: async(client, message, args) => {
