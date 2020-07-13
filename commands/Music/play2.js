@@ -103,10 +103,11 @@ module.exports = {
         return message.channel.send(`${process.env.R} **PLEASE SPECIFY A SEARCH WORD OR A URL!**`)
       }
       if(args) {
-        message.channel.send(`<:YouTube:732182704904470539> **Searching** 🔎\`${searchString}\`!`)
+        message.channel.send(`<:YouTube:732182704904470539> **Searching** 🔎 \`${searchString}\``)
       }
     try {
         var video = await youtube.getVideo(url);
+        msg.delete()
       } catch (error) {
         try {
           var videos = await youtube.searchVideos(searchString, 10);
