@@ -28,12 +28,13 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
       playing: true
     };
     queue.set(msg.guild.id, queueConstruct);
-    msg.channel.send(`👍 **Joined** \`${voiceChannel.name}\` 📄 **And bound to** \`${msg.channel.name}\``)
+   // msg.channel.send(`👍 **Joined** \`${voiceChannel.name}\` 📄 **And bound to** \`${msg.channel.name}\``)
     queueConstruct.songs.push(song);
 
     try {
       var connection = await msg.member.voice.channel.join();
       queueConstruct.connection = connection;
+      msg.channel.send(`👍 **Joined** \`${voiceChannel.name}\` 📄 **And bound to** \`${msg.channel.name}\``)
       play(msg.guild, queueConstruct.songs[0]);
     } catch (error) {
       console.error(`I could not join the voice channel: ${error}`);
