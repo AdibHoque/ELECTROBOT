@@ -108,7 +108,6 @@ module.exports = {
       }
     try {
         var video = await youtube.getVideo(searchString);
-        msg.delete()
       } catch (error) {
         try {
           var videos = await youtube.searchVideos(searchString, 10);
