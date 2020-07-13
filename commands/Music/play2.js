@@ -94,7 +94,7 @@ module.exports = {
         const msg = message 
         const kargs = msg.content.split(" ");
         const searchString = kargs.slice(1).join(" ");
-        const url = kargs[1] ? kargs[1].replace(/<(.+)>/g, "$1") : "";
+        //const url = kargs[1] ? kargs[1].replace(/<(.+)>/g, "$1") : "";
         const serverQueue = queue.get(msg.guild.id);
         const voiceChannel = msg.member.voice.channel;
       if(!voiceChannel) {
@@ -103,11 +103,11 @@ module.exports = {
       if(!args) {
         return message.channel.send(`${process.env.R} **PLEASE SPECIFY A SEARCH WORD OR A URL!**`)
       }
-      /*if(args) {
+      if(args) {
         message.channel.send(`<:YouTube:732182704904470539> **Searching** 🔎 \`${searchString}\``)
-      }*/
+      }
     try {
-        var video = await youtube.getVideo(url);
+        var video = await youtube.getVideo(searchString);
         msg.delete()
       } catch (error) {
         try {
