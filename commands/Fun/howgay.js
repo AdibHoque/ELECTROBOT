@@ -17,7 +17,6 @@ module.exports = {
           const straight = '□'.repeat(10)
           const embed = new MessageEmbed()
           .setAuthor(`${m.user.username}'s Gayrate`,`${m.user.avatarURL({format: "png", dynamic: true, size: 256})}`)
-          .setTitle(`Gayrate`)
           .setDescription(`0% [${straight}](https://discord.gg/pokehunt)`)
           .setColor("#ffbf00")
           message.channel.send(embed)
