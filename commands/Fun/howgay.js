@@ -16,7 +16,7 @@ module.exports = {
         if(m.user.id === "496978159724396545") {
           const straight = '□'.repeat(10)
           const embed = new MessageEmbed()
-          .setAuthor(`${m.user.username}`,`${m.user.avatarURL({format: "png", dynamic: true, size: 256})}`)
+          .setAuthor(`${m.user.username}'s Gayrate`,`${m.user.avatarURL({format: "png", dynamic: true, size: 256})}`)
           .setTitle(`Gayrate`)
           .setDescription(`0% [${straight}](https://discord.gg/pokehunt)`)
           .setColor("#ffbf00")
@@ -28,8 +28,7 @@ module.exports = {
         const counter_ = '■' .repeat(filled_progbar) + '□' .repeat((10 - filled_progbar))
         
         const embed = new MessageEmbed()
-        .setAuthor(`${m.user.username}`,`${m.user.avatarURL({format: "png", dynamic: true, size: 256})}`)
-        .setTitle(`Gayrate`)
+        .setAuthor(`${m.user.username}'s Gayrate`,`${m.user.avatarURL({format: "png", dynamic: true, size: 256})}`)
         .setDescription(`${score}% [${counter_}](https://discord.gg/pokehunt)`)
         .setColor("#ffbf00")
         message.channel.send(embed)
