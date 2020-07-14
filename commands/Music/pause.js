@@ -95,7 +95,7 @@ module.exports = {
         const searchString = kargs.slice(1).join(" ");
         const serverQueue = queue.get(msg.guild.id);
         const voiceChannel = msg.member.voice.channel;
-    if (serverQueue && serverQueue.playing) {
+    if (serverQueue.songs && serverQueue.playing) {
       serverQueue.playing = false;
       serverQueue.connection.dispatcher.pause();
       return msg.channel.send(

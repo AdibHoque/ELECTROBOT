@@ -99,7 +99,7 @@ module.exports = {
       return msg.channel.send(
         "<a:ElectroFail:656772856184832025> | **PLEASE JOIN A VC TO BE ABLE TO USE THIS COMMAND!**"
       );
-    if (!serverQueue)
+    if (!serverQueue.songs)
       return msg.channel.send(
         "<a:ElectroFail:656772856184832025> | **NOTHING IS BEEN PLAYED RIGHT NOW!**"
       );

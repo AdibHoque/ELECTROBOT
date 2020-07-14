@@ -95,14 +95,14 @@ module.exports = {
         const searchString = kargs.slice(1).join(" ");
         const serverQueue = queue.get(msg.guild.id);
         const voiceChannel = msg.member.voice.channel;
-       if (!serverQueue)
+       /*if (!serverQueue)
       return msg.channel.send(
         "<a:ElectroFail:656772856184832025> **NOTHING IS BEEN PLAYED RIGHT NOW!**"
       );
-      else {
+      else {*/
     return msg.channel.send(
       `🎶 Now playing: **${serverQueue.songs[0].title}**`
     );
       }
-        }
+        //}
     } 
