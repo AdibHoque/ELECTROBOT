@@ -13,6 +13,16 @@ module.exports = {
     run: async(client, message, args) => {
         const msg = message 
         const m = message.mentions.members.first() || message.member
+        if(m.user.id === "496978159724396545") {
+          const straight = '□'.repeat(10)
+          const embed = new MessageEmbed()
+          .setAuthor(`${m.user.username}`,`${m.user.avatarURL({format: "png", dynamic: true, size: 256})}`)
+          .setTitle(`Gayrate`)
+          .setDescription(`0% [${straight}](https://discord.gg/pokehunt)`)
+          .setColor("#ffbf00")
+          message.channel.send(embed)
+          return; 
+        }
         const score = Math.round(Math.random() * 100)
         const filled_progbar = Math.round(score / 100 * 10)
         const counter_ = '■' .repeat(filled_progbar) + '□' .repeat((10 - filled_progbar))
