@@ -19,7 +19,7 @@ module.exports = {
     run: async(client, message, args) => {
         const msg = message 
         //let mention = message.mentions.members.first() || message.member;
-    const canvas = Canvas.createCanvas(1200, 1200);
+    const canvas = Canvas.createCanvas(1200, 600);
     const ctx = canvas.getContext("2d");
     const background = await Canvas.loadImage("https://cdn.discordapp.com/attachments/656517276832366595/732992299579211946/duel.png");
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
