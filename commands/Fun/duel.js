@@ -23,10 +23,12 @@ module.exports = {
     const ctx = canvas.getContext("2d");
     const background = await Canvas.loadImage("https://cdn.discordapp.com/attachments/656517276832366595/732992299579211946/duel.png");
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-    const avatar = await Canvas.loadImage(
+    const poke1 = await Canvas.loadImage(
       "https://assets.pokemon.com/assets/cms2/img/pokedex/full/399.png"
     );
-    ctx.drawImage(avatar, 121, 80, 348, 307);
+    ctx.drawImage(poke1, 121, 80, 348, 307);
+    const poke2 = await Canvas.loadImage("https://assets.pokemon.com/assets/cms2/img/pokedex/full/399.png");
+    ctx.drawImage(poke2, 710, 83, 348, 307)
     msg.channel.send({
       files: [
         {
