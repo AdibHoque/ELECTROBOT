@@ -19,17 +19,15 @@ module.exports = {
     run: async(client, message, args) => {
         const msg = message 
         //let mention = message.mentions.members.first() || message.member;
-  //  const pn1 = args[0] || "399"
-   // const pn2 = args[1] || "399"
+      const link1 = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/399.png"
+      const link2 = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/493.png"
     const canvas = Canvas.createCanvas(1200, 600);
     const ctx = canvas.getContext("2d");
     const background = await Canvas.loadImage("https://cdn.discordapp.com/attachments/656517276832366595/732992299579211946/duel.png");
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-    const poke1 = await Canvas.loadImage(
-      `https://assets.pokemon.com/assets/cms2/img/pokedex/full/399.png`
-    );
+    const poke1 = await Canvas.loadImage(link1);
     ctx.drawImage(poke1, 121, 80, 348, 320);
-    const poke2 = await Canvas.loadImage("https://assets.pokemon.com/assets/cms2/img/pokedex/full/493.png");
+    const poke2 = await Canvas.loadImage(link2);
     ctx.drawImage(poke2, 710, 83, 348, 320)
     msg.channel.send({
       files: [
