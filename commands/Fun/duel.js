@@ -29,7 +29,7 @@ module.exports = {
       `https://assets.pokemon.com/assets/cms2/img/pokedex/full/399.png`
     );
     ctx.drawImage(poke1, 121, 80, 348, 320);
-    const poke2 = await Canvas.loadImage("https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+args[0]+".png");
+    const poke2 = await Canvas.loadImage("https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+args[1]+".png");
     ctx.drawImage(poke2, 710, 83, 348, 320)
     msg.channel.send({
       files: [
