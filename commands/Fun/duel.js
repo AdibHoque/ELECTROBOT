@@ -26,7 +26,7 @@ module.exports = {
     const background = await Canvas.loadImage("https://cdn.discordapp.com/attachments/656517276832366595/732992299579211946/duel.png");
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     const poke1 = await Canvas.loadImage(
-      `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${args[0]}.png"`
+      `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${args[0]}.png`
     );
     ctx.drawImage(poke1, 121, 80, 348, 320);
     const poke2 = await Canvas.loadImage(`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${args[1]}.png`);
