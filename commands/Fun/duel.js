@@ -21,7 +21,7 @@ module.exports = {
         //let mention = message.mentions.members.first() || message.member;
     const pn1 = args[0] ? `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${args[0]}.png` : `https://assets.pokemon.com/assets/cms2/img/pokedex/full/399.png`
     const pn2 = args[1] ? `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${args[1]}.png` : `https://assets.pokemon.com/assets/cms2/img/pokedex/full/399.png`
-    message.channel.send(`${pn1}\n${pn2}`)
+   // message.channel.send(`${pn1}\n${pn2}`)
     const canvas = Canvas.createCanvas(1200, 600);
     const ctx = canvas.getContext("2d");
     const background = await Canvas.loadImage("https://cdn.discordapp.com/attachments/656517276832366595/732992299579211946/duel.png");
