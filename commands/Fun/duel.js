@@ -19,8 +19,8 @@ module.exports = {
     run: async(client, message, args) => {
         const msg = message 
         //let mention = message.mentions.members.first() || message.member;
-    const pn1 = args[0] ? args[0] : "399"
-    const pn2 = args[1] ? args[1] : "399"
+    const pn1 = args[0] ? parseInt(args[0]) : "399"
+    const pn2 = args[1] ? parseInt(args[1]) : "399"
     message.channel.send(`${pn1}\n${pn2}`)
     const canvas = Canvas.createCanvas(1200, 600);
     const ctx = canvas.getContext("2d");
