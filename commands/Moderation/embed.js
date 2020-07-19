@@ -29,6 +29,12 @@ module.exports = {
         if(res.author) {
           embed.setAuthor(res.author)
         }
+        if(res.image) {
+          embed.setImage(res.image)
+        }
+        if(res.thumbnail) {
+          embed.setThumbnail(res.thumbnail)
+        }
         if(res.color) {
           embed.setColor(res.color)
         }
