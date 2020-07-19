@@ -12,10 +12,10 @@ module.exports = {
         if(!args) {
           const a = new MessageEmbed()
           .setTitle("ELECTRO EMBEDS")
-          .addField("Variables","title - embed title\nauthor - embed author\ndescription - embed description\nfield1title - first field title, field1text - first field text\nfield2title - second field title, field2text - second field text\ncolor - embed color\nfooter - embed footer")
+          .addField("Variables","title - embed title\nauthor - embed author\ndescription - embed description\nimage - the embed image which stays in bottom\nthumbnail - the small image of top right of embeds\nfield1title - first field title, field1text - first field text\nfield2title - second field title, field2text - second field text\ncolor - embed color\nfooter - embed footer")
           .addField("Example","{\"title\":\"this it the title\",\"description\":\"embed description here\",\"color\":\"#ffbf00\"}")
           .setColor("#ffbf00")
-          message.channel.send(a)
+         return message.channel.send(a); 
         }
         if(message.member.hasPermission("ADMINISTRATOR")) {
         const res = JSON.parse(args.join(" "))
