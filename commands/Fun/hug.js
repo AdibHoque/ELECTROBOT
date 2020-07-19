@@ -9,17 +9,17 @@ module.exports = {
     aliases: [],
     usage: "hug <@user>",
     run: async(client, message, args) => {
-        const user = message.mentions.users.first();
-          if(!user)
-              return message.reply('Mention someone to hug!');
-
+        const use = message.mentions.users.first();
+          if(!use)
+              return message.channel.send('Mention someone to hug!');
+          else {
           superagent.get('https://nekos.life/api/v2/img/hug')
               .end((err, response) => {
             const lewdembed = new MessageEmbed()
-            .setTitle(message.author.username + " gives "+user.username+" a big hug! ❤")
+            .setTitle(message.author.username + " gives "+use.username+" a big hug! ❤")
             .setImage(response.body.url)
             .setColor(`#ffbf00`)
         message.channel.send(lewdembed);
           }) 
-        }
+        }}
     }   

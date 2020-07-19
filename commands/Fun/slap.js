@@ -9,17 +9,17 @@ module.exports = {
     aliases: [],
     usage: "slap",
     run: async(client, message, args) => {
-        const user = message.mentions.users.first();
-          if(!user)
+        const use = message.mentions.users.first();
+          if(!use)
               return message.reply('Mention someone to slap!');
-
+          else {
           superagent.get('https://nekos.life/api/v2/img/slap')
               .end((err, response) => {
             const lewdembed = new MessageEmbed()
-            .setTitle(message.author.username + " slaps "+user. username+"!! Deserves it! 😡")
+            .setTitle(message.author.username + " slaps "+use. username+"!! Deserves it! 😡")
             .setImage(response.body.url)
             .setColor(`#ffbf00`)
         message.channel.send(lewdembed);
           }) 
-        }
+        }}
     }  

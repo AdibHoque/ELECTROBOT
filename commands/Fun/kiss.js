@@ -9,17 +9,17 @@ module.exports = {
     aliases: [],
     usage: "kiss <@user>",
     run: async(client, message, args) => {
-        const user = message.mentions.users.first();
-          if(!user)
+        const use = message.mentions.users.first();
+          if(!use)
               return message.reply('Mention someone to kiss!');
-
+          else {
           superagent.get('https://nekos.life/api/v2/img/kiss')
               .end((err, response) => {
             const lewdembed = new MessageEmbed()
-            .setTitle(message.author.username + " kisses "+user.username+" lips! ❤")
+            .setTitle(message.author.username + " kisses "+use.username+" lips! ❤")
             .setImage(response.body.url)
             .setColor(`#ffbf00`)
         message.channel.send(lewdembed);
           }) 
-        }
+        }}
     }   

@@ -95,11 +95,7 @@ client.on("message", async message => {
     "eb!" ||
     "<@715843336417837156>";
   //if(!prefix) prefix = process.env.Prefix
-  const nsfwembed = new MessageEmbed()
-    .setDescription(
-      `<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`
-    )
-    .setColor(`#ff0000`);
+  const nsfwembed = new MessageEmbed().setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`).setColor(`#ff0000`);
 
   if (message.content === "<@715843336417837156>") {
     const embed = new MessageEmbed()
