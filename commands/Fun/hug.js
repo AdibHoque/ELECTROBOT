@@ -1,6 +1,6 @@
 const {Discord, MessageEmbed} = require("discord.js");
 const RichEmbed = MessageEmbed
-const superagent = require("snekfetch")
+const fetch = require("node-fetch");
 
 module.exports = {
     name: "hug",
@@ -13,13 +13,13 @@ module.exports = {
           if(!use)
               return message.channel.send('Mention someone to hug!');
           else {
-          superagent.get('https://nekos.life/api/v2/img/hug')
-              .end((err, response) => {
+          const res = await fetch(encodeURI('https://nekos.life/api/v2/img/hug'));
+            const response = res.json()
             const lewdembed = new MessageEmbed()
             .setTitle(message.author.username + " gives "+use.username+" a big hug! ❤")
             .setImage(response.body.url)
             .setColor(`#ffbf00`)
         message.channel.send(lewdembed);
-          }) 
-        }}
+          }
+        }
     }   
