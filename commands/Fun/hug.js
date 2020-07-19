@@ -15,9 +15,10 @@ module.exports = {
           else {
           const res = await fetch(encodeURI('https://nekos.life/api/v2/img/hug'));
             const response = res.json()
+            console.log(response)
             const lewdembed = new MessageEmbed()
             .setTitle(message.author.username + " gives "+use.username+" a big hug! ❤")
-            .setImage(response.body.url)
+            .setImage(response.url)
             .setColor(`#ffbf00`)
         message.channel.send(lewdembed);
           }
