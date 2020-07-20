@@ -339,7 +339,7 @@ client.on('guildMemberBoost', (member) => {
   const logchannel = db.fetch(`log${member.guild.id}`);
 if(!logchannel) return; 
   const embed = new MessageEmbed()
-  .setTitle(`Boost Added`)
+  .setTitle(`BOOST ADDED`)
   .setDescription(`\`${member.user.tag}\` just boosted the server!`)
   .setThumbnail("https://cdn.discordapp.com/emojis/713521444256088184.png")
   .setTimestamp()
@@ -352,7 +352,7 @@ client.on("guildMemberUnboost", (member) => {
   const logchannel = db.fetch(`log${member.guild.id}`);
 if(!logchannel) return; 
   const embed = new MessageEmbed()
-  .setTitle(`Boost Removed`)
+  .setTitle(`BOOST REMOVED`)
   .setDescription(`\`${member.user.tag}\` has stopped boosting the server!`)
   .setThumbnail("https://cdn.discordapp.com/emojis/713521356553191526.png")
   .setTimestamp()
@@ -365,7 +365,7 @@ client.on("guildBoostLevelUp", (guild, oldLevel, newLevel) => {
   const logchannel = db.fetch(`log${guild.id}`);
 if(!logchannel) return; 
   const embed = new MessageEmbed()
-  .setTitle("Boost Level Up")
+  .setTitle("BOOST LEVEL UP")
   .setDescription(`**${guild.name}** has achieved **Level ${newLevel}**.`)
   .setThumbnail("https://cdn.discordapp.com/emojis/713521444256088184.png")
   .setColor("#ff80ce")
@@ -378,7 +378,7 @@ client.on("guildBoostLevelDown", (guild, oldLevel, newLevel) => {
   const logchannel = db.fetch(`log${guild.id}`);
 if(!logchannel) return; 
   const embed = new MessageEmbed()
-  .setTitle("Boost Level Down")
+  .setTitle("BOOST LEVEL DOWN")
   .setDescription(`**${guild.name}** has lost it's previous level and got down to **Level ${newLevel}**.`)
   .setThumbnail("https://cdn.discordapp.com/emojis/713521356553191526.png")
   .setColor("#ff80ce")
