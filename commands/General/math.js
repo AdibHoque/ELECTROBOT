@@ -7,7 +7,7 @@ module.exports = {
     category: "General",
     description: "Make the bot evaluate your math!",
     aliases: ["add", "deduct", "multiply", "devide"],
-    usage: "math <69+69>/<69+69+69>\<69-69>\<69*69>\<69/69>\<69^2>",
+    usage: "math <69+69>/<69+69+69>/<69-69>/<69*69>/<69/69>/<69^2>",
     run: async(client, message, args) => {
       let msg = message
            let resp;

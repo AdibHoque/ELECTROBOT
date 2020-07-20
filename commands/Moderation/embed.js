@@ -5,7 +5,7 @@ module.exports = {
     name: "embed",
     category: "Moderation",
     description: "Make a embed with json format!",
-    aliases: [],
+    aliases: ["customembed"],
     usage: "embed <{\"title\": \"your title\", \"description\": \"your description\"}>",
     run: async(client, message, args) => {
         const msg = message 
