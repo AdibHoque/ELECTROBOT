@@ -161,7 +161,7 @@ if(logchannel) {
 .setTimestamp()
 .setFooter(`MESSAGE DELETED`)
 .setColor(`#ffbf00`)
-message.guild.channels.get(logchannel).send(embed)
+message.guild.channels.cache.get(logchannel).send(embed)
 }
 });
 
@@ -181,7 +181,7 @@ if(!logchannel) return;
 .setTimestamp()
 .setFooter(`MESSAGE EDITED`)
 .setColor(`#ffbf00`)
-msg.guild.channels.get(logchannel).send(embed)
+msg.guild.channels.cache.get(logchannel).send(embed)
 })
 
 client.on("guildMemberAdd", async member => {
@@ -344,7 +344,7 @@ if(!logchannel) return;
   .setThumbnail("https://cdn.discordapp.com/emojis/713521444256088184.png")
   .setTimestamp()
   .setColor(`#ff80ce`)
-member.guild.channels.get(logchannel).send(embed)
+member.guild.channels.cache.get(logchannel).send(embed)
 });
 
 client.on("guildMemberUnboost", (member) => {
@@ -357,7 +357,7 @@ if(!logchannel) return;
   .setThumbnail("https://cdn.discordapp.com/emojis/713521356553191526.png")
   .setTimestamp()
   .setColor(`#ff80ce`)
-member.guild.channels.get(logchannel).send(embed)
+member.guild.channels.cache.get(logchannel).send(embed)
 });
 
 client.on("guildBoostLevelUp", (guild, oldLevel, newLevel) => {
@@ -370,7 +370,7 @@ if(!logchannel) return;
   .setThumbnail("https://cdn.discordapp.com/emojis/713521444256088184.png")
   .setColor("#ff80ce")
   .setTimestamp()
-guild.channels.get(logchannel).send(embed)
+guild.channels.cache.get(logchannel).send(embed)
 });
 
 client.on("guildBoostLevelDown", (guild, oldLevel, newLevel) => {
@@ -383,7 +383,7 @@ if(!logchannel) return;
   .setThumbnail("https://cdn.discordapp.com/emojis/713521356553191526.png")
   .setColor("#ff80ce")
   .setTimestamp()
-guild.channels.get(logchannel).send(embed)
+guild.channels.cache.get(logchannel).send(embed)
 });
 
 client.on("guildMemberRoleAdd", (member, role) => {
@@ -397,7 +397,7 @@ if(!logchannel) return;
 .setTimestamp()
 .setFooter(`MEMBER ROLES UPDATED`)
 .setColor(`#ffbf00`)
-member.guild.channels.get(logchannel).send(embed)
+member.guild.channels.cache.get(logchannel).send(embed)
 });
 
 client.on("guildMemberRoleRemove", (member, role) => {
@@ -411,7 +411,7 @@ if(!logchannel) return;
 .setTimestamp()
 .setFooter(`MEMBER ROLES UPDATED`)
 .setColor(`#ffbf00`)
-member.guild.channels.get(logchannel).send(embed)
+member.guild.channels.cache.get(logchannel).send(embed)
 });
 
 client.on("guildMemberNicknameUpdate", (member, oldNickname, newNickname) => {
@@ -427,7 +427,7 @@ if(!logchannel) return;
 .setTimestamp()
 .setFooter(`NICKNAMED UPDATED`)
 .setColor(`#ffbf00`)
-member.guild.channels.get(logchannel).send(embed)
+member.guild.channels.cache.get(logchannel).send(embed)
 });
 
 client.on("messagePinned", (message) => {
@@ -443,7 +443,7 @@ if(!logchannel) return;
 .setTimestamp()
 .setFooter(`MESSAGE PINNED`)
 .setColor(`#ffbf00`)
-message.guild.channels.get(logchannel).send(embed)
+message.guild.channels.cache.get(logchannel).send(embed)
 });
 
 client.on("messageContentEdited", (message, oldContent, newContent) => {
@@ -463,7 +463,7 @@ if(!logchannel) return;
 .setTimestamp()
 .setColor(`#ffbf00`) 
 .setFooter(`ROLE POSITION UPDATED`)
-role.guild.channels.get(logchannel).send(embed)
+role.guild.channels.cache.get(logchannel).send(embed)
 });
 
 client.on("userUsernameUpdate", (user, oldUsername, newUsername) => {
@@ -480,7 +480,7 @@ if(!logchannel) return;
 .setTimestamp()
 .setColor(`#ffbf00`)
 .setFooter(`MEMBER BANNED`)
- guild.channels.get(logchannel).send(embed)
+ guild.channels.cache.get(logchannel).send(embed)
 })
 function extension(reaction, attachment) {
   const imageLink = attachment.split(".");
