@@ -8,7 +8,7 @@ module.exports = {
     aliases: ["se"],
     usage: "emoji <:emoji:>",
     run: async(client, message, args) => {
-        const e = message.mentions.emojis.first() || message.guild.emojis.cache.find(r => r.name === args[0])
+        const e = message.guild.emojis.cache.find(r => "<:"+r.name+":"+r.id+">" === args[0]) || message.guild.emojis.cache.find(r => ":"+r.name+":"=== ":"+args[0]+":") || message.guild.emojis.cache.get(args[0])
         message.channel.send(e.url)
         }
     } 
