@@ -36,7 +36,8 @@
     "ffmpeg": "^0.0.4",
     "node-opus": "^0.3.3",
     "ffmpeg-static": "^4.2.5",
-    "reverse-text": "^1.0.0"
+    "reverse-text": "^1.0.0",
+    "discord-logs": "^1.7.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -20,6 +20,8 @@ const fail = "<a:ElectroFail:656772856184832025>";
 let alexa = require("alexa-bot-api");
 let ai = new alexa("aw2plm");
 const Canvas = require("canvas");
+const logs = require('discord-logs');
+logs(client);
 
 loadCMD(client);
 
@@ -306,89 +308,48 @@ client.on("guildMemberRemove", async member => {
     c.setName(`membercount-${member.guild.memberCount}`);*/
 });
 
-client.on("messageReactionAdd", (reaction, user) => {
-  const message = reaction.message;
-  if (reaction.emoji.name !== "⭐") return;
-  //if (message.author.id === user.id)
-  if (message.author.bot) return;
-  const { starboardChannel } = db.fetch(`starboard${message.guild.id}`);
-  const starChannel = message.guild.channels.cache.find("id", starboardChannel);
-  if (!starChannel) return;
-  const fetchedMessages = starChannel.fetchMessages({ limit: 100 });
-  const stars = fetchedMessages.find(
-    m =>
-      m.embeds[0].footer.text.startsWith("⭐") &&
-      m.embeds[0].footer.text.endsWith(message.id)
-  );
-  if (stars) {
-    const star = /^\⭐\s([0-9]{1,3})\s\|\s([0-9]{17,20})/.exec(
-      stars.embeds[0].footer.text
-    );
-    const foundStar = stars.embeds[0];
-    const image =
-      message.attachments.size > 0
-        ? this.extension(reaction, message.attachments.first().attachment)
-        : "";
-    const embed = new MessageEmbed()
-      .setColor(foundStar.color)
-      .setDescription(foundStar.description)
-      .setAuthor(message.author.tag, message.author.displayAvatarURL)
-      .setTimestamp()
-      .setFooter(`⭐ ${parseInt(star[1]) + 1} | ${message.id}`)
-      .setImage(image);
-    const starMsg = starChannel.fetchMessage(stars.id);
-    starMsg.edit(embed);
-  }
-  if (!stars) {
-    const image =
-      message.attachments.size > 0
-        ? this.extension(reaction, message.attachments.first().attachment)
-        : "";
-    if (image === "" && message.cleanContent.length < 1) return;
-    const embed = new MessageEmbed()
-      .setColor(15844367)
-      .setDescription(message.cleanContent)
-      .setAuthor(message.author.tag, message.author.displayAvatarURL)
-      .setTimestamp(new Date())
-      .setFooter(`⭐ 1 | ${message.id}`)
-      .setImage(image);
-    starChannel.send(embed);
-  }
+client.on('guildMemberBoost', (member) => {
+    console.log(`${member.user.tag} just boosted ${member.guild.name}!`);
 });
 
-client.on("messageReactionRemove", (reaction, user) => {
-  const message = reaction.message;
-  if (message.author.id === user.id) return;
-  if (reaction.emoji.name !== "⭐") return;
-  const { starboardChannel } = db.fetch(`starboard${message.guild.id}`);
-  const starChannel = message.guild.channels.cache.find("id", starboardChannel);
-  if (!starChannel) return;
-  const fetchedMessages = starChannel.fetchMessages({ limit: 100 });
-  const stars = fetchedMessages.find(
-    m =>
-      m.embeds[0].footer.text.startsWith("⭐") &&
-      m.embeds[0].footer.text.endsWith(reaction.message.id)
-  );
-  if (stars) {
-    const star = /^\⭐\s([0-9]{1,3})\s\|\s([0-9]{17,20})/.exec(
-      stars.embeds[0].footer.text
-    );
-    const foundStar = stars.embeds[0];
-    const image =
-      message.attachments.size > 0
-        ? this.extension(reaction, message.attachments.array()[0].url)
-        : "";
-    const embed = new MessageEmbed()
-      .setColor(foundStar.color)
-      .setDescription(foundStar.description)
-      .setAuthor(message.author.tag, message.author.displayAvatarURL)
-      .setTimestamp()
-      .setFooter(`⭐ ${parseInt(star[1]) - 1} | ${message.id}`)
-      .setImage(image);
-    const starMsg = starChannel.fetchMessage(stars.id);
-    starMsg.edit({ embed });
-    if (parseInt(star[1]) - 1 == 0) return starMsg.delete(1000);
-  }
+client.on("guildMemberUnboost", (member) => {
+  console.log(member.user.tag+" has stopped boosting "+member.guild.name+"...");
+});
+
+client.on("guildBoostLevelUp", (guild, oldLevel, newLevel) => {
+  console.log(guild.name+" reaches the boost level: "+newLevel);
+});
+
+client.on("guildBoostLevelDown", (guild, oldLevel, newLevel) => {
+  console.log(guild.name+" returned to the boost level: "+newLevel);
+});
+
+client.on("guildMemberRoleAdd", (member, role) => {
+  console.log(member.user.tag+" acquired the role: "+role.name);
+});
+
+client.on("guildMemberRoleRemove", (member, role) => {
+  console.log(member.user.tag+" lost the role: "+role.name);
+});
+
+client.on("guildMemberNicknameUpdate", (member, oldNickname, newNickname) => {
+  console.log(member.user.tag+"'s nickname is now "+newNickname);
+});
+
+client.on("messagePinned", (message) => {
+  console.log("This message has been pinned : "+message);
+});
+
+client.on("messageContentEdited", (message, oldContent, newContent) => {
+  console.log("Message '"+message.id+"' has been edited to "+newContent);
+});
+
+client.on("rolePositionUpdate", (role, oldPosition, newPosition) => {
+  console.log(role.name + " was at position "+oldPosition+" and now is at position "+newPosition);
+});
+
+client.on("userUsernameUpdate", (user, oldUsername, newUsername) => {
+  console.log(user.tag+" username updated!");
 });
 
 function extension(reaction, attachment) {

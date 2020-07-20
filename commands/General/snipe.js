@@ -10,11 +10,12 @@ module.exports = {
     usage: "snipe",
     run: async(client, message, args) => {
     const msg = message
-    const s = await db.fetch(`snipe${msg.channel.id}.mc`);
+    const channel = message.mentions.channels.first() || message.channel
+    const s = await db.fetch(`snipe${channel.id}.mc`);
     if(!s) return message.channel.send("Nothing to snipe here!");
-    const a = await db.fetch(`snipe${msg.channel.id}.sa`);
-    const t = await db.fetch(`snipe${msg.channel.id}.time`);
-    const av = await db.fetch(`snipe${msg.channel.id}.saav`);
+    const a = await db.fetch(`snipe${channel.id}.sa`);
+    const t = await db.fetch(`snipe${channel.id}.time`);
+    const av = await db.fetch(`snipe${channel.id}.saav`);
     const embed = new RichEmbed()
       .setAuthor(`${a}`, `${av}`)
       .setDescription(`${s}`)
