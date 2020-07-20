@@ -150,12 +150,38 @@ client.on("messageDelete", message => {
     saav: message.author.avatarURL(),
     time: `${message.createdAt.toLocaleString()} GMT+0000`
   });
+  const logchannel = db.fetch(`log${message.guild.id}`);
+if(logchannel) {
+  const embed = new MessageEmbed()
+.setTitle(`MESSAGE DELETED`)
+.addField(`Message Content`,message.content)
+.addField(`Message Author`,message.author.tag)
+.addField(`Message Channel`, "<#"+message.channel.id+">")
+.setThumbnail(message.guild.iconURL())
+.setTimestamp()
+.setFooter(`MESSAGE DELETED`)
+.setColor(`#ffbf00`)
+message.guild.channels.get(logchannel).send(embed)
+}
 });
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
    if (oldMessage.author.bot) return; 
   const msg = oldMessage
   db.set(`editsnipe${msg.channel.id}`, {mc: msg.content, sa: msg.author.username+`#`+msg.author.discriminator, saav: msg.author.avatarURL(), time: `${msg.createdAt.toLocaleString()} GMT+0000`, after: newMessage.content })
+const logchannel = db.fetch(`log${msg.guild.id}`);
+if(!logchannel) return; 
+  const embed = new MessageEmbed()
+.setTitle(`MESSAGE EDITED`)
+.addField(`Message Author`,msg.author.tag)
+.addField(`Old Message`,msg)
+.addField(`New Message`,newMessage)
+.addField(`Message Channel`, `<#${msg.channel.id}>\n[Jump to Message](https://discordapp.com/channels/${msg.guild.id}/${msg.channel.id}/${msg.id})`)
+.setThumbnail(msg.guild.iconURL())
+.setTimestamp()
+.setFooter(`MESSAGE EDITED`)
+.setColor(`#ffbf00`)
+msg.guild.channels.get(logchannel).send(embed)
 })
 
 client.on("guildMemberAdd", async member => {
@@ -310,34 +336,114 @@ client.on("guildMemberRemove", async member => {
 
 client.on('guildMemberBoost', (member) => {
     console.log(`${member.user.tag} just boosted ${member.guild.name}!`);
+  const logchannel = db.fetch(`log${member.guild.id}`);
+if(!logchannel) return; 
+  const embed = new MessageEmbed()
+  .setTitle(`Boost Added`)
+  .setDescription(`\`${member.user.tag}\` just boosted the server!`)
+  .setThumbnail("https://cdn.discordapp.com/emojis/713521444256088184.png")
+  .setTimestamp()
+  .setColor(`#ff80ce`)
+member.guild.channels.get(logchannel).send(embed)
 });
 
 client.on("guildMemberUnboost", (member) => {
   console.log(member.user.tag+" has stopped boosting "+member.guild.name+"...");
+  const logchannel = db.fetch(`log${member.guild.id}`);
+if(!logchannel) return; 
+  const embed = new MessageEmbed()
+  .setTitle(`Boost Removed`)
+  .setDescription(`\`${member.user.tag}\` has stopped boosting the server!`)
+  .setThumbnail("https://cdn.discordapp.com/emojis/713521356553191526.png")
+  .setTimestamp()
+  .setColor(`#ff80ce`)
+member.guild.channels.get(logchannel).send(embed)
 });
 
 client.on("guildBoostLevelUp", (guild, oldLevel, newLevel) => {
   console.log(guild.name+" reaches the boost level: "+newLevel);
+  const logchannel = db.fetch(`log${guild.id}`);
+if(!logchannel) return; 
+  const embed = new MessageEmbed()
+  .setTitle("Boost Level Up")
+  .setDescription(`**${guild.name}** has achieved **Level ${newLevel}**.`)
+  .setThumbnail("https://cdn.discordapp.com/emojis/713521444256088184.png")
+  .setColor("#ff80ce")
+  .setTimestamp()
+guild.channels.get(logchannel).send(embed)
 });
 
 client.on("guildBoostLevelDown", (guild, oldLevel, newLevel) => {
   console.log(guild.name+" returned to the boost level: "+newLevel);
+  const logchannel = db.fetch(`log${guild.id}`);
+if(!logchannel) return; 
+  const embed = new MessageEmbed()
+  .setTitle("Boost Level Down")
+  .setDescription(`**${guild.name}** has lost it's previous level and got down to **Level ${newLevel}**.`)
+  .setThumbnail("https://cdn.discordapp.com/emojis/713521356553191526.png")
+  .setColor("#ff80ce")
+  .setTimestamp()
+guild.channels.get(logchannel).send(embed)
 });
 
 client.on("guildMemberRoleAdd", (member, role) => {
   console.log(member.user.tag+" acquired the role: "+role.name);
+  const logchannel = db.fetch(`log${member.guild.id}`);
+if(!logchannel) return; 
+  const embed = new MessageEmbed()
+.setTitle(`MEMBER ROLES UPDATED`)
+.setDescription(`\`${role.name}\` was added to \`${member.user.tag}\`.`)
+.setThumbnail(member.guild.iconURL())
+.setTimestamp()
+.setFooter(`MEMBER ROLES UPDATED`)
+.setColor(`#ffbf00`)
+member.guild.channels.get(logchannel).send(embed)
 });
 
 client.on("guildMemberRoleRemove", (member, role) => {
   console.log(member.user.tag+" lost the role: "+role.name);
+  const logchannel = db.fetch(`log${member.guild.id}`);
+if(!logchannel) return; 
+  const embed = new MessageEmbed()
+.setTitle(`MEMBER ROLES UPDATED`)
+.setDescription(`\`${role.name}\` was removed from \`${member.user.tag}\`.`)
+.setThumbnail(member.guild.iconURL())
+.setTimestamp()
+.setFooter(`MEMBER ROLES UPDATED`)
+.setColor(`#ffbf00`)
+member.guild.channels.get(logchannel).send(embed)
 });
 
 client.on("guildMemberNicknameUpdate", (member, oldNickname, newNickname) => {
   console.log(member.user.tag+"'s nickname is now "+newNickname);
+  const logchannel = db.fetch(`log${member.guild.id}`);
+if(!logchannel) return; 
+  const embed = new MessageEmbed()
+.setTitle(`NICKNAME UPDATED`)
+.addField(`User`,member.user.tag)
+.addField(`Old Nickname`,oldNickname)
+.addField(`New Nickname`,newNickname)
+.setThumbnail(member.guild.iconURL())
+.setTimestamp()
+.setFooter(`NICKNAMED UPDATED`)
+.setColor(`#ffbf00`)
+member.guild.channels.get(logchannel).send(embed)
 });
 
 client.on("messagePinned", (message) => {
   console.log("This message has been pinned : "+message);
+  const logchannel = db.fetch(`log${message.guild.id}`);
+if(!logchannel) return; 
+  const embed = new MessageEmbed()
+.setTitle(`MESSAGE PINNED`)
+.addField(`Message Content`,message.content)
+.addField(`Message Author`,message.author.tag)
+.addField(`Message Channel`,`${message.channel}\n[Jump to Message](https://discordapp.com/channels/${message.guild.id}/${message.channel.id}/${message.id})`)
+.setThumbnail(message.guild.iconURL())
+.setTimestamp()
+.setFooter(`MESSAGE PINNED`)
+.setColor(`#ffbf00`)
+message.guild.channels.get(logchannel).send(embed)
 });
 
 client.on("messageContentEdited", (message, oldContent, newContent) => {
@@ -346,12 +452,36 @@ client.on("messageContentEdited", (message, oldContent, newContent) => {
 
 client.on("rolePositionUpdate", (role, oldPosition, newPosition) => {
   console.log(role.name + " was at position "+oldPosition+" and now is at position "+newPosition);
+  const logchannel = db.fetch(`log${role.guild.id}`);
+if(!logchannel) return; 
+  const embed = new MessageEmbed()
+.setTitle(`ROLE POSITION UPDATED`)
+.addField(`Role Name`,role.name)
+.addField(`Old Position`,oldPosition)
+.addField(`New Position`,newPosition)
+.setThumbnail(role.guild.iconURL())
+.setTimestamp()
+.setColor(`#ffbf00`) 
+.setFooter(`ROLE POSITION UPDATED`)
+role.guild.channels.get(logchannel).send(embed)
 });
 
 client.on("userUsernameUpdate", (user, oldUsername, newUsername) => {
   console.log(user.tag+" username updated!");
 });
-
+client.on("guildBanAdd", (guild, user) => {
+  const logchannel = db.fetch(`log${guild.id}`);
+if(!logchannel) return; 
+  const embed = new MessageEmbed()
+.setTitle(`MEMBER BANNED`)
+.addField(`User Tag`,user.tag)
+.addField(`User ID`,user.id)
+.setThumbnail(guild.iconURL())
+.setTimestamp()
+.setColor(`#ffbf00`)
+.setFooter(`MEMBER BANNED`)
+ guild.channels.get(logchannel).send(embed)
+})
 function extension(reaction, attachment) {
   const imageLink = attachment.split(".");
   const typeOfImage = imageLink[imageLink.length - 1];
