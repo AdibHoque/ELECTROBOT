@@ -1,6 +1,9 @@
 const { MessageEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
-const db = require("quick.db")
+const mongoose = require("mongoose");
+const pr = require("./../../Mongodb/prefix")
+
+mongoose.connect("mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net/Guilds?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 
 module.exports = {
   name: "help",
@@ -8,8 +11,8 @@ module.exports = {
   description: "Returns all commands, or one specific command info",
   usage: "help [command | alias]",
   run: async (client, message, args) => {
-    const prefix = await db.fetch(`prefix_${message.guild.id}`) || 'eb!'
-   // if (!prefix) prefix = 'eb!'
+  const res =  await pr.findOne({name: "prefix", preid: message.guild.id})
+  let prefix = res ? res.prefix : "eb!";
     if (args[0]) {
       return getCMD(client, message, args[0]);
     } else {
@@ -57,7 +60,7 @@ function getAll(client, message) {
   return message.channel.send(embed.setDescription(info));
 }
 
-function getCMD(client, message, input) {
+async function getCMD(client, message, input) {
   const embed = new MessageEmbed();
 
   // Get the cmd by the name or alias
@@ -78,10 +81,10 @@ function getCMD(client, message, input) {
     info += `\n<:Aliases:722467861590704239> **Aliases**: ${cmd.aliases.map(a => `\`${a}\``).join(", ")}`;
   if (cmd.description) info += `\n<:Description:722467727700394072> **Description**: \`${cmd.description}\``;
   if (cmd.usage) {
-    const prefix = db.fetch(`prefix_${message.guild.id}`) || "eb!"
-   // if(!prefix) prefix = "eb!"
+  const res = await pr.findOne({name: "prefix", preid: message.guild.id})
+  let prefix = res ? res.prefix : "eb!";
     info += `\n<:Usage:722468096362676234> **Usage**: \`${prefix}${cmd.usage}\``;
   }
 
-  return message.channel.send(embed.setFooter(`Syntax: <> = required, [] = optional`).setColor("#ffbf00").setAuthor(`Detailed Help`).setDescription(info));
+  return message.channel.send(embed.setFooter(`<> = required | [] = optional`).setColor("#ffbf00").setAuthor(`Detailed Help`).setDescription(info));
 } 

@@ -21,9 +21,16 @@ let alexa = require("alexa-bot-api");
 let ai = new alexa("aw2plm");
 const Canvas = require("canvas");
 const logs = require('discord-logs');
+const mongoose = require('mongoose');
+//const mongodb_user = require('./Mongodb/user');
+const mongodb_guild = require('./Mongodb/guilds');
+const pre = require("./Mongodb/prefix")
+const lo = require("./Mongodb/logchannel")
 logs(client);
 
 loadCMD(client);
+
+mongoose.connect("mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net/Guilds?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function delay(delayInms) {
   return new Promise(resolve => {
@@ -47,6 +54,49 @@ const applyText = (canvas, text, defaultFontSize) => {
     ctx.font = `${(defaultFontSize -= 10)}px Bold`;
   } while (ctx.measureText(text).width > 600);
   return ctx.font;
+};
+
+/*client.saveUser = (data) => {
+  return new Promise((resolve, reject) => {
+    if (!data) return reject({ code: 0, details: 'Missing user data to save' });
+    data.save().catch(err => reject({ code: 1, details: err }));
+    resolve();
+  });
+};
+client.getUser = (id) => {
+  return new Promise((resolve, reject) => {
+    if (!id) return reject('Missing user id to get data for', 0);
+    mongodb_user.findOne({ _id: id }).then(data => {
+      if (data == null) {
+        data = new mongodb_user({
+          _id: id,
+          pokemons: [],
+          balance: 0,
+        })
+      }
+      return resolve(data);
+    }).catch(err => reject({ code: 1, details: err }));
+  });
+};*/
+client.saveGuild = (data) => {
+  return new Promise((resolve, reject) => {
+    if (!data) return reject('Missing guild data to save', 0);
+    data.save().catch(err => reject({ code: 1, details: err }));
+    resolve();
+  });
+};
+client.getGuild = (id) => {
+  return new Promise((resolve, reject) => {
+    if (!id) return reject('Missing guild id to get data for', 0);
+    mongodb_guild.findOne({ _id: id }).then(data => {
+      if (data == null) {
+        data = new mongodb_guild({
+          _id: id
+        })
+      }
+      return resolve(data);
+    }).catch(err => reject(err, 1));
+  });
 };
 
 client.on("warn", console.warn);
@@ -87,16 +137,8 @@ client.on("message", async message => {
       );
     message.channel.send(`${message.author}`, embed);
   }
-  const p = ["eb!", "<@715843336417837156>"];
-  const pr = [
-    await db.fetch(`prefix_${message.guild.id}`),
-    "<@715843336417837156>"
-  ];
-  const prefix =
-    (await db.fetch(`prefix_${message.guild.id}`)) ||
-    "eb!" ||
-    "<@715843336417837156>";
-  //if(!prefix) prefix = process.env.Prefix
+  const res = await pre.findOne({name: "prefix", preid: message.guild.id})
+  let prefix = res ? res.prefix : "eb!";
   const nsfwembed = new MessageEmbed().setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`).setColor(`#ff0000`);
 
   if (message.content === "<@715843336417837156>") {
@@ -142,7 +184,7 @@ client.on("message", async message => {
   }
 });
 
-client.on("messageDelete", message => {
+client.on("messageDelete", async message => {
   if (message.author.bot) return;
   db.set(`snipe${message.channel.id}`, {
     mc: message.content,
@@ -150,8 +192,9 @@ client.on("messageDelete", message => {
     saav: message.author.avatarURL(),
     time: `${message.createdAt.toLocaleString()} GMT+0000`
   });
-  const logchannel = db.fetch(`log${message.guild.id}`);
-if(logchannel) {
+  const res =  await lo.findOne({name: "logchannel", preid: message.guild.id})
+  let lc = res.logchannel 
+if(lc) {
   const embed = new MessageEmbed()
 .setTitle(`MESSAGE DELETED`)
 .addField(`Message Content`,message.content)
@@ -161,7 +204,7 @@ if(logchannel) {
 .setTimestamp()
 .setFooter(`MESSAGE DELETED`)
 .setColor(`#ffbf00`)
-message.guild.channels.cache.get(logchannel).send(embed)
+message.guild.channels.cache.get(lc).send(embed)
 }
 });
 
@@ -334,9 +377,10 @@ client.on("guildMemberRemove", async member => {
     c.setName(`membercount-${member.guild.memberCount}`);*/
 });
 
-client.on('guildMemberBoost', (member) => {
-    console.log(`${member.user.tag} just boosted ${member.guild.name}!`);
-  const logchannel = db.fetch(`log${member.guild.id}`);
+client.on('guildMemberBoost',async (member) => {
+    //console.log(`${member.user.tag} just boosted ${member.guild.name}!`);
+  const res =  await lo.findOne({name: "logchannel", preid: member.guild.id})
+  let logchannel = res.logchannel 
 if(!logchannel) return; 
   const embed = new MessageEmbed()
   .setTitle(`BOOST ADDED`)
@@ -347,9 +391,11 @@ if(!logchannel) return;
 member.guild.channels.cache.get(logchannel).send(embed)
 });
 
-client.on("guildMemberUnboost", (member) => {
-  console.log(member.user.tag+" has stopped boosting "+member.guild.name+"...");
-  const logchannel = db.fetch(`log${member.guild.id}`);
+client.on("guildMemberUnboost", async (member) => {
+  //console.log(member.user.tag+" has stopped boosting "+member.guild.name+"...");
+ // const logchannel = db.fetch(`log${member.guild.id}`);
+  const res =  await lo.findOne({name: "logchannel", preid: member.guild.id})
+  let logchannel = res.logchannel
 if(!logchannel) return; 
   const embed = new MessageEmbed()
   .setTitle(`BOOST REMOVED`)
@@ -360,9 +406,11 @@ if(!logchannel) return;
 member.guild.channels.cache.get(logchannel).send(embed)
 });
 
-client.on("guildBoostLevelUp", (guild, oldLevel, newLevel) => {
-  console.log(guild.name+" reaches the boost level: "+newLevel);
-  const logchannel = db.fetch(`log${guild.id}`);
+client.on("guildBoostLevelUp", async (guild, oldLevel, newLevel) => {
+  //console.log(guild.name+" reaches the boost level: "+newLevel);
+ // const logchannel = db.fetch(`log${guild.id}`);
+  const res =  await lo.findOne({name: "logchannel", preid: guild.id})
+  let logchannel = res.logchannel
 if(!logchannel) return; 
   const embed = new MessageEmbed()
   .setTitle("BOOST LEVEL UP")
@@ -373,9 +421,11 @@ if(!logchannel) return;
 guild.channels.cache.get(logchannel).send(embed)
 });
 
-client.on("guildBoostLevelDown", (guild, oldLevel, newLevel) => {
-  console.log(guild.name+" returned to the boost level: "+newLevel);
-  const logchannel = db.fetch(`log${guild.id}`);
+client.on("guildBoostLevelDown", async (guild, oldLevel, newLevel) => {
+ // console.log(guild.name+" returned to the boost level: "+newLevel);
+ // const logchannel = db.fetch(`log${guild.id}`);
+  const res =  await lo.findOne({name: "logchannel", preid: guild.id})
+  let logchannel = res.logchannel
 if(!logchannel) return; 
   const embed = new MessageEmbed()
   .setTitle("BOOST LEVEL DOWN")
@@ -386,9 +436,11 @@ if(!logchannel) return;
 guild.channels.cache.get(logchannel).send(embed)
 });
 
-client.on("guildMemberRoleAdd", (member, role) => {
-  console.log(member.user.tag+" acquired the role: "+role.name);
-  const logchannel = db.fetch(`log${member.guild.id}`);
+client.on("guildMemberRoleAdd", async (member, role) => {
+ // console.log(member.user.tag+" acquired the role: "+role.name);
+ // const logchannel = db.fetch(`log${member.guild.id}`);
+  const res =  await lo.findOne({name: "logchannel", preid: member.guild.id})
+  let logchannel = res.logchannel
 if(!logchannel) return; 
   const embed = new MessageEmbed()
 .setTitle(`MEMBER ROLES UPDATED`)
@@ -400,9 +452,11 @@ if(!logchannel) return;
 member.guild.channels.cache.get(logchannel).send(embed)
 });
 
-client.on("guildMemberRoleRemove", (member, role) => {
-  console.log(member.user.tag+" lost the role: "+role.name);
-  const logchannel = db.fetch(`log${member.guild.id}`);
+client.on("guildMemberRoleRemove", async (member, role) => {
+ // console.log(member.user.tag+" lost the role: "+role.name);
+//  const logchannel = db.fetch(`log${member.guild.id}`);
+  const res =  await lo.findOne({name: "logchannel", preid: member.guild.id})
+  let logchannel = res.logchannel
 if(!logchannel) return; 
   const embed = new MessageEmbed()
 .setTitle(`MEMBER ROLES UPDATED`)
@@ -414,9 +468,11 @@ if(!logchannel) return;
 member.guild.channels.cache.get(logchannel).send(embed)
 });
 
-client.on("guildMemberNicknameUpdate", (member, oldNickname, newNickname) => {
-  console.log(member.user.tag+"'s nickname is now "+newNickname);
-  const logchannel = db.fetch(`log${member.guild.id}`);
+client.on("guildMemberNicknameUpdate", async (member, oldNickname, newNickname) => {
+ // console.log(member.user.tag+"'s nickname is now "+newNickname);
+//  const logchannel = db.fetch(`log${member.guild.id}`);
+  const res =  await lo.findOne({name: "logchannel", preid: member.guild.id})
+  let logchannel = res.logchannel
 if(!logchannel) return; 
   const embed = new MessageEmbed()
 .setTitle(`NICKNAME UPDATED`)
@@ -430,9 +486,11 @@ if(!logchannel) return;
 member.guild.channels.cache.get(logchannel).send(embed)
 });
 
-client.on("messagePinned", (message) => {
-  console.log("This message has been pinned : "+message);
-  const logchannel = db.fetch(`log${message.guild.id}`);
+client.on("messagePinned", async (message) => {
+//  console.log("This message has been pinned : "+message);
+ // const logchannel = db.fetch(`log${message.guild.id}`);
+  const res =  await lo.findOne({name: "logchannel", preid: message.guild.id})
+  let logchannel = res.logchannel
 if(!logchannel) return; 
   const embed = new MessageEmbed()
 .setTitle(`MESSAGE PINNED`)
@@ -446,11 +504,7 @@ if(!logchannel) return;
 message.guild.channels.cache.get(logchannel).send(embed)
 });
 
-client.on("messageContentEdited", (message, oldContent, newContent) => {
-  console.log("Message '"+message.id+"' has been edited to "+newContent);
-});
-
-client.on("rolePositionUpdate", (role, oldPosition, newPosition) => {
+/*client.on("rolePositionUpdate", (role, oldPosition, newPosition) => {
   console.log(role.name + " was at position "+oldPosition+" and now is at position "+newPosition);
   const logchannel = db.fetch(`log${role.guild.id}`);
 if(!logchannel) return; 
@@ -464,13 +518,15 @@ if(!logchannel) return;
 .setColor(`#ffbf00`) 
 .setFooter(`ROLE POSITION UPDATED`)
 role.guild.channels.cache.get(logchannel).send(embed)
-});
+});*/
 
 client.on("userUsernameUpdate", (user, oldUsername, newUsername) => {
   console.log(user.tag+" username updated!");
 });
-client.on("guildBanAdd", (guild, user) => {
-  const logchannel = db.fetch(`log${guild.id}`);
+client.on("guildBanAdd", async (guild, user) => {
+ // const logchannel = db.fetch(`log${guild.id}`);
+  const res =  await lo.findOne({name: "logchannel", preid: guild.id})
+  let logchannel = res.logchannel
 if(!logchannel) return; 
   const embed = new MessageEmbed()
 .setTitle(`MEMBER BANNED`)
