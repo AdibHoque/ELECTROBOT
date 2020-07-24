@@ -584,6 +584,13 @@ client.on("ready", async () => {
   console.log(
     `Logged in as ${client.user.tag}, with ${client.guilds.cache.size} guilds, ${client.users.cache.size} users, ${client.channels.cache.size} channels.`
   );
+  client.music.on("nodeConnect", node => console.log("New node connected"));
+    client.music.on("nodeError", (node, error) => console.log(`Node error: ${error.message}`));
+    client.music.on("trackStart", (player, track) => player.textChannel.send(`Now playing: ${track.title}`));
+    client.music.on("queueEnd", player => {
+        player.textChannel.send("Queue has ended.")
+        client.music.players.destroy(player.guild.id);
+    });
 });
 
 client.login(process.env.Token);
