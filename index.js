@@ -30,7 +30,11 @@ logs(client);
 
 loadCMD(client);
 
-mongoose.connect("mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net/Guilds?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(`mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net/Guilds?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true }).then(mon => {
+  console.log(`Connected to the database!`);
+}).catch((err) => {
+        console.log("Unable to connect to the Mongodb database. Error:"+err, "error");
+    });
 
 async function delay(delayInms) {
   return new Promise(resolve => {
