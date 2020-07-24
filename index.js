@@ -26,6 +26,8 @@ const mongoose = require('mongoose');
 const mongodb_guild = require('./Mongodb/guilds');
 const pre = require("./Mongodb/prefix")
 const lo = require("./Mongodb/logchannel")
+const { ErelaClient } = require('erela.js');
+
 logs(client);
 
 loadCMD(client);
@@ -59,6 +61,15 @@ const applyText = (canvas, text, defaultFontSize) => {
   } while (ctx.measureText(text).width > 600);
   return ctx.font;
 };
+
+client.music = new ErelaClient(client, [
+    {
+      host: "localhost",
+      port: 2333,
+      password: "youshallnotpass"
+    }
+  ], {"userId": "715843336417837156"});
+
 
 /*client.saveUser = (data) => {
   return new Promise((resolve, reject) => {
