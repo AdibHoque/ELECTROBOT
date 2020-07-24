@@ -84,54 +84,25 @@ function play(guild, song) {
 
 
 module.exports = {
-    name: "playlist",
+    name: "nowplaying",
     category: "Music",
-    description: "Play list music from YouTube!",
-    aliases: [],
-    usage: "play <search string/YouTube link>",
+    description: "Responds with the current playing song!",
+    aliases: ["np"],
+    usage: "nowplayinh",
     run: async(client, message, args) => {
         const msg = message 
         const kargs = msg.content.split(" ");
         const searchString = kargs.slice(1).join(" ");
-        const url = kargs[1] ? kargs[1].replace(/<(.+)>/g, "$1") : "";
         const serverQueue = queue.get(msg.guild.id);
         const voiceChannel = msg.member.voice.channel;
-    if (!voiceChannel)
+       /*if (!serverQueue)
       return msg.channel.send(
-        "<a:ElectroFail:656772856184832025> | **PLEASE JOIN A VC TO BE ABLE TO USE THIS COMMAND!**"
+        "<a:ElectroFail:656772856184832025> **NOTHING IS BEEN PLAYED RIGHT NOW!**"
       );
-    //const permissions = voiceChannel.permissionsFor(msg.client.user);
-    /*if (!voiceChannel.me.hasPermission("CONNECT")) {
-      return msg.channel.send(
-        "<a:ElectroFail:656772856184832025> | **I NEED THE `CONNECT` PERMISSION IN THAT VC TO WORK!**"
-      );
-    }
-    if (!voiceChannel.me.hasPermission("SPEAK")) {
-      return msg.channel.send(
-        "<a:ElectroFail:656772856184832025> | **I NEED THE `SPEAK` PERMISSION IN THAT VC TO WORK!**"
-      );
-    }*/
-    if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
-      const playlist = await youtube.getPlaylist(url);
-      const videos = await playlist.getVideos();
-      for (const video of Object.values(videos)) {
-        const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
-        await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
-      return msg.channel.send(
-        `${process.env.G} Playlist: **${playlist.title}** has been added to the queue!`
-      );
-    }
-    } 
-    if (url.match(/^https?:\/\/(www.youtu.be|youtu.be)\/(.*)$/)) {
-      const vid = await youtube.getVideo(url)
-      //const vid2 = await youtube.getVideoByID(vid.id);
-      message.channel.send(`🔎 Searching \`${url}\``)
-      return await handleVideo(vid, msg, voiceChannel); 
-    }
-    if(!url) {
-    var videos = await youtube.searchVideos(args.join(" "), 10);
-    var video = youtube.getVideoByID(videos[0].id);
-    await handleVideo(video, msg, voiceChannel);
-    }
-        }
+      else {*/
+    return msg.channel.send(
+      `🎶 Now playing: **${serverQueue.songs[0].title}**`
+    );
+      }
+        //}
     } 

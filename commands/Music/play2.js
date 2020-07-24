@@ -28,12 +28,13 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
       playing: true
     };
     queue.set(msg.guild.id, queueConstruct);
-
+   // msg.channel.send(`👍 **Joined** \`${voiceChannel.name}\` 📄 **And bound to** \`${msg.channel.name}\``)
     queueConstruct.songs.push(song);
 
     try {
       var connection = await msg.member.voice.channel.join();
       queueConstruct.connection = connection;
+      msg.channel.send(`👍 **Joined** \`${voiceChannel.name}\` 📄 **And bound to** \`${msg.channel.name}\``)
       play(msg.guild, queueConstruct.songs[0]);
     } catch (error) {
       console.error(`I could not join the voice channel: ${error}`);
@@ -84,54 +85,70 @@ function play(guild, song) {
 
 
 module.exports = {
-    name: "playlist",
+    name: "play",
     category: "Music",
-    description: "Play list music from YouTube!",
+    description: "Play music from Youtube!",
     aliases: [],
-    usage: "play <search string/YouTube link>",
+    usage: "play",
     run: async(client, message, args) => {
         const msg = message 
         const kargs = msg.content.split(" ");
         const searchString = kargs.slice(1).join(" ");
-        const url = kargs[1] ? kargs[1].replace(/<(.+)>/g, "$1") : "";
+        //const url = kargs[1] ? kargs[1].replace(/<(.+)>/g, "$1") : "";
         const serverQueue = queue.get(msg.guild.id);
         const voiceChannel = msg.member.voice.channel;
-    if (!voiceChannel)
-      return msg.channel.send(
-        "<a:ElectroFail:656772856184832025> | **PLEASE JOIN A VC TO BE ABLE TO USE THIS COMMAND!**"
-      );
-    //const permissions = voiceChannel.permissionsFor(msg.client.user);
-    /*if (!voiceChannel.me.hasPermission("CONNECT")) {
-      return msg.channel.send(
-        "<a:ElectroFail:656772856184832025> | **I NEED THE `CONNECT` PERMISSION IN THAT VC TO WORK!**"
-      );
-    }
-    if (!voiceChannel.me.hasPermission("SPEAK")) {
-      return msg.channel.send(
-        "<a:ElectroFail:656772856184832025> | **I NEED THE `SPEAK` PERMISSION IN THAT VC TO WORK!**"
-      );
-    }*/
-    if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
-      const playlist = await youtube.getPlaylist(url);
-      const videos = await playlist.getVideos();
-      for (const video of Object.values(videos)) {
-        const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
-        await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
-      return msg.channel.send(
-        `${process.env.G} Playlist: **${playlist.title}** has been added to the queue!`
-      );
-    }
-    } 
-    if (url.match(/^https?:\/\/(www.youtu.be|youtu.be)\/(.*)$/)) {
-      const vid = await youtube.getVideo(url)
-      //const vid2 = await youtube.getVideoByID(vid.id);
-      message.channel.send(`🔎 Searching \`${url}\``)
-      return await handleVideo(vid, msg, voiceChannel); 
-    }
-    if(!url) {
-    var videos = await youtube.searchVideos(args.join(" "), 10);
-    var video = youtube.getVideoByID(videos[0].id);
-    await handleVideo(video, msg, voiceChannel);
+      if(!voiceChannel) {
+        return message.channel.send(`${process.env.R} **PLEASE JOIN A VC FIRST!**`)
+      }
+      if(!args) {
+        return message.channel.send(`${process.env.R} **PLEASE SPECIFY A SEARCH WORD OR A YOUTUBE URL!**`)
+      }
+      if(args) {
+        message.channel.send(`<:YouTube:732182704904470539> **Searching** 🔎 \`${searchString}\``)
+      }
+    try {
+        var video = await youtube.getVideo(searchString);
+      } catch (error) {
+        try {
+          var videos = await youtube.searchVideos(searchString, 10);
+          let index = 0;
+          /*const embed = new MessageEmbed()
+            .setTitle(`SONG SELECTION`)
+            .setDescription(
+              `${videos
+                .map(video2 => `**${++index} -** ${video2.title}`)
+                .join("\n")}`
+            )
+            .setFooter(
+              `Please provide a value to select one of the search results ranging from 1-10.`
+            )
+            .setColor(`#ffbf00`);
+          msg.channel.send(embed);*/
+          // eslint-disable-next-line max-depth
+          /*try {
+            var response = await msg.channel.awaitMessages(
+              msg2 => msg2.content > 0 && msg2.content < 11,
+              {
+                maxMatches: 1,
+                time: 10000,
+                errors: ["time"]
+              }
+            );
+          } catch (err) {
+            console.error(err);
+            return msg.channel.send(
+              "<a:ElectroFail:656772856184832025> | **SONG SELECTION TIMED OUT, CANCELLING SONG SELECTION!**"
+            );
+          }*/
+          //const videoIndex = parseInt(response.first().content);
+          var video = await youtube.getVideoByID(videos[0].id);
+        } catch (err) {
+          console.error(err);
+          return msg.channel.send(
+            "<a:ElectroFail:656772856184832025> | **I COULD NOT OBTAIN ANY SEARCH RESULTS, PLEASE PROVIDE VALID SONG NAMES!**"
+          );
+        }
+      }
+      return handleVideo(video, msg, voiceChannel);
     }
         }
-    } 

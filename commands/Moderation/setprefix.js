@@ -11,7 +11,7 @@ module.exports = {
     run: async (client, message, args) => {
         const msg = message 
 if(!message.member.hasPermission("ADMINISTRATOR")) {
-  return message.channel.send("YOU NEED THE PERMISSION `ADMINISTRATOR` TO USE THIS COMMAND!")
+  return message.channel.send("YOU ")
 }
 const pre = require("./../../Mongodb/prefix")
 const prefix = args[0]

@@ -26,8 +26,6 @@ const mongoose = require('mongoose');
 const mongodb_guild = require('./Mongodb/guilds');
 const pre = require("./Mongodb/prefix")
 const lo = require("./Mongodb/logchannel")
-const { ErelaClient } = require('erela.js');
-
 logs(client);
 
 loadCMD(client);
@@ -61,15 +59,6 @@ const applyText = (canvas, text, defaultFontSize) => {
   } while (ctx.measureText(text).width > 600);
   return ctx.font;
 };
-
-client.music = new ErelaClient(client, [
-    {
-      host: "localhost",
-      port: 2333,
-      password: "youshallnotpass"
-    }
-  ], {"userId": "715843336417837156"});
-
 
 /*client.saveUser = (data) => {
   return new Promise((resolve, reject) => {
@@ -584,13 +573,6 @@ client.on("ready", async () => {
   console.log(
     `Logged in as ${client.user.tag}, with ${client.guilds.cache.size} guilds, ${client.users.cache.size} users, ${client.channels.cache.size} channels.`
   );
-  client.music.on("nodeConnect", node => console.log("New node connected"));
-    client.music.on("nodeError", (node, error) => console.log(`Node error: ${error.message}`));
-    client.music.on("trackStart", (player, track) => player.textChannel.send(`Now playing: ${track.title}`));
-    client.music.on("queueEnd", player => {
-        player.textChannel.send("Queue has ended.")
-        client.music.players.destroy(player.guild.id);
-    });
 });
 
 client.login(process.env.Token);
