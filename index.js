@@ -542,6 +542,18 @@ if(!logchannel) return;
 .setFooter(`MEMBER BANNED`)
  guild.channels.cache.get(logchannel).send(embed)
 })
+
+client.on("guildCreate", guild => {
+  const embed = new MessageEmbed()
+  .setTitle(`Guild Joined`)
+  .addField(`Guild Name`,guild.name)
+  .addField(`Guild ID`, guild.id)
+  .addField(`Guild Owner`,guild.owenr.tag)
+  .setThumbnail(guild.iconURL())
+  .setFooter(`Total Guilds: ${client.guilds.cache.sie} | Total Users: ${client.users.cache.size}`)
+ client.channels.cache.get("656536432500015186").send(embed)
+  });
+
 function extension(reaction, attachment) {
   const imageLink = attachment.split(".");
   const typeOfImage = imageLink[imageLink.length - 1];
