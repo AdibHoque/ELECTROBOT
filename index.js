@@ -110,7 +110,7 @@ client.on("error", console.error);
 client.on("message", async message => {
   if (message.author.bot) return;
   if (
-    message.content.split(" ")[0] == "eb!eval" &&
+    message.content.split(" ")[0] == "e!eval" &&
     message.author.id === "496978159724396545"
   ) {
     try {
@@ -142,7 +142,7 @@ client.on("message", async message => {
     message.channel.send(`${message.author}`, embed);
   }
   const res = await pre.findOne({name: "prefix", preid: message.guild.id})
-  let prefix = res ? res.prefix : "eb!";
+  let prefix = res ? res.prefix : "e!";
   const nsfwembed = new MessageEmbed().setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`).setColor(`#ff0000`);
 
   if (message.content === "<@715843336417837156>") {

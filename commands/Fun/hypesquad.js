@@ -75,6 +75,6 @@ module.exports = {
       });
       return; 
     }
-      message.channel.send("Please specify which house badge you want `eb!hypesquad <brilliance/bravery/balance>`")
+      message.channel.send("Please specify which house badge you want e.g. `e!hypesquad <brilliance/bravery/balance>`")
         }
     } 

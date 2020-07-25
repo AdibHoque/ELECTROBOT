@@ -12,7 +12,7 @@ module.exports = {
   usage: "help [command | alias]",
   run: async (client, message, args) => {
   const res =  await pr.findOne({name: "prefix", preid: message.guild.id})
-  let prefix = res ? res.prefix : "eb!";
+  let prefix = res ? res.prefix : "e!";
     if (args[0]) {
       return getCMD(client, message, args[0]);
     } else {
@@ -82,7 +82,7 @@ async function getCMD(client, message, input) {
   if (cmd.description) info += `\n<:Description:722467727700394072> **Description**: \`${cmd.description}\``;
   if (cmd.usage) {
   const res = await pr.findOne({name: "prefix", preid: message.guild.id})
-  let prefix = res ? res.prefix : "eb!";
+  let prefix = res ? res.prefix : "e!";
     info += `\n<:Usage:722468096362676234> **Usage**: \`${prefix}${cmd.usage}\``;
   }
 
