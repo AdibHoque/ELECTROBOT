@@ -48,7 +48,7 @@ module.exports = {
             return message.reply(fail+" I can't kick that person due to role hierarchy.").then(m => m.delete(5000));
         }
         // ban!! 
-      if (message.deletable) message.delete()
+      if (message.deletable) message.delete();
       const reason = args.slice(1).join(" ")
       toBan.send(`You're were kicked out from ${message.guild.name}, reason: \`${reason}\`.`)
       toBan.kick(reason) 
