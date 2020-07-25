@@ -564,7 +564,7 @@ client.on("ready", async () => {
    // client.user.setActivity(`e!help | ${client.guilds.cache.size}`); 
   const k = (client.users.cache.size/1000).toFixed(2)
   const activities_list = [
-    "e!help | "+client.guild.cache.size+" Guilds", 
+    "e!help | "+client.guilds.cache.size+" Guilds", 
     "e!help | "+k+"k Users"
     ];
   setInterval(() => {
