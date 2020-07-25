@@ -145,7 +145,7 @@ client.on("message", async message => {
   let prefix = res ? res.prefix : "e!";
   const nsfwembed = new MessageEmbed().setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`).setColor(`#ff0000`);
 
-  if (message.content === "<@715843336417837156>") {
+  if (message.content === "<@629323586930212884>") {
     const embed = new MessageEmbed()
       .setTitle(`ELECTRO Tips`)
       .setDescription(
