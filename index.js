@@ -550,9 +550,23 @@ client.on("guildCreate", guild => {
   .addField(`Guild ID`, guild.id)
   .addField(`Guild Owner`,guild.owenr.tag)
   .setThumbnail(guild.iconURL())
-  .setFooter(`Total Guilds: ${client.guilds.cache.sie} | Total Users: ${client.users.cache.size}`)
+  .setFooter(`Total Guilds: ${client.guilds.cache.size} | Total Users: ${client.users.cache.size}`)
  client.channels.cache.get("656536432500015186").send(embed)
   });
+
+client.on("guildDelete", guild => {
+  const embed = new MessageEmbed()
+  .setTitle(`Guild Left`)
+  .addField(`Guild Name`,guild.name)
+  .addField(`Guild ID`, guild.id)
+  .addField(`Guild Owner`,guild.owenr.tag)
+  .setThumbnail(guild.iconURL())
+  .setFooter(`Total Guilds: ${client.guilds.cache.size} | Total Users: ${client.users.cache.size}`)
+ client.channels.cache.get("656536492977553438").send(embed)
+
+  });
+
+
 
 function extension(reaction, attachment) {
   const imageLink = attachment.split(".");
