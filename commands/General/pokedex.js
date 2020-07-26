@@ -59,7 +59,7 @@ function getlength(number) {
         Embed.addField(`Abilities`,`${body.abilities[0].ability}\n***Hidden:***${body.abilities[1].ability}`)
       }
       if(body.abilities.length === 3) {
-        Embed.addField(`Abilities`,`${body.abilities[0].ability} | ${body.abilities[1].ability}\n***Hidden:*** ${body.abilities[3].ability}`)
+        Embed.addField(`Abilities`,`${body.abilities[0].ability} | ${body.abilities[1].ability}\n***Hidden:*** ${body.abilities[2].ability}`)
       }
       Embed.setColor("#ffbf00") 
      // if(body.types[1] != null) Embed.setDescription(`**Type:** ${body.types[0].type.name.capitalize()} | ${body.types[1].type.name.capitalize()}`)
@@ -82,8 +82,8 @@ function getlength(number) {
       if(arg[1].toLowerCase() === "giratina") Embed.setTitle("Giratina")
       if(arg[1].toLowerCase() === "deoxys") Embed.setTitle("Deoxys")
       message.channel.send(Embed)
-      message.channel.send(`${body.abilities[0].ability} Hidden: ${body.abilities[0].hidden}`)
-      console.log(body.abilities)
+      //message.channel.send(`${body.abilities[0].ability} Hidden: ${body.abilities[0].hidden}`)
+      //console.log(body.abilities)
     }).catch(err => console.log(err))
         }
     } 
