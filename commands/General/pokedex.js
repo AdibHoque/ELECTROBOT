@@ -56,10 +56,10 @@ function getlength(number) {
       Embed.addField(`Weight`, body.weight/10+"kg", true) 
       Embed.addField(`Height`, body.height/10+"m", true) 
       if(body.abilities.length === 2) {
-        Embed.addField(`Abilities`,body.abilities[0].ability.name+"\n*Hidden:* "+body.abilities[1].ability.name)
+        Embed.addField(`Abilities`,body.abilities[0].ability.name.capitalize()+"\n*Hidden:* "+body.abilities[1].ability.name.capitalize())
       }
       if(body.abilities.length === 3) {
-        Embed.addField(`Abilities`, body.abilities[0].ability.name+" | "+body.abilities[1].ability.name+"\n*Hidden:* "+body.abilities[2].ability.name)
+        Embed.addField(`Abilities`, body.abilities[0].ability.name.capitalize()+" | "+body.abilities[1].ability.name.capitalize()+"\n*Hidden:* "+body.abilities[2].ability.name.capit)
       }
       Embed.setColor("#ffbf00") 
      // if(body.types[1] != null) Embed.setDescription(`**Type:** ${body.types[0].type.name.capitalize()} | ${body.types[1].type.name.capitalize()}`)
