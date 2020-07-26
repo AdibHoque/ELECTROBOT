@@ -1,41 +1,44 @@
 const {Discord, MessageEmbed} = require("discord.js");
 const RichEmbed = MessageEmbed
-const db = require('quick.db')
+const mongoose = require("mongoose");
 
 module.exports = {
-    name: "leavechannel",
+    name: "setlogs",
     category: "Moderation",
-    description: "Set the leave message channel!",
-    aliases: ["leave-message-channel", "setleavechannel", "setlc"],
-    usage: "joinchannel <#channel>",
-    run: async(client, message, args) => {
-        let permission = message.member.hasPermission("ADMINISTRATOR");
+    description: "Set the loggin channel for the server!",
+    aliases: ["setuplogs","setuplogchannel","logchannel"],
+    usage: "setlogs <#channel>",
+    run: async (client, message, args) => {
+        const msg = message 
+if(!message.member.hasPermission("ADMINISTRATOR")) {
+  return message.channel.send("YOU NEED TO PERMISSION `ADMINISTRATOT` PERMISSION TO USE THIS COMMAND!")
+}
+const pre = require("./../../Mongodb/logchannel")
+const lc = message.mentions.channels.first() || message.guild.channels.cache.get(args[0])
 
-    if (!permission)
-      return message.channel.send(
-        "You are missing the permission `ADMINISTRATOR`"
-      );
+mongoose.connect("mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net/Guilds?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+/*const res = await pre.findOne({name: "prefix", preid: message.guild.id})
+  let prefix = res ? res.prefix : "didnt set";
+  message.channel.send(prefix)*/
 
-    let cArgs = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]);
 
-    if (!cArgs)
-      return message.channel.send(
-        "You must specify a valid id for the leave channel!"
-      );
-
-    try {
-      message.guild.channels.cache.get(cArgs.id).send("Welcome channel set!");
-
-      await db.set(`lc${message.channel.guild.id}`, cArgs.id);
-
-      message.channel.send(
-        "You have successfully set the welcome channel to <#" + cArgs.id + ">"
-      );
-      return;
-    } catch (e) {
-      return message.channel.send(
-        "Error: missing permissions or channel doesn't exist"
-      );
-    }
+pre.findOne({name: "logchannel", preid: message.guild.id}).then(result => {
+        let duck = new pre({
+            _id: new mongoose.Types.ObjectId(),
+            name: "logchannel",
+            preid: message.guild.id,
+            prefix: lc.id
+          })
+        const embed = new MessageEmbed()
+        .setTitle("Logging Channel Changed")
+        .setDescription(`The new logchannel for the server is ${lc}.`)
+        .setColor("#ffbf00")
+        message.channel.send(embed);
+        if(!result || result == []) {
+ duck.save().catch(console.error);
+        }else{
+          pre.deleteOne({name: "logchannel", preid: message.guild.id}).catch(console.error)          
+          duck.save().catch(console.error)
         }
-    } 
+      })
+        }}
