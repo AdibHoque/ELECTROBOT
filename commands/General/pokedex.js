@@ -53,13 +53,16 @@ function getlength(number) {
         Embed.addField(`Type`,`${body.types[0].type.name.capitalize()}`)
       } 
       Embed.addField(`Base Stats`,`**HP**: ${body.stats[0].base_stat}\n**Attack**: ${body.stats[1].base_stat}\n**Defense**: ${body.stats[2].base_stat}\n**Sp. Atk**: ${body.stats[3].base_stat}\n**Sp. Def**: ${body.stats[4].base_stat}\n**Speed**: ${body.stats[5].base_stat}`)
-      Embed.addField(`Weight`, body.weight/10+"kg", true) 
-      Embed.addField(`Height`, body.height/10+"m", true) 
+      Embed.addField(`Weight:`, body.weight/10+"kg", true) 
+      Embed.addField(`Height:`, body.height/10+"m", true) 
+      if(body.abilities.length === 1) {
+        Embed.addField(`Ability:`,body.abilities[0].ability.name.capitalize())
+      }
       if(body.abilities.length === 2) {
-        Embed.addField(`Abilities`,body.abilities[0].ability.name.capitalize()+"\n*Hidden:* "+body.abilities[1].ability.name.capitalize())
+        Embed.addField(`Abilities:`,body.abilities[0].ability.name.capitalize()+"\n*Hidden:* "+body.abilities[1].ability.name.capitalize())
       }
       if(body.abilities.length === 3) {
-        Embed.addField(`Abilities`, body.abilities[0].ability.name.capitalize()+" | "+body.abilities[1].ability.name.capitalize()+"\n*Hidden:* "+body.abilities[2].ability.name.capit)
+        Embed.addField(`Abilities:`, body.abilities[0].ability.name.capitalize()+" | "+body.abilities[1].ability.name.capitalize()+"\n*Hidden:* "+body.abilities[2].ability.name.capitalize())
       }
       Embed.setColor("#ffbf00") 
      // if(body.types[1] != null) Embed.setDescription(`**Type:** ${body.types[0].type.name.capitalize()} | ${body.types[1].type.name.capitalize()}`)
@@ -83,7 +86,7 @@ function getlength(number) {
       if(arg[1].toLowerCase() === "deoxys") Embed.setTitle("Deoxys")
       message.channel.send(Embed)
       //message.channel.send(`${body.abilities[0].ability} Hidden: ${body.abilities[0].hidden}`)
-      //console.log(body.abilities)
+     // console.log(body)
     }).catch(err => console.log(err))
         }
     } 
