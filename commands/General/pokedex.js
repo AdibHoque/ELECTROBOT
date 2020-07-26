@@ -46,11 +46,16 @@ function getlength(number) {
       let Embed = new RichEmbed()
       .setAuthor(`Professor Oak`)
       .setTitle(`#${body.id} - ${body.name.capitalize()}`)
-      .addField(`Type`,`${body.types[0].type.name.capitalize()}`)
-      .addField(`Weight`, body.weight, true)
-      .addField(`Height`, body.height, true) //body.stats[
-      .addField(`Base Stats`,`**HP**: ${body.stats[0].base_stat}\n**Attack**: ${body.stats[1].base_stat}\n**Defense**: ${body.stats[2].base_stat}\n**Sp. Atk**: ${body.stats[3].base_stat}\n**Sp. Def**: ${body.stats[4].base_stat}\n**Speed**: ${body.stats[5].base_stat}`)
-      .setColor("#ffbf00") 
+      if(body.types[1] != null) {
+        Embed.addField(`Types`,`${body.types[0].type.name.capitalize()} | ${body.types[1].type.name.capitalize()}`)
+      }
+      else{
+        Embed.addField(`Type`,`${body.types[0].type.name.capitalize()}`)
+      } 
+      Embed.addField(`Weight`, body.weight+"kg", true)
+      Embed.addField(`Height`, body.height+"m", true) //body.stats[
+      Embed.addField(`Base Stats`,`**HP**: ${body.stats[0].base_stat}\n**Attack**: ${body.stats[1].base_stat}\n**Defense**: ${body.stats[2].base_stat}\n**Sp. Atk**: ${body.stats[3].base_stat}\n**Sp. Def**: ${body.stats[4].base_stat}\n**Speed**: ${body.stats[5].base_stat}`)
+      Embed.setColor("#ffbf00") 
      // if(body.types[1] != null) Embed.setDescription(`**Type:** ${body.types[0].type.name.capitalize()} | ${body.types[1].type.name.capitalize()}`)
       Embed.setImage(`https://assets.pokemon.com/assets/cms2/img/pokedex/full/salamence.png`)
       if (getlength(body.id) === 1) {
