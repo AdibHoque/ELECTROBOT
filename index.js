@@ -1,13 +1,13 @@
 const http = require("http");
 const express = require("express");
 const app = express();
-/*app.get("/", (request, response) => {
+app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
   response.sendStatus(200);
 });
 app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`https://electrojs.herokuapp.com/`);
+/*setInterval(() => {
+  http.get(`https://electr.herokuapp.com/`);
 }, 280000);*/
 
 const { Discord, MessageEmbed } = require("discord.js");
@@ -212,11 +212,12 @@ message.guild.channels.cache.get(lc).send(embed)
 }
 });
 
-client.on('messageUpdate', (oldMessage, newMessage) => {
+client.on('messageUpdate', async(oldMessage, newMessage) => {
    if (oldMessage.author.bot) return; 
   const msg = oldMessage
   db.set(`editsnipe${msg.channel.id}`, {mc: msg.content, sa: msg.author.username+`#`+msg.author.discriminator, saav: msg.author.avatarURL(), time: `${msg.createdAt.toLocaleString()} GMT+0000`, after: newMessage.content })
-const logchannel = db.fetch(`log${msg.guild.id}`);
+const res = await lo.findOne({name: "logchannel", preid: msg.guild.id});
+const logchannel = res.logchannel
 if(!logchannel) return; 
   const embed = new MessageEmbed()
 .setTitle(`MESSAGE EDITED`)
@@ -545,7 +546,7 @@ if(!logchannel) return;
 
 client.on("guildCreate", guild => {
   const embed = new MessageEmbed()
-  .setTitle(`Guild Joined`)
+  .setAuthor(`Guild Joined`, client.user.avatarURL())
   .addField(`Guild Name`,guild.name)
   .addField(`Guild ID`, guild.id)
   .addField(`Guild Owner`,guild.owner.user.tag)
@@ -557,7 +558,7 @@ client.on("guildCreate", guild => {
 
 client.on("guildDelete", guild => {
   const embed = new MessageEmbed()
-  .setTitle(`Guild Left`)
+  .setAuthor(`Guild Left`, client.user.avatarURL())
   .addField(`Guild Name`,guild.name)
   .addField(`Guild ID`, guild.id)
   .addField(`Guild Owner`,guild.owner.user.tag)
