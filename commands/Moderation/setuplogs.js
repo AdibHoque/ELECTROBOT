@@ -1,5 +1,5 @@
-const db = require("quick.db");
 const Discord = require("discord.js");
+const mongoose = require("mongoose");
 
 module.exports = {
     name: "setuplogs",
@@ -8,18 +8,26 @@ module.exports = {
     aliases: ["logchannel", "setlogchannel"],
     Usage: "setuplogs <#channel>",
     run: async(client, message, args) => {
-        const logchannel = message.mentions.channels.first()
-        if(!logchannel) return message.channel.send(`Please mention a valid channel!`);
+      const pre = require("./../../Mongodb/logchannel")
+mongoose.connect("mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net/Guilds?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+        const logchannel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0])
+       // if(!logchannel) return message.channel.send(`Please mention a valid channel!`);
         const noperms = new Discord.MessageEmbed()
         .setTitle(message.author.tag)
         .setDescription(`PLEASE SPECIFY A CHANNEL TO SET!`)
         if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("YOU NEED TO `ADMINISTRATOR` PERMISSION TO USE THIS COMMAND!");
         if(!args[0]) return message.channel.send(noperms);
-           db.set(`log${message.guild.id}`, logchannel.id).then
+           //db.set(`log${message.guild.id}`, logchannel.id).then
+      pre.findOne({name: "logchannel", preid: message.guild.id}).then(result => {
+        let duck = new pre({
+            _id: new mongoose.Types.ObjectId(),
+            name: "logchannel",
+            preid: message.guild.id,
+            prefix: logchannel.id
+          })
+duck.save();
+})
            const embed = new Discord.MessageEmbed()    
-           .setDescription(`LOG CHANNEL WAS CHANGED TO \`${logchannel}\``)
-           .setColor(`#ffbf00)`)
-           message.channel.send(embed);
-
-        }
-    }
+           .setDescription(`LOG CHANNEL WAS CHANGED TO ${logchannel}`)
+          message.channel.send(embed)
+}}
