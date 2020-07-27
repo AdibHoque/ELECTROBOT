@@ -10,6 +10,10 @@ module.exports = {
     run: async(client, message, args) => {
       const pre = require("./../../Mongodb/logchannel")
 mongoose.connect("mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net/Guilds?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+      if(args[0] === "reset") {
+        pre.deleteOne({name: "logchannel", preid: message.guild.id}).catch(console.error)
+        message.channel.send(`LOGCHANNEL WAS DELETED!`)
+      }
         const logchannel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0])
        // if(!logchannel) return message.channel.send(`Please mention a valid channel!`);
         const noperms = new Discord.MessageEmbed()
@@ -25,7 +29,7 @@ mongoose.connect("mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net
             preid: message.guild.id,
             prefix: logchannel.id
           })
-duck.save();
+duck.save().catch(console.error);
 })
            const embed = new Discord.MessageEmbed()    
            .setDescription(`LOG CHANNEL WAS CHANGED TO ${logchannel}`)
