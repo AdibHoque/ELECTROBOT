@@ -12,7 +12,8 @@ module.exports = {
     description: "Spank someone!",
     aliases: [],
     usage: "Spank <@user>",
-    run: async(client, message, args, nsfwembed) => {
+    run: async(client, message, args) => {
+      const nsfwembed = new MessageEmbed().setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`).setColor(`#ff0000`);
       if(!message.channel.nsfw) return message.channel.send(nsfwembed);
         const user = message.mentions.users.first();
           if(!user)

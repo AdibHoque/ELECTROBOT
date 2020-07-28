@@ -1,6 +1,8 @@
 const {Discord, MessageEmbed} = require("discord.js");
 const RichEmbed = MessageEmbed
 const mongoose = require("mongoose");
+const check = "<a:ElectroCheck:709464171825201315>"
+const fail = "<:ElectroCross:737678614681878580>"
 
 module.exports = {
     name: "setlogs",
@@ -31,7 +33,7 @@ pre.findOne({name: "logchannel", preid: message.guild.id}).then(result => {
           })
         const embed = new MessageEmbed()
         .setTitle("Logging Channel Changed")
-        .setDescription(`The new logchannel for the server is ${lc}.`)
+        .setDescription(`${check} **| The new logchannel for the server is ${lc}.**`)
         .setColor("#ffbf00")
         message.channel.send(embed);
         if(!result || result == []) {

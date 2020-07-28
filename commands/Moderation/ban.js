@@ -1,7 +1,7 @@
 const {Discord, MessageEmbed} = require("discord.js");
 const RichEmbed = MessageEmbed
 const check = "<a:ElectroCheck:709464171825201315>"
-const fail = "<a:ElectroFail:656772856184832025>"
+const fail = "<:ElectroCross:737678614681878580>"
 
 module.exports = {
     name: "ban",
@@ -17,9 +17,9 @@ module.exports = {
         }
 
         // No reason
-        if (!args[1]) {
-            return message.reply(fail+" Please provide a reason to ban.").then(m => m.delete(5000));
-        }
+        //if (!args[1]) {
+           // return message.reply(fail+" Please provide a reason to ban.").then(m => m.delete(5000));
+       // }
 
         // No author permissions
         if (!message.member.hasPermission("BAN_MEMBERS")) {
@@ -49,11 +49,11 @@ module.exports = {
         }
         // ban!! 
       if (message.deletable) message.delete();
-      const reason = args.slice(1).join(" ")
+      const reason = args[0] ? args.slice(1).join(" ") : "No reason provided"
       toBan.send(`You were banned from ${message.guild.name}, Reason: \`${reason}\`.`)
       toBan.ban(reason) 
       const embed = new MessageEmbed()
-      .setDescription(`${check} ${toBan.user.username}#${toBan.user.discriminator} was banned, ${args.slice(1).join(" ")}`)
+      .setDescription(`${check} ${toBan.user.username}#${toBan.user.discriminator} was banned, ${reason}`)
       .setColor("#ffbf00")
       message.channel.send(embed)
         }
