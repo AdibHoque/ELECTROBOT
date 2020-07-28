@@ -1,6 +1,10 @@
 const {Discord, MessageEmbed} = require("discord.js");
 const RichEmbed = MessageEmbed
-const superagent = require("snekfetch")
+const {get} = require("request-promise-native");
+let options = {
+url: "https://nekos.life/api/v2/img/kiss",
+json: true
+}
 
 module.exports = {
     name: "kiss",
@@ -12,14 +16,10 @@ module.exports = {
         const use = message.mentions.users.first();
           if(!use)
               return message.reply('Mention someone to kiss!');
-          else {
-          superagent.get('https://nekos.life/api/v2/img/kiss')
-              .end((err, response) => {
+          const response = await get(options) 
             const lewdembed = new MessageEmbed()
             .setTitle(message.author.username + " kisses "+use.username+" lips! ❤")
-            .setImage(response.body.url)
+            .setImage(response.url)
             .setColor(`#ffbf00`)
         message.channel.send(lewdembed);
-          }) 
         }}
-    }   

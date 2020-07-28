@@ -59,6 +59,9 @@ const applyText = (canvas, text, defaultFontSize) => {
   } while (ctx.measureText(text).width > 600);
   return ctx.font;
 };
+const nsfwembed = new MessageEmbed()
+.setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`)
+.setColor(`#ff0000`)
 
 /*client.saveUser = (data) => {
   return new Promise((resolve, reject) => {
@@ -143,7 +146,7 @@ client.on("message", async message => {
   }
   const res = await pre.findOne({name: "prefix", preid: message.guild.id})
   let prefix = res ? res.prefix : "e!";
-  const nsfwembed = new MessageEmbed().setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`).setColor(`#ff0000`);
+ // const nsfwembed = new MessageEmbed().setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`).setColor(`#ff0000`);
 
   if (message.content === "<@629323586930212884>") {
     const embed = new MessageEmbed()
