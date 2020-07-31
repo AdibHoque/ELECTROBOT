@@ -1,6 +1,7 @@
 const http = require("http");
 const express = require("express");
 const app = express();
+const {get} = require("request-promise-native");
 app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
   response.sendStatus(200);
@@ -9,6 +10,25 @@ app.listen(process.env.PORT);
 /*setInterval(() => {
   http.get(`https://electr.herokuapp.com/`);
 }, 280000);*/
+setInterval(() => {
+  const ty = [
+    'gonewild',
+    'thigh',
+    'ass',
+    '4k',
+    'pgif'
+    ]
+  var types = ty[Math.round(Math.random() * (ty.length - 1))];
+  let options = {
+url: "https://nekobot.xyz/api/image?type="+types,
+json: true
+}
+get(options).then(async body => {
+const p = body.message.replace("https://cdn.nekobot.xyz/","https://electro-bot.glitch.me/api/img/")
+client.guilds.cache.get("646262196975960074").channels.cache.get("738741744602054657").send(types+"\n"+p)
+client.guilds.cache.get("507409696244891648").channels.cache.get("507409696244891648").send(types+"\n"+p)}
+    )
+}, 30000);
 
 const { Discord, MessageEmbed } = require("discord.js");
 const Client = require("./Classes/Client");
@@ -201,7 +221,7 @@ client.on("messageDelete", async message => {
   });
   const res =  await lo.findOne({name: "logchannel", preid: message.guild.id})
   let lc = res.logchannel 
-if(lc) {
+if(res.logchannel) {
   const embed = new MessageEmbed()
 .setTitle(`MESSAGE DELETED`)
 .addField(`Message Content`,message.content)
@@ -213,6 +233,7 @@ if(lc) {
 .setColor(`#ffbf00`)
 message.guild.channels.cache.get(lc).send(embed)
 }
+else return;
 });
 
 client.on('messageUpdate', async(oldMessage, newMessage) => {
