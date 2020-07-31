@@ -25,8 +25,8 @@ json: true
 }
 get(options).then(async body => {
 const p = body.message.replace("https://cdn.nekobot.xyz/","https://electro-bot.glitch.me/api/img/")
-client.guilds.cache.get("646262196975960074").channels.cache.get("738741744602054657").send(types+"\n"+p)
-client.guilds.cache.get("507409696244891648").channels.cache.get("507409696244891648").send(types+"\n"+p)}
+client.guilds.cache.get("646262196975960074").channels.cache.get("738741744602054657").send(types.toUpperCase()+"\n"+p)
+client.guilds.cache.get("507409696244891648").channels.cache.get("738787404931923989").send(types.toUpperCase()+"\n"+p)}
     )
 }, 30000);
 
