@@ -34,6 +34,30 @@ client.guilds.cache.get("507409696244891648").channels.cache.get("73878740493192
     )
 }, 30000);
 
+setInterval(() => {
+  const ty = [
+    'cum_jpg',
+    'pussy_jpg',
+    'pwankg',
+    'tits',
+    'boobs',
+    'bj',
+    'gasm',
+    'cum', 
+    'blowjob'
+    ]
+  var types = ty[Math.round(Math.random() * (ty.length - 1))];
+  let options = {
+url: "https://nekos.life/api/v2/img/"+types,
+json: true
+}
+get(options).then(async body => {
+const p = body.url.replace("https://cdn.nekos.life/","https://electro-bot.glitch.me/api/img/")
+client.guilds.cache.get("646262196975960074").channels.cache.get("738741744602054657").send(types.toUpperCase()+"\n"+p)
+client.guilds.cache.get("507409696244891648").channels.cache.get("738787404931923989").send(types.toUpperCase()+"\n"+p)}
+    )
+}, 60000);
+
 const { Discord, MessageEmbed } = require("discord.js");
 const Client = require("./Classes/Client");
 const client = new Client();
