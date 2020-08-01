@@ -12,13 +12,15 @@ app.listen(process.env.PORT);
 }, 280000);*/
 setInterval(() => {
   const ty = [
+    'hentai',
     'gonewild',
     'thigh',
     'pussy',
     'ass',
     '4k',
     'pgif', 
-    'anal'
+    'anal',
+    'hanal'
     ]
   var types = ty[Math.round(Math.random() * (ty.length - 1))];
   let options = {
