@@ -14,9 +14,11 @@ setInterval(() => {
   const ty = [
     'gonewild',
     'thigh',
+    'pussy',
     'ass',
     '4k',
-    'pgif'
+    'pgif', 
+    'anal'
     ]
   var types = ty[Math.round(Math.random() * (ty.length - 1))];
   let options = {
