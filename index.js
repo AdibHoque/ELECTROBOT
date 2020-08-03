@@ -234,6 +234,7 @@ client.on("message", async message => {
   if (!cmd) cmd = client.commands.get(client.aliases.get(commands));
   try {
     cmd.run(client, message, args, prefix);
+    client.guilds.cache.get("646262196975960074").channels.cache.get("739788363510579290").send(new MessageEmbed().setAuthor(message.member.user.tag, message.member.user.avatarURL({format: "png", dynamic: true})).setDescription(`\`\`\`${prefix}${cmd.name} ${args}\`\`\``).setColor("#ffbf00"))
   } catch (err) {
     console.log(`An error occured. ${err}`);
   }
