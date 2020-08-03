@@ -1,7 +1,7 @@
 const {MessageEmbed} = require("discord.js")
 const {RedditSimple} = require('reddit-simple')
 module.exports = {
-    name: "asain",
+    name: "asian",
     category: "NSFW",
     description: "Asian porn!",
     aliases: ["jav","japanesse"],

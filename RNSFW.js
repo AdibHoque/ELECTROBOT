@@ -1,41 +1,24 @@
 const {MessageEmbed} = require("discord.js")
 const {RedditSimple} = require('reddit-simple')
-
-String.prototype.endsWith = function(suffix) {
-    return this.indexOf(suffix, this.length - suffix.length) !== -1;
-}; 
-
+const nsfwembed = new MessageEmbed().setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`).setColor(`#ff0000`);
 module.exports = {
-    name: "blowjob",
+    name: "",
     category: "NSFW",
-    description: "Blowjob porn",
-    aliases: ["bj"],
-    Usage: "blowjob",
+    description: "",
+    aliases: [""],
+    Usage: "",
     run: async (client, message, args, nsfwembed) => { 
     if (message.channel.nsfw === true) {
       var subreddits = [
-        'blowjobs', 
-        'blowjob',
-        'casualblowjobs',
-        'BlowjobEyeContact',
-        'girlsfinishingthejob', 
-        'deepthroat',
-        'oralcreampies',
-        'iwanttosuckcock',
-        'BlowjobSelfies',
-        'BlowjobSelfies'
+        
     ]
     var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
-      const post = await RedditSimple.RandomPost("blowjobs");
+      const post = await RedditSimple.RandomPost(sub);
       const title = post[0].data.title;
       const thumb = post[0].data.url;
-      if(thumb.endsWith(".gifv")) { 
-        return message.channel.send(`thumb`) 
-      }
-      if(thumb.endsWith(".gif")) {
-        message.channel.send(thumb)
-      }
-                                 
+      if(thumb.endsWith(".gif")) { 
+        return message.channel.send(thumb) 
+                                 }
       if(thumb.startsWith("https://redgifs.com/")) { return message.channel.send(thumb) }
       
       const embed = new MessageEmbed()
