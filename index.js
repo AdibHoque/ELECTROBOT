@@ -179,7 +179,7 @@ client.on("message", async message => {
       message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
     }
   }
-  if (message.content.split(" ")[0] == prefix+"NSFW") {
+  if (message.content.split(" ")[0] == "e!nsfw") {
     const embed = new MessageEmbed()
     .addField(`<:ElectroNSFWBadge:680783452563439774> NSFW COMMANDS`,"`ass`, `pussy`, `blowjob`, `pgif`, `porn`, `anal`, `4k`, `celebrity`, `cosplay`, `gonewild`, `indian`, `asian`, `milf`, `panties`, `penis`, `pornhub`, `pornstar`, `public`, `schoolgirl`, `thighs`, `uniform`, `upskirt`,`hentai`, `hbj`, `hanal`, `hcum`, `hpussy`")
     .setColor("#ffbf00")
