@@ -53,8 +53,9 @@ json: true
 }
 get(options).then(async body => {
 const p = body.url.replace("https://cdn.nekos.life/","https://electro-bot.glitch.me/api/img/")
-client.guilds.cache.get("646262196975960074").channels.cache.get("738741744602054657").send(types.toUpperCase()+"\n"+p)
-client.guilds.cache.get("507409696244891648").channels.cache.get("738787404931923989").send(types.toUpperCase()+"\n"+p)}
+client.guilds.cache.get("646262196975960074").channels.cache.get("738741744602054657").send(p)
+client.guilds.cache.get("507409696244891648").channels.cache.get("738787404931923989").send(p)
+}
     )
 }, 60000);
 
@@ -178,6 +179,12 @@ client.on("message", async message => {
       message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
     }
   }
+  if (message.content.split(" ")[0] == prefix+"NSFW") {
+    const embed = new MessageEmbed()
+    .addField(`<:ElectroNSFWBadge:680783452563439774> NSFW COMMANDS`,"`ass`, `pussy`, `blowjob`, `pgif`, `porn`, `anal`, `4k`, `celebrity`, `cosplay`, `gonewild`, `indian`, `asian`, `milf`, `panties`, `penis`, `pornhub`, `pornstar`, `public`, `schoolgirl`, `thighs`, `uniform`, `upskirt`,`hentai`, `hbj`, `hanal`, `hcum`, `hpussy`")
+    .setColor("#ffbf00")
+    message.channel.send(embed)
+    }
   if (message.channel.name === "chatbot" && !message.author.bot) {
     message.channel.startTyping();
     const reply = await ai.getReply(message.content);
