@@ -4,9 +4,9 @@ const check = "<a:ElectroCheck:709464171825201315>"
 const fail = "<a:ElectroFail:656772856184832025>"
 
 module.exports = {
-    name: "NSFW",
+    name: "nsfw",
     category: "General",
-    description: "`ass`, `pussy`, `blowjob`, `pgif`, `porn`, `vaginal`, `anal`, `4k`, `celebrity`, `cosplay`, `gonewild`, `indian`, `asian`, `milf`, `panties`, `penis`, `pornhub`, `pornstar`, `public`, `schoolgirl`, `thighs`, `uniform`, `upskirt`, `hentai`, `hbj`, `hanal`, `hcum`, `hpussy`",
+    description: "Shows NSFW commands!",
     aliases: [],
     usage: "NSFW",
     run: async(client, message, args) => {
