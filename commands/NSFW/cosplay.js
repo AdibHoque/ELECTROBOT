@@ -18,7 +18,7 @@ module.exports = {
       const post = await RedditSimple.RandomPost(sub);
       const title = post[0].data.title;
       const thumb = post[0].data.url;
-      if(thumb.endsWith(".gif")) { 
+      if(thumb.endsWith(".gifv" ||  ".gif")) { 
         return message.channel.send(thumb) 
                                  }
       if(thumb.startsWith("https://redgifs.com/")) { return message.channel.send(thumb) }

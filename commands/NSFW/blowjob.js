@@ -26,7 +26,7 @@ module.exports = {
         'BlowjobSelfies'
     ]
     var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
-      const post = await RedditSimple.RandomPost("blowjobs");
+      const post = await RedditSimple.RandomPost(sub);
       const title = post[0].data.title;
       const thumb = post[0].data.url;
       if(thumb.endsWith(".gifv")) { 
