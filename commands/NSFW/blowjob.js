@@ -30,7 +30,7 @@ module.exports = {
       const title = post[0].data.title;
       const thumb = post[0].data.url;
       if(thumb.endsWith(".gifv")) { 
-        return message.channel.send(`thumb`) 
+        return message.channel.send(thumb) 
       }
       if(thumb.endsWith(".gif")) {
         message.channel.send(thumb)
