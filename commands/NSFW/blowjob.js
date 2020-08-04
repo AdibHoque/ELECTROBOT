@@ -33,10 +33,10 @@ module.exports = {
         return message.channel.send(thumb) 
       }
       if(thumb.endsWith(".gif")) {
-        message.channel.send(thumb)
+        return message.channel.send(thumb)
       }
                                  
-      if(thumb.startsWith("https://redgifs.com/")) { return message.channel.send(thumb) }
+     // if(thumb.startsWith("https://redgifs.com/")) { return message.channel.send(thumb) }
       
       const embed = new MessageEmbed()
         .setTitle(title)
