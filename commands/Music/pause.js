@@ -3,10 +3,10 @@ const RichEmbed = MessageEmbed
 const ytdl = require("ytdl-core");
 const YouTube = require("simple-youtube-api");
 const youtube = new YouTube(process.env.YOUTUBEAPIKEY);
-const queue = new Map();
+//const queue = new Map();
 const {ffmpeg, avconv}  = require('ffmpeg')
 
-async function handleVideo(video, msg, voiceChannel, playlist = false) {
+/*async function handleVideo(video, msg, voiceChannel, playlist = false) {
   const serverQueue = queue.get(msg.guild.id);
   console.log(video);
   const song = {
@@ -80,7 +80,7 @@ function play(guild, song) {
   .setColor(`#ffbf00`)
   
   serverQueue.textChannel.send(embed);
-}
+}*/
 
 
 module.exports = {
@@ -91,9 +91,9 @@ module.exports = {
     usage: "pause",
     run: async(client, message, args) => {
         const msg = message 
-        const kargs = msg.content.split(" ");
-        const searchString = kargs.slice(1).join(" ");
-        const serverQueue = queue.get(msg.guild.id);
+       // const kargs = msg.content.split(" ");
+        //const searchString = kargs.slice(1).join(" ");
+        const serverQueue = client.queue.get(msg.guild.id);
         const voiceChannel = msg.member.voice.channel;
     if (serverQueue.songs && serverQueue.playing) {
       serverQueue.playing = false;

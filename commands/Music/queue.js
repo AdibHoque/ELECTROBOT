@@ -3,7 +3,6 @@ const RichEmbed = MessageEmbed
 const ytdl = require("ytdl-core");
 const YouTube = require("simple-youtube-api");
 const youtube = new YouTube(process.env.YOUTUBEAPIKEY);
-const queue = new Map();
 const {ffmpeg, avconv}  = require('ffmpeg')
 
 async function handleVideo(video, msg, voiceChannel, playlist = false) {
@@ -89,7 +88,7 @@ module.exports = {
     description: "Check the song queue!",
     aliases: [],
     usage:"queue",
-    run: async(client, message, args) => {
+    run: async(client, message, args, queue) => {
         const msg = message 
         const kargs = msg.content.split(" ");
         const searchString = kargs.slice(1).join(" ");

@@ -10,5 +10,6 @@ module.exports = class Bot extends Client {
         });
         this.commands = new Enmap();
         this.aliases = new Enmap();
+        this.queue = new Map();
     }
 }
