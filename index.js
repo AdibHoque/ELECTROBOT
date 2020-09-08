@@ -30,7 +30,8 @@ json: true
 get(options).then(async body => {
 const p = body.message.replace("https://cdn.nekobot.xyz/","https://electro-bot.glitch.me/api/img/")
 client.channels.cache.get("738741744602054657").send(p)
-client.channels.cache.get("738787404931923989").send(p)}
+client.channels.cache.get("738787404931923989").send(p)
+}
     )
 }, 30000);
 
@@ -77,6 +78,7 @@ const pre = require("./Mongodb/prefix")
 const lo = require("./Mongodb/logchannel")
 const ytdl = require('ytdl-core');
 const queue = client.queue
+const u = require("./Mongodb/user")
 logs(client);
 
 loadCMD(client);
@@ -313,6 +315,20 @@ client.on("message", async message => {
   if (!cmd) cmd = client.commands.get(client.aliases.get(commands));
   try {
     cmd.run(client, message, args, prefix);
+    const userResult = await u.findOne({name: "users", preid: message.author.id})
+if(!userResult) {
+  let duck = new u({
+            _id: new mongoose.Types.ObjectId(),
+            name: "users",
+            preid: message.author.id,
+            usertag: message.author.tag,
+            cmdused: 1
+          })
+  duck.save().catch(console.error)
+}
+if(userResult) {
+    await require('./Mongodb/user.js').updateOne({preid: message.author.id}, {$inc: {cmdused: 1},usertag:message.author.tag});
+}
     client.guilds.cache.get("646262196975960074").channels.cache.get("739788363510579290").send(new MessageEmbed().setAuthor(message.member.user.tag, message.member.user.avatarURL({format: "png", dynamic: true})).setDescription(`\`\`\`${prefix}${cmd.name} ${args}\`\`\``).setColor("#ffbf00"))
   } catch (err) {
     console.log(`An error occured. ${err}`);
@@ -350,7 +366,7 @@ client.on('messageUpdate', async(oldMessage, newMessage) => {
   db.set(`editsnipe${msg.channel.id}`, {mc: msg.content, sa: msg.author.username+`#`+msg.author.discriminator, saav: msg.author.avatarURL(), time: `${msg.createdAt.toLocaleString()} GMT+0000`, after: newMessage.content })
 const res = await lo.findOne({name: "logchannel", preid: msg.guild.id});
 const logchannel = res.logchannel
-if(!logchannel) return; 
+if(!res) return; 
   const embed = new MessageEmbed()
 .setTitle(`MESSAGE EDITED`)
 .addField(`Message Author`,msg.author.tag)

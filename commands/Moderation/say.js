@@ -15,6 +15,8 @@ module.exports = {
         if(!msg.member.hasPermission("ADMINISTRATOR")) {
            message.channel.send(new MessageEmbed().setDescription(fail+" | YOU NEED THE `ADMINISTRATOR` PERMISSION TO USE THIS COMMAND!").setColor("#ffbf00"))
            }
+      if(msg.member.hasPermission("ADMINISTRATOR")) {
       message.channel.send(args.join(" "))
+      }
         }
     } 

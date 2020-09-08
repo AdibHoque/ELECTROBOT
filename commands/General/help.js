@@ -24,12 +24,12 @@ module.exports = {
         .addField(`<:ElectroGeneralBadge:680783367247364097> GENERAL COMMANDS - (23)`, "`ping`, `userinfo`, `serverinfo`, `ownerinfo`, `avatar`, `membercount`, `define`, `snipe`, `math`, `invite`, `upvote`, `pokemon`, `shinypokemon`, `pokefuse`, `8ball`, `electroav`, `brilliance`, `bravery`, `balance`, `motivation`, `revive`, `reversetext`, `chatbot`")
         .addField(`<:ElectroModerationBadge:680783390999314466> MODERATION COMMANDS - (18)`, "`kick`, `ban`, `setnick`, `role`, `say`, `embed`, `DM`, `english`, `rolecolor`, `lockdown`, `unlock`, `menro`, `mute`, `unmute`, `joinchannel`, `leavechannel`, `testwelcomer`, `poll`")
         .addField(`<:ElectroFunBadge:680783413065941002> FUN COMMANDS - (26)`, "`triggered`, `brazzers`, `burn`, `gay`, `missionpassed`, `thanos`, `rip`, `meme`, `pat`, `love`, `slap`, `kiss`, `hug`, `cuddle`, `spank`, `tweet`, `phubcomment`, `howgay`, `whowouldwin`, `captcha`, `magik`, `deepfry`,`iphonex`, `threats`, `clyde`, `trash`")
-        .addField(`<:ElectroMusicBadge:680783435123654657> MUSIC COMMANDS - (8)`, "`play`, `skip`, `stop`, `NP`, `queue`, `pause`, `resume`, `volume`")
+        .addField(`<:ElectroEconomyBadge:752834145159348294> ECONOMY COMMANDS - (13)`, "`balance`, `daily`, `rep`, `beg`, `rob`, `postmeme`, `marry`, `divorce`, `gender`, `checklist`, `leaderboard`, `pay`, `profile`")
         .addField(`<:ElectroNSFWBadge:680783452563439774> NSFW COMMANDS - (41)`, "Please type `"+prefix+"nsfw` to view the NSFW commands!")
         .addField(`<:ElectroBookmark:668018207549816833> USEFUL LINKS:`, `[ADD BOT](https://discordapp.com/oauth2/authorize?client_id=629323586930212884&permissions=2146827775&redirect_uri=https%3A%2F%2Fdiscord.gg%2dAggRh9&response_type=code&scope=guilds.join%20bot) | [JOIN GUILD](https://discord.gg/dAggRh9) | [VOTE](https://discordbots.org/bot/629323586930212884/vote) | [WEBSITE](https://electro-bot.glitch.me/)`)
         .setFooter(`© 2020 ELECTRO, Inc.`)
         .setColor("#ffbf00")
-        .setImage(`https://cdn.discordapp.com/attachments/656517276832366595/679975327698649109/ElectroCommandsCategories.gif`)
+       // .setImage(`https://cdn.discordapp.com/attachments/656517276832366595/679975327698649109/ElectroCommandsCategories.gif`)
       message.channel.send(embed);
     }
   }
