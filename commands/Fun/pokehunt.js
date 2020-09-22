@@ -24,7 +24,7 @@ module.exports = {
     const background = await Canvas.loadImage(mention.user.avatarURL({size: 1024, format: "png", dynamic: false}));
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     const avatar = await Canvas.loadImage(
-      "https://cdn.discordapp.com/attachments/656517276832366595/732626250463576064/pha.png"
+      "https://cdn.discordapp.com/attachments/656517276832366595/756801276280438835/phseal.png"
     );
     ctx.drawImage(avatar, 0, 0, canvas.width, canvas.height);
     msg.channel.send({

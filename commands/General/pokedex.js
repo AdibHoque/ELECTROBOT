@@ -5,6 +5,15 @@ const pokedex = new Pokedex('en')
 //const Pokedex = require("pokedex-promise-v2");
 //const P = new Pokedex();
 const { get } = require('request-promise-native')
+const Canvas = require("canvas");
+
+const applyText = (canvas, text, defaultFontSize) => {
+  const ctx = canvas.getContext("2d");
+  do {
+    ctx.font = `${(defaultFontSize -= 10)}px Bold`;
+  } while (ctx.measureText(text).width > 600);
+  return ctx.font;
+}; 
 
 module.exports = {
     name: "pokedex",
@@ -25,6 +34,7 @@ function getlength(number) {
     };
     
     const arg = message.content.split(" "); 
+      let pimg = 'error'; 
     
     //let args = message.content.slice(prefix.length).trim().split(/ +/g);
     if(!arg[1]) return message.channel.send("Please specify a pokemon!")
@@ -35,6 +45,8 @@ function getlength(number) {
     if(arg[1].toLowerCase() === "giratina") options.url = "https://pokeapi.co/api/v2/pokemon/giratina-altered"
     if(arg[1].toLowerCase() === "deoxys") options.url = "https://pokeapi.co/api/v2/pokemon/deoxys-normal"
     if(arg[1].toLowerCase() === "mega") options.url = "https://pokeapi.co/api/v2/pokemon/"+arg[2].toLowerCase()+"-mega"
+    if(arg[1].toLowerCase() === "mega" && arg[3].toLowerCase() == "x") options.url = "https://pokeapi.co/api/v2/pokemon/"+arg[2].toLowerCase()+"-mega-x"
+    if(arg[1].toLowerCase() === "mega" && arg[3].toLowerCase() == "y") options.url = "https://pokeapi.co/api/v2/pokemon/"+arg[2].toLowerCase()+"-mega-y"
     get(options).then(async body => { 
      /* let stats = Math.round(
         (body.stats[5].base_stat +
@@ -69,36 +81,35 @@ function getlength(number) {
      // if(body.types[1] != null) Embed.setDescription(`**Type:** ${body.types[0].type.name.capitalize()} | ${body.types[1].type.name.capitalize()}`)
       Embed.setImage(`https://assets.pokemon.com/assets/cms2/img/pokedex/full/salamence.png`)
      if (getlength(body.id) === 1 ) {
-        Embed.setImage(
-          `https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${body.id}.png`
-        );
+        pimg = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${body.id}.png`
       }
       if (getlength(body.id) === 2 ) {
-        Embed.setImage(
-          `https://assets.pokemon.com/assets/cms2/img/pokedex/full/0${body.id}.png`
-        );
+        pimg = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/0${body.id}.png`
+        
       }
       if (getlength(body.id) === 3 ) {
-        Embed.setImage(
-          `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${body.id}.png`
-        );
+        pimg = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${body.id}.png`
       }
       if (getlength(body.id) === 5 && arg[1].toLowerCase() === "mega") {
-        const e = await pokedex.name(arg[2]).get()
+        const g = {
+          url: `https://pokeapi.co/api/v2/pokemon/${arg[2].toLowerCase()}`, 
+          json: true
+        }
+        const e = await get(g) 
         if (getlength(e.id) === 1) {
-        Embed.setImage(
-          `https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${body.id}_f2.png`
-        );
+        pimg = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${e.id}_f2.png`
       }
       if (getlength(e.id) === 2) {
-        Embed.setImage(
-          `https://assets.pokemon.com/assets/cms2/img/pokedex/full/0${body.id}_f2.png`
-        );
+         pimg = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/0${e.id}_f2.png`
       }
       if (getlength(e.id) === 3) {
-        Embed.setImage(
-          `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${body.id}_f2.png`
-        );
+          pimg = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${e.id}_f2.png`
+      }
+      if (arg[3].toLowerCase() === "y" && e.id === 6) {
+        pimg = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${e.id}_f3.png`
+      }
+      if(arg[3].toLowerCase() === "y" && e.id === 150) {
+        pimg = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${e.id}_f3.png`
       }
       }
 
@@ -116,6 +127,19 @@ function getlength(number) {
       if(arg[1].toLowerCase() === "giratina") Embed.setTitle("Giratina")
       if(arg[1].toLowerCase() === "deoxys") Embed.setTitle("Deoxys")
       if(arg[1].toLowerCase() === "mega") Embed.setTitle("#"+body.id+" - Mega "+arg[2].capitalize())
+      if(arg[1].toLowerCase() === "mega" && arg[3].toLowerCase() === "x") Embed.setTitle("#"+body.id+" - Mega "+arg[2].capitalize()+" X")
+      if(arg[1].toLowerCase() === "mega" && arg[3].toLowerCase() === "y") Embed.setTitle("#"+body.id+" - Mega "+arg[2].capitalize()+" Y")
+      const canvas = Canvas.createCanvas(475, 475);
+    const ctx = canvas.getContext("2d")
+    const background = await Canvas.loadImage(pimg)
+     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    const watermark = await Canvas.loadImage(
+      "https://cdn.discordapp.com/attachments/656517276832366595/756834317858242590/phwatermark.png "
+    );
+    ctx.drawImage(watermark, 0, 0, canvas.width, canvas.height);
+      Embed.attachFiles([{name: "pokemon.png", attachment:canvas.toBuffer()}])
+      Embed.setImage('attachment://pokemon.png');
+      message.channel.send(`. ${pimg}`)
       message.channel.send(Embed)
       //message.channel.send(`${body.abilities[0].ability} Hidden: ${body.abilities[0].hidden}`)
      // console.log(body)
