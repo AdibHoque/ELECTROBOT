@@ -94,8 +94,7 @@ const apiKeys = {
   "top.gg": process.env.topgg,
   "discord.boats": process.env.boats
 } 
-const bot = new Discord.Client();
-blapi.handle(bot, apiKeys, 60);
+blapi.handle(client, apiKeys, 60);
  
 async function delay(delayInms) {
   return new Promise(resolve => {
