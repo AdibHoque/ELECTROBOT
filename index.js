@@ -79,6 +79,7 @@ const lo = require("./Mongodb/logchannel")
 const ytdl = require('ytdl-core');
 const queue = client.queue
 const u = require("./Mongodb/user")
+const blapi = require("blapi");
 logs(client);
 
 loadCMD(client);
@@ -89,6 +90,13 @@ mongoose.connect(`mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net
         console.log("Unable to connect to the Mongodb database. Error:"+err, "error");
     });
 
+const apiKeys = {
+  "top.gg": process.env.topgg,
+  "discord.boats": process.env.boats
+} 
+const bot = new Discord.Client();
+blapi.handle(bot, apiKeys, 60);
+ 
 async function delay(delayInms) {
   return new Promise(resolve => {
     setTimeout(() => {

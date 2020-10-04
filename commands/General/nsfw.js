@@ -11,8 +11,11 @@ module.exports = {
     usage: "NSFW",
     run: async(client, message, args) => {
         const msg = message 
+        const nsfwArr = []
+        client.commands.filter((cmd) => cmd.category === 'NSFW').forEach((cmd) => nsfwArr.push(cmd.name)); 
         const embed = new MessageEmbed()
-        .addField(`<:ElectroNSFWBadge:680783452563439774> NSFW COMMANDS`,"`ass`, `pussy`, `blowjob`, `pgif`, `porn`, `vaginal`, `anal`, `4k`, `celebrity`, `cosplay`, `gonewild`, `indian`, `asian`, `milf`, `panties`, `penis`, `pornhub`, `pornstar`, `public`, `schoolgirl`, `thighs`, `uniform`, `upskirt`,`hentai`, `hbj`, `hanal`, `hcum`, `hpussy`")
+       // .addField(`<:ElectroNSFWBadge:680783452563439774> NSFW COMMANDS`,"`ass`, `pussy`, `blowjob`, `pgif`, `porn`, `vaginal`, `anal`, `4k`, `celebrity`, `cosplay`, `gonewild`, `indian`, `asian`, `milf`, `panties`, `penis`, `pornhub`, `pornstar`, `public`, `schoolgirl`, `thighs`, `uniform`, `upskirt`,`hentai`, `hbj`, `hanal`, `hcum`, `hpussy`")
+        .addField(`<:ElectroNSFWBadge:680783452563439774> NSFW COMMANDS - (${nsfwArr.length})`, `\`${nsfwArr.join('`, `')}\``)
         .setColor("#ffbf00")
     message.channel.send(embed)
         }

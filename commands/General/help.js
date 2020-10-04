@@ -18,7 +18,7 @@ module.exports = {
     } else {
       // Otherwise send all the commands available
       // Without the cmd info
-      const embed = new MessageEmbed()
+     /* const embed = new MessageEmbed()
         .setAuthor(`ELECTRO`, `https://cdn.discordapp.com/attachments/656517276832366595/656519678499487745/ELECTRO.png`)
         .setDescription(`**[HELP MENU](https://discord.gg/kuWVFpR)**\n● To get detailed help on a command, type \`${prefix}help <command name>\`!`)
         .addField(`<:ElectroGeneralBadge:680783367247364097> GENERAL COMMANDS - (23)`, "`ping`, `userinfo`, `serverinfo`, `ownerinfo`, `avatar`, `membercount`, `define`, `snipe`, `math`, `invite`, `upvote`, `pokemon`, `shinypokemon`, `pokefuse`, `8ball`, `electroav`, `brilliance`, `bravery`, `balance`, `motivation`, `revive`, `reversetext`, `chatbot`")
@@ -30,6 +30,29 @@ module.exports = {
         .setFooter(`© 2020 ELECTRO, Inc.`)
         .setColor("#ffbf00")
        // .setImage(`https://cdn.discordapp.com/attachments/656517276832366595/679975327698649109/ElectroCommandsCategories.gif`)
+      message.channel.send(embed);*/
+      const genArr = [],
+		    modArr = [],
+			funArr = [],
+			ecoArr = [],
+      nsfwArr = [];
+		client.commands.filter((cmd) => cmd.category === 'General').forEach((cmd) => genArr.push(cmd.name));
+		client.commands.filter((cmd) => cmd.category === 'Moderation').forEach((cmd) => modArr.push(cmd.name));
+		client.commands.filter((cmd) => cmd.category === 'Economy').forEach((cmd) => ecoArr.push(cmd.name));
+		client.commands.filter((cmd) => cmd.category === 'Fun').forEach((cmd) => funArr.push(cmd.name)); 
+    client.commands.filter((cmd) => cmd.category === 'NSFW').forEach((cmd) => nsfwArr.push(cmd.name));
+      const embed = new MessageEmbed()
+        .setAuthor(`ELECTRO`, `https://cdn.discordapp.com/attachments/656517276832366595/656519678499487745/ELECTRO.png`)
+        .setDescription(`**[HELP MENU](https://discord.gg/kuWVFpR)**\n● To get detailed help on a command, type \`${prefix}help <command name>\`!`)
+        .addField(`<:ElectroGeneralBadge:680783367247364097> GENERAL COMMANDS - (${genArr.length})`, `\`${genArr.join('`, `')}\`` )
+        .addField(`<:ElectroModerationBadge:680783390999314466> MODERATION COMMANDS - (${modArr.length})`, `\`${modArr.join('`, `')}\`` )
+        .addField(`<:ElectroFunBadge:680783413065941002> FUN COMMANDS - (${funArr.length})`, `\`${funArr.join('`, `')}\`` )
+        .addField(`<:ElectroEconomyBadge:752834145159348294> ECONOMY COMMANDS - (${ecoArr.length})`, `\`${ecoArr.join('`, `')}\``)
+        .addField(`<:ElectroNSFWBadge:680783452563439774> NSFW COMMANDS - (${nsfwArr.length})`, "NSFW commands are hidden!\nType `"+prefix+"NSFW` if you're willing to view them!")
+        .addField(`<:ElectroBookmark:668018207549816833> USEFUL LINKS:`, `[ADD BOT](https://discordapp.com/oauth2/authorize?client_id=629323586930212884&permissions=2146827775&redirect_uri=https%3A%2F%2Fdiscord.gg%2dAggRh9&response_type=code&scope=guilds.join%20bot) | [JOIN GUILD](https://discord.gg/dAggRh9) | [VOTE](https://discordbots.org/bot/629323586930212884/vote) | [WEBSITE](https://electro-bot.glitch.me/)`)
+        .setFooter(`© 2020 ELECTRO, Inc.`)
+        .setColor("#ffbf00")
+       // .setImage(`https://cdn.discordapp.com/attachments/656517276832366595/679975327698649109/ElectroCommandsCategories.gif`) 
       message.channel.send(embed);
     }
   }
