@@ -13,9 +13,10 @@ module.exports = {
     description: "Pickup money from dropped wallets!",
     aliases: [],
     usage: "pick",
-    run: async(client, message, args) => {
+    run: async(client, message, args, prefix) => {
         const msg = message 
         const userResult = await u.findOne({name: "users", preid: message.author.id}) 
+        if(!userResult) return message.channel.send(`You don't have an economy account yet, please get started doing \`${prefix}daily\``);
         const amount = await db.get(`wallet${message.channel.id}`)
         if(!amount) return message.channel.send("There's no dropped wallet in this channel!")
       userResult.balance = userResult.balance+amount
