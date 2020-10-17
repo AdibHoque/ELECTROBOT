@@ -139,7 +139,6 @@ function getlength(number) {
     ctx.drawImage(watermark, 0, 0, canvas.width, canvas.height);
       Embed.attachFiles([{name: "pokemon.png", attachment:canvas.toBuffer()}])
       Embed.setImage('attachment://pokemon.png');
-      message.channel.send(`. ${pimg}`)
       message.channel.send(Embed)
       //message.channel.send(`${body.abilities[0].ability} Hidden: ${body.abilities[0].hidden}`)
      // console.log(body)

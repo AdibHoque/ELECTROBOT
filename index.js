@@ -242,13 +242,14 @@ client.getGuild = (id) => {
   });
 };
 
-async function dropWallet(prefix, channel){
+async function dropWallet(prefix, channel, author){
 	const amount = Math.round(Math.random()*190+10)
 	await db.set(`wallet${channel.id}`,amount)
   await db.delete(`tms${channel.id}`)
 	const embed = new MessageEmbed()
-	.setTitle("You found a wallet!")
-	.setDescription(`Type \`${prefix}pick\` to pick up the wallet`)
+  .setAuthor(author.username,author.avatarURL())
+	.setTitle("You found a dropped wallet!")
+	.setDescription(`Do you want to \`${prefix}pick\` it up?\nOr do you want to \`${prefix}return\` it to it's owner?`)
 	.setColor("#ffbf00")
 	.setThumbnail("https://cdn.discordapp.com/attachments/656517276832366595/763430782903255100/wallet_2.png")
 	channel.send(embed)
@@ -323,7 +324,7 @@ client.on("message", async message => {
 	if ((Math.floor(Math.random() * 10 + 25) < totalMessagesSent)) {
 		if (!message.channel.permissionsFor(message.guild.me).has('ATTACH_FILES')) return;
 		if (!message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS')) return;
-		await dropWallet(prefix, message.channel);
+		await dropWallet(prefix, message.channel, message.author);
 	} 
   if (!message.content.startsWith(prefix)) return;
 
