@@ -11,6 +11,8 @@ module.exports = {
     usage: "NSFW",
     run: async(client, message, args) => {
         const msg = message 
+        const nsfwembed = new MessageEmbed().setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`).setColor(`#ff0000`);
+        if(!message.channel.nsfw) return message.channel.send(nsfwembed);
         const nsfwArr = []
         client.commands.filter((cmd) => cmd.category === 'NSFW').forEach((cmd) => nsfwArr.push(cmd.name)); 
         const embed = new MessageEmbed()
