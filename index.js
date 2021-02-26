@@ -79,8 +79,6 @@ const mongoose = require('mongoose');
 const mongodb_guild = require('./Mongodb/guilds');
 const pre = require("./Mongodb/prefix")
 const lo = require("./Mongodb/logchannel")
-const ytdl = require('ytdl-core');
-const queue = client.queue
 const u = require("./Mongodb/user")
 const blapi = require("blapi");
 logs(client);
