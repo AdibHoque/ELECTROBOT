@@ -29,8 +29,10 @@ json: true
 }
 get(options).then(async body => {
 const p = body.message.replace("https://cdn.nekobot.xyz/","https://electro-bot.glitch.me/api/img/")
-client.channels.cache.get("738741744602054657").send(p)
-client.channels.cache.get("738787404931923989").send(p)
+const c1 = client.channels.cache.get("738741744602054657")
+const c2 = client.channels.cache.get("738787404931923989")
+if(c1) c1.send(p)
+if(c2) c2.send(p)
 }
     )
 }, 30000);
@@ -54,8 +56,10 @@ json: true
 }
 get(options).then(async body => {
 const p = body.url.replace("https://cdn.nekos.life/","https://electro-bot.glitch.me/api/img/")
-client.channels.cache.get("738741744602054657").send(p)
-client.channels.cache.get("738787404931923989").send(p)
+const c1 = client.channels.cache.get("738741744602054657")
+const c2 = client.channels.cache.get("738787404931923989")
+if(c1) c1.send(p)
+if(c2) c2.send(p)
 }
     )
 }, 60000);
