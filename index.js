@@ -68,6 +68,7 @@ const { Discord, MessageEmbed, Util} = require("discord.js");
 const Client = require("./Classes/Client");
 const client = new Client();
 const loadCMD = require("./functions/loadCMD");
+loadCMD(client); 
 const db = require("quick.db");
 const check = "<a:ElectroCheck:709464171825201315>";
 const fail = "<a:ElectroFail:656772856184832025>";
@@ -82,8 +83,6 @@ const lo = require("./Mongodb/logchannel")
 const u = require("./Mongodb/user")
 const blapi = require("blapi");
 logs(client);
-
-loadCMD(client);
 
 mongoose.connect(`mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net/Guilds?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true }).then(mon => {
   console.log(`Connected to the database!`);
