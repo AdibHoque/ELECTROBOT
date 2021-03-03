@@ -27,6 +27,5 @@ module.exports = {
             .addField("💻 Platform", `\`\`${os.platform()}\`\``, true)
             .addField("🤖 API Latency", `${client.ws.ping}ms`)  
         message.channel.send(embedStats)
-    });
     }
 } 
