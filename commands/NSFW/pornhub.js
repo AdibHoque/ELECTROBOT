@@ -16,7 +16,7 @@ module.exports = {
           const embed = new MessageEmbed()
             .setTitle(item.title, item.url)
             .setDescription(
-              `[Watch online on Pornhub](`+item.url+`)\n[Download for FREE](${item.url.replace("pornhub","pornhubdownload")})`
+              `[Watch online on Pornhub](`+item.url+`) | [Download for FREE](${item.url.replace("pornhub","pornhubdownload")})`
             )
             .setColor(`#ffbf00`)
             .setFooter(`Duration: ` + item.duration)
