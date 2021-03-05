@@ -15,13 +15,14 @@ module.exports = {
     run: async(client, message, args, prefix) => {
         const msg = message 
         const tomarry = message.mentions.users.first() || client.users.cache.get(args[0])
+        if(message.author.id == tomarry.id) return message.channel.send("You can't marry yourself!")
         const userResult = await u.findOne({name: "users", preid: message.author.id})
         const userResult2 = await u.findOne({name: "users", preid: tomarry.id})
         if(!userResult.gender) return message.channel.send(`<@${message.author.id}> you haven't set your gender yet, please type \`${prefix}gender\` to get started!`)
         if(userResult.marriedto) return message.channel.send(`<@${message.author.id}> you're already married! You can dismiss your current relationship by \`${prefix}divorce\` & marry again!`);
         if(!userResult2.gender) return message.channel.send(`${tomarry.username} haven't specified their gender yet! They needs to type \`${prefix}gender\` to get started!`)
         if(userResult2.marriedto) return message.channel.send(`**${tomarry.username}** is already married!`)
-      //  if(userResult.gender.includes("Male") && userResult2.gender.includes("Male")) return message.channel.send(`Sorry but you can't marry another male! 🏳️‍🌈⃠`)
+        if(userResult.gender.includes("Male") && userResult2.gender.includes("Male")) return message.channel.send(`Sorry but you can't marry another male! 🏳️‍🌈⃠`)
         if(userResult.gender.includes("Female") && userResult2.gender.includes("Female")) return message.channel.send(`Sorry but you can't marry another female! 🏳️‍🌈⃠`);
       message.channel.send(`<@${tomarry.id}>, You have been proposed to marry by ${message.author.username}! Type in \`Yes\` or \`No\` in 30 seconds!`);
 	message.channel.awaitMessages(m => m.author.id == tomarry.id, {
