@@ -14,7 +14,8 @@ module.exports = {
     usage: "rep <@user>",
     run: async(client, message, args, prefix) => {
       const torep = message.mentions.users.first() || client.users.cache.get(args[0])
-      if(torep.id == message.author.id) return message.channel.send("You can't give reputation to yourself!")
+      if(torep.id == message.author.id) return message.channel.send("You can't give reputation to yourself!");
+	    
       const reper = await u.findOne({name: "users", preid: message.author.id})
       const daily = reper.lastrep;
       const timeout = 43200000;
