@@ -19,7 +19,7 @@ module.exports = {
 	const res = await u.find( {balance: {$exists: true}}).sort([['balance', 'descending']]).limit(15)
 	
 res.forEach(r => {
-arr.push(`**${r.usertag ? r.usertag : r.preid}** - $${r.balance}`)
+arr.push(`**${res.indexOf(r)+1}. ${r.usertag ? r.usertag : r.preid}** - $${r.balance}`)
 })
 	    const embed = new Discord.MessageEmbed()
 	    .setTitle("Leaderboard")
