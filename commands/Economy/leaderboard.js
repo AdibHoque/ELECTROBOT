@@ -26,6 +26,7 @@ arr.push(`**${res.indexOf(r)+1}. ${r.usertag ? r.usertag : r.preid}** - $${r.bal
 	    .setTitle("Leaderboard")
 	    .setDescription(arr.join("\n"))
 	    .setColor("#FFBF00")
+            .setFooter("Page 1 out of 2")
 	    return message.channel.send(embed)	
 }
 if(args[0] == "2") {
@@ -33,12 +34,13 @@ let arr = []
 	const res = await u.find( {balance: {$exists: true}}).sort([['balance', 'descending']]).limit(30)
 	const res2 = res.slice(15)
 res2.forEach(r => {
-arr.push(`**${res.indexOf(r)+16}. ${r.usertag ? r.usertag : r.preid}** - $${r.balance}`)
+arr.push(`**${res.indexOf(r)+1}. ${r.usertag ? r.usertag : r.preid}** - $${r.balance}`)
 })
 	    const embed = new Discord.MessageEmbed()
 	    .setTitle("Leaderboard")
 	    .setDescription(arr.join("\n"))
 	    .setColor("#FFBF00")
+            .setFooter("Page 2 out of 2")
 	    return message.channel.send(embed)	
 }
 }
