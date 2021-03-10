@@ -27,7 +27,7 @@ arr.push(`**${res.indexOf(r)+1}. ${r.usertag ? r.usertag : r.preid}** - $${r.bal
 	    .setDescription(arr.join("\n"))
 	    .setColor("#FFBF00")
 	    return message.channel.send(embed)	
-}}
+}
 if(args[0] == "2") {
 let arr = []
 	const res = await u.find( {balance: {$exists: true}}).sort([['balance', 'descending']]).limit(30).slice(15)
@@ -40,6 +40,6 @@ arr.push(`**${res.indexOf(r)+16}. ${r.usertag ? r.usertag : r.preid}** - $${r.ba
 	    .setDescription(arr.join("\n"))
 	    .setColor("#FFBF00")
 	    return message.channel.send(embed)	
-
+}
 }
 }
