@@ -16,10 +16,10 @@ module.exports = {
       const userResult = await u.findOne({name: "users", preid: message.author.id})
         const msg = message 
         let arr = []
-	const res = await u.find( {balance: {$exists: true}}).sort([['balance', 'descending']]).limit(10)
+	const res = await u.find( {balance: {$exists: true}}).sort([['balance', 'descending']]).limit(15)
 	
 res.forEach(r => {
-arr.push(`**${r.usertag ? r.usertag : r.preid}** - ${r.balance}`)
+arr.push(`**${r.usertag ? r.usertag : r.preid}** - $${r.balance}`)
 })
 	    const embed = new Discord.MessageEmbed()
 	    .setTitle("Leaderboard")
