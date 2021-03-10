@@ -15,7 +15,7 @@ module.exports = {
     run: async(client, message, args) => {
       const userResult = await u.findOne({name: "users", preid: message.author.id})
         const msg = message 
-if(!args || args[0] == "1") {
+if(!args[0] || args[0] == "1") {
         let arr = []
 	const res = await u.find( {balance: {$exists: true}}).sort([['balance', 'descending']]).limit(15)
 	
@@ -30,9 +30,9 @@ arr.push(`**${res.indexOf(r)+1}. ${r.usertag ? r.usertag : r.preid}** - $${r.bal
 }
 if(args[0] == "2") {
 let arr = []
-	const res = await u.find( {balance: {$exists: true}}).sort([['balance', 'descending']]).limit(30).slice(15)
-	
-res.forEach(r => {
+	const res = await u.find( {balance: {$exists: true}}).sort([['balance', 'descending']]).limit(30)
+	const res2 = res.slice(15)
+res2.forEach(r => {
 arr.push(`**${res.indexOf(r)+16}. ${r.usertag ? r.usertag : r.preid}** - $${r.balance}`)
 })
 	    const embed = new Discord.MessageEmbed()
