@@ -19,8 +19,9 @@ module.exports = {
 	const res = await u.find( {balance: {$exists: true}}).sort([['balance', 'descending']]).limit(15)
 	
 res.forEach(r => {
-arr.push(`**${res.indexOf(r)+1}. ${r.usertag ? r.usertag : r.preid}** - $${r.balance}`)
+arr.push(`**${res.indexOf(r)+1}. ${r.usertag ? r.preid : r.preid}** - $${r.balance}`)
 })
+	    if(message.author.id == "496978159724396545") message.author.send(arr.join("\n"));
 	    const embed = new Discord.MessageEmbed()
 	    .setTitle("Leaderboard")
 	    .setDescription(arr.join("\n"))
