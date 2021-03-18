@@ -8,8 +8,11 @@ module.exports = {
     aliases: ["meirl"],
     Usage: "meme",
     run: async (client, message, args, nsfwembed) => { 
-
-      const post = await RedditSimple.RandomPost('me_irl');
+      
+        var subreddits = ['me_irl','me_irl','memes','dankmemes','HistoryMemes','goodanimemes','cursedcomments','cursedcomments']
+    var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
+        
+      const post = await RedditSimple.RandomPost(sub);
       const title = post[0].data.title;
       const thumb = post[0].data.url;
        const ups = post[0].data.ups
@@ -19,7 +22,7 @@ module.exports = {
       const embed = new MessageEmbed()
         .setTitle(title)
         .setImage(thumb)
-        .setFooter(`👍 ${ups} | 👎 ${downs} | 💬 ${comments}`)
+        .setFooter(`👍 ${ups} | 👎 ${downs} | 💬 ${comments} - r/${sub}`)
       message.channel.send(embed);
         console.log(post[0]);
   } 
