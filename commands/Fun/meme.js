@@ -19,7 +19,7 @@ module.exports = {
       const embed = new MessageEmbed()
         .setTitle(title)
         .setImage(thumb)
-        .setFooter(`👍${ups} | 👎${downs} | 💬${comments}`)
+        .setFooter(`👍 ${ups} | 👎 ${downs} | 💬 ${comments}`)
       message.channel.send(embed);
         console.log(post[0]);
   } 
