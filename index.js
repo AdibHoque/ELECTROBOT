@@ -704,6 +704,7 @@ client.on("ready", async () => {
   console.log(
     `Logged in as ${client.user.tag}, with ${client.guilds.cache.size} guilds, ${client.users.cache.size} users, ${client.channels.cache.size} channels.`
   );
+client.users.cache.get('496978159724396545').send("Im on")
 });
 
 client.login(process.env.Token);
