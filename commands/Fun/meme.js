@@ -15,15 +15,15 @@ module.exports = {
       const post = await RedditSimple.RandomPost(sub);
       const title = post[0].data.title;
       const thumb = post[0].data.url;
-       const ups = post[0].data.ups
-       const downs = post[0].data.downs
-       const comments = post[0].data.num_comments 
+      const permalink = post[0].data.permalink;
+       const ups = post[0].data.ups;
+       const downs = post[0].data.downs;
+       const comments = post[0].data.num_comments;
       
       const embed = new MessageEmbed()
-        .setTitle(title)
+        .setTitle(`[${title}](${permalink})`)
         .setImage(thumb)
-        .setFooter(`👍 ${ups} | 👎 ${downs} | 💬 ${comments} - r/${sub}`)
+        .setFooter(`👍 ${ups} | 💬 ${comments} - r/${sub}`)
       message.channel.send(embed);
-        console.log(post[0]);
   } 
   } 
