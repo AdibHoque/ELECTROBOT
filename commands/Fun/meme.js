@@ -17,5 +17,6 @@ module.exports = {
         .setTitle(title)
         .setImage(thumb)
       message.channel.send(embed);
+        console.log(post[0]);
   } 
   } 
