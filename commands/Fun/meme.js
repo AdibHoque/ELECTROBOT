@@ -15,13 +15,13 @@ module.exports = {
       const post = await RedditSimple.RandomPost(sub);
       const title = post[0].data.title;
       const thumb = post[0].data.url;
-      const permalink = post[0].data.permalink;
+      const permalink = "https://reddit.com/"+post[0].data.permalink;
        const ups = post[0].data.ups;
        const downs = post[0].data.downs;
        const comments = post[0].data.num_comments;
       
       const embed = new MessageEmbed()
-        .setTitle(title,permalink)
+        .setTitle(`[${title}](${permalink})`)
         .setImage(thumb)
         .setFooter(`👍 ${ups} | 💬 ${comments} - r/${sub}`)
       message.channel.send(embed);
