@@ -5,7 +5,7 @@ module.exports = {
     name: "meme",
     category: "Fun",
     description: "Get a fresh meme from reddit!",
-    aliases: ["meirl"],
+    aliases: ["memes"],
     Usage: "meme",
     run: async (client, message, args, nsfwembed) => { 
       
@@ -21,7 +21,8 @@ module.exports = {
        const comments = post[0].data.num_comments;
       
       const embed = new MessageEmbed()
-        .setTitle(title,permalink) 
+        .setTitle(title) 
+        .setURL(permalink) 
         .setImage(thumb)
         .setFooter(`👍 ${ups} | 💬 ${comments} - r/${sub}`)
       message.channel.send(embed);
