@@ -11,7 +11,7 @@ module.exports = {
       
       const post = await RedditSimple.RandomPost('jokes');
       const title = post[0].data.title;
-      const desc = "."//post[0].data
+      const desc = post[0].data.selftext;
       const permalink = "https://reddit.com/"+post[0].data.permalink;
        const ups = post[0].data.ups;
        const downs = post[0].data.downs;
