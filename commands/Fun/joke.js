@@ -2,12 +2,12 @@ const {MessageEmbed} = require("discord.js")
 const {RedditSimple} = require('reddit-simple')
 
 module.exports = {
-    name: "meme",
+    name: "joke",
     category: "Fun",
     description: "Get a fresh new joke from reddit!",
     aliases: ["jokes"],
     Usage: "joke",
-    run: async (client, message, args, nsfwembed) => { 
+    run: async (client, message, args) => { 
       
       const post = await RedditSimple.RandomPost('jokes');
       const title = post[0].data.title;
