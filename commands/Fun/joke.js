@@ -18,7 +18,7 @@ module.exports = {
        const comments = post[0].data.num_comments;
       
       const embed = new MessageEmbed()
-        .setTitle(title,permalink) 
+        .setAuthor(title,null,permalink) 
         .setDescription(desc)
         .setFooter(`👍 ${ups} | 💬 ${comments}`)
       message.channel.send(embed);
