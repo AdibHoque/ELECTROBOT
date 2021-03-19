@@ -45,7 +45,6 @@ setInterval(() => {
     'tits',
     'boobs',
     'bj',
-    'gasm',
     'cum', 
     'blowjob'
     ]
@@ -119,52 +118,7 @@ const applyText = (canvas, text, defaultFontSize) => {
   } while (ctx.measureText(text).width > 600);
   return ctx.font;
 };
-client.nsfwembed = new MessageEmbed()
-.setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`)
-.setColor(`#ff0000`)
-
-/*client.saveUser = (data) => {
-  return new Promise((resolve, reject) => {
-    if (!data) return reject({ code: 0, details: 'Missing user data to save' });
-    data.save().catch(err => reject({ code: 1, details: err }));
-    resolve();
-  });
-};
-client.getUser = (id) => {
-  return new Promise((resolve, reject) => {
-    if (!id) return reject('Missing user id to get data for', 0);
-    mongodb_user.findOne({ _id: id }).then(data => {
-      if (data == null) {
-        data = new mongodb_user({
-          _id: id,
-          pokemons: [],
-          balance: 0,
-        })
-      }
-      return resolve(data);
-    }).catch(err => reject({ code: 1, details: err }));
-  });
-};*/
-client.saveGuild = (data) => {
-  return new Promise((resolve, reject) => {
-    if (!data) return reject('Missing guild data to save', 0);
-    data.save().catch(err => reject({ code: 1, details: err }));
-    resolve();
-  });
-};
-client.getGuild = (id) => {
-  return new Promise((resolve, reject) => {
-    if (!id) return reject('Missing guild id to get data for', 0);
-    mongodb_guild.findOne({ _id: id }).then(data => {
-      if (data == null) {
-        data = new mongodb_guild({
-          _id: id
-        })
-      }
-      return resolve(data);
-    }).catch(err => reject(err, 1));
-  });
-};
+client.nsfwembed = new MessageEmbed().setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`).setColor(`#ff0000`)
 
 async function dropWallet(prefix, channel, author){
 	const amount = Math.round(Math.random()*190+10)
@@ -704,7 +658,8 @@ client.on("ready", async () => {
   console.log(
     `Logged in as ${client.user.tag}, with ${client.guilds.cache.size} guilds, ${client.users.cache.size} users, ${client.channels.cache.size} channels.`
   );
-client.users.fetch('496978159724396545').send("Im on")
+const ocl = client.channels.cache.get("822491229961977887")
+if(ocl) ocl.send("Client is online & ready to be used!")
 });
 
 client.login(process.env.Token);
