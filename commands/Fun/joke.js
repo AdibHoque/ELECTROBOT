@@ -20,7 +20,7 @@ module.exports = {
       const embed = new MessageEmbed()
         .setTitle(title,permalink) 
         .setDescription(desc)
-        .setFooter(`👍 ${ups} | 💬 ${comments} - r/${sub}`)
+        .setFooter(`👍 ${ups} | 💬 ${comments}`)
       message.channel.send(embed);
      console.log(post[0].data)
   } 
