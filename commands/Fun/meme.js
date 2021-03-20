@@ -9,8 +9,10 @@ module.exports = {
     Usage: "meme",
     run: async (client, message, args, nsfwembed) => { 
       
-        var subreddits = ['me_irl','me_irl','memes','dankmemes','HistoryMemes','goodanimemes','cursedcomments','cursedcomments']
-    var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
+        var subreddits = ['me_irl','me_irl','memes','dankmemes','historymemes','goodanimemes','programmerhumor','cursedcomments','cursedcomments']
+    let sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
+        
+       if(args[0] && subreddits.includes(args[0].toLowerCase())) sub = args[0];
         
       const post = await RedditSimple.RandomPost(sub);
       const title = post[0].data.title;
