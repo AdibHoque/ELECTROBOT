@@ -270,8 +270,8 @@ client.on('messageUpdate', async(oldMessage, newMessage) => {
   const msg = oldMessage
   db.set(`editsnipe${msg.channel.id}`, {mc: msg.content, sa: msg.author.username+`#`+msg.author.discriminator, saav: msg.author.avatarURL(), time: `${msg.createdAt.toLocaleString()} GMT+0000`, after: newMessage.content })
 const res = await lo.findOne({name: "logchannel", preid: msg.guild.id});
-const logchannel = res.logchannel
 if(!res) return; 
+const logchannel = res.logchannel;
   const embed = new MessageEmbed()
 .setTitle(`MESSAGE EDITED`)
 .addField(`Message Author`,msg.author.tag)
@@ -631,16 +631,6 @@ function extension(reaction, attachment) {
   if (!image) return "";
   return attachment;
 }
-
-
-/*setInterval(() => {
-  const index = Math.floor(Math.random() * (activities_list.length - 1) + 1); // generates a random number between 1 and the length of the activities array list (in this case 5).
-  client.user.setActivity(activities_list[index]); // sets bot's activities to one of the phrases in the arraylist.
-}, 12000); // Runs this every 10 seconds.
-
-setInterval(() => {
-  http.get(`http://electrobeta.glitch.me/`);
-}, 60000);*/
 
 client.on("ready", async () => {
    // client.user.setActivity(`e!help | ${client.guilds.cache.size}`); 
