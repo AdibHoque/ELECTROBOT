@@ -11,7 +11,7 @@ module.exports = {
     name: "pick",
     category: "Economy",
     description: "Pickup money from dropped wallets!",
-    aliases: [],
+    aliases: ["return"],
     usage: "pick",
     run: async(client, message, args, prefix) => {
         const msg = message 
