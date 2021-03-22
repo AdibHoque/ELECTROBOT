@@ -13,7 +13,7 @@ const applyText = (canvas, text, defaultFontSize) => {
 module.exports = {
     name: "whatyouseevswhatshesees",
     category: "Fun",
-    description: "Generate pokehunt personalized avatar!",
+    description: "Make your own WhatYouSeeVsWhatSheSees Meme!",
     aliases: ["wysvswss"],
     usage: "whatyouseevswhatshesees [@user]",
     run: async(client, message, args) => {
