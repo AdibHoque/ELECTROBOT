@@ -37,8 +37,8 @@ return message.channel.send("You/they don't have a economy account yet, get star
       const bal = userResult.balance ? userResult.balance : 0;
       const g = userResult.gender ? userResult.gender : "Not Set";
       let m = "Unmarried"
-      if(userResult.marriedto) m = client.users.cache.get(userResult.marriedto).tag;
-      if(!client.users.cache.get(userResult.marriedto)) m = userResult.marriedtoname;
+      if(userResult.marriedto) m = client.users.cache.get(userResult.marriedto) ? client.users.cache.get(userResult.marriedto).tag : userResult.marriedtoname;
+      //if(!client.users.cache.get(userResult.marriedto)) m = userResult.marriedtoname;
       if(!userResult.marriedtoname) m = "Unmarried";
       const cu = userResult.cmdused ? userResult.cmdused+" Times" : "0 Times";
       const ds = userResult.dailystreak ? userResult.dailystreak+" Days" : "0 Days";
