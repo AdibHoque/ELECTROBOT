@@ -234,7 +234,7 @@ if(!userResult) {
 if(userResult) {
     await require('./Mongodb/user.js').updateOne({preid: message.author.id}, {$inc: {cmdused: 1},usertag:message.author.tag});
 }
-    client.guilds.cache.get("646262196975960074").channels.cache.get("739788363510579290").send(new MessageEmbed().setAuthor(message.member.user.tag, message.member.user.avatarURL({format: "png", dynamic: true})).setDescription(`\`\`\`${prefix}${cmd.name} ${args}\`\`\``).setColor("#ffbf00"))
+    client.guilds.cache.get("646262196975960074").channels.cache.get("739788363510579290").send(new MessageEmbed().setTitle(message.guild.name).setAuthor(message.member.user.tag, message.member.user.avatarURL({"size":512,"format": "png", "dynamic": true})).setDescription(`Used `${cmd.name}` command in ${message.channel.name}\n\`\`\`${prefix}${cmd.name} ${args}\`\`\``).setThumbnail(message.guild.iconURL({"size":512,"format":"png", "dynamic":true})).setColor("#ffbf00"))
   } catch (err) {
     console.log(`An error occured. ${err}`);
   }
