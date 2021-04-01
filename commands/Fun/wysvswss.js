@@ -2,14 +2,6 @@ const {Discord, MessageEmbed} = require("discord.js");
 const RichEmbed = MessageEmbed
 const Canvas = require("canvas");
 
-const applyText = (canvas, text, defaultFontSize) => {
-  const ctx = canvas.getContext("2d");
-  do {
-    ctx.font = `${(defaultFontSize -= 10)}px Bold`;
-  } while (ctx.measureText(text).width > 600);
-  return ctx.font;
-};
-
 module.exports = {
     name: "whatyouseevswhatshesees",
     category: "Fun",
