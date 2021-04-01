@@ -17,7 +17,7 @@ module.exports = {
     const ctx = canvas.getContext("2d");
     const background = await Canvas.loadImage(img);
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-    const avatar = await Canvas.loadImage(mention.user.avatarURL("https://cdn.discordapp.com/attachments/656517276832366595/827162267668971570/FakePing.png")
+    const avatar = await Canvas.loadImage("https://cdn.discordapp.com/attachments/656517276832366595/827162267668971570/FakePing.png")
     ctx.drawImage(avatar, 0, 0, canvas.width, canvas.height);
     msg.channel.send({
       files: [
