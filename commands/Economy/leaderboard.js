@@ -43,5 +43,36 @@ arr.push(`**${res.indexOf(r)+1}. ${r.usertag ? r.usertag : r.preid}** - $${r.bal
             .setFooter("Page 2 out of 2")
 	    return message.channel.send(embed)	
 }
+
+if(args[0] == "rep") {
+        let arr = []
+	const res = await u.find( {rep: {$exists: true}}).sort([['rep', 'descending']]).limit(15)
+	
+res.forEach(r => {
+arr.push(`**${res.indexOf(r)+1}. ${r.usertag ? r.usertag : r.preid}** - ★${r.rep}`)
+})
+	    const embed = new Discord.MessageEmbed()
+	    .setTitle("Reputation Leaderboard")
+	    .setDescription(arr.join("\n"))
+	    .setColor("#FFBF00")
+            .setFooter("Page 1 out of 2")
+	    return message.channel.send(embed)	
+}  
+
+if(args[0] == "rep" && args[1] == "2") {
+let arr = []
+	const res = await u.find( {rep: {$exists: true}}).sort([['rep', 'descending']]).limit(30)
+	const res2 = res.slice(15)
+res2.forEach(r => {
+arr.push(`**${res.indexOf(r)+1}. ${r.usertag ? r.usertag : r.preid}** - ★${r.balance}`)
+})
+	    const embed = new Discord.MessageEmbed()
+	    .setTitle("Reputation Leaderboard")
+	    .setDescription(arr.join("\n"))
+	    .setColor("#FFBF00")
+            .setFooter("Page 2 out of 2")
+	    return message.channel.send(embed)	
+}
+ 
 }
 }
