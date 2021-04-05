@@ -13,20 +13,19 @@ module.exports = {
 if(!message.member.hasPermission("ADMINISTRATOR")) {
   return message.channel.send("YOU NEED THE `ADMINISTRATOR` PERMISSION TO USE THIS COMMAND!")
 }
-const pre = require("./../../Mongodb/prefix")
+const guilds = require("./../../Mongodb/guilds")
 const prefix = args[0]
 
+if(!prefix) return message.channel.send("PLEASE SPECIFY THE PREFIX YOU WANT TO SET!")
+
 mongoose.connect("mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net/Guilds?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
-/*const res = await pre.findOne({name: "prefix", preid: message.guild.id})
-  let prefix = res ? res.prefix : "didnt set";
-  message.channel.send(prefix)*/
+ 
+const guildResult = await u.findOne({name: "guilds", _id: message.guild.id})
 
-
-pre.findOne({name: "prefix", preid: message.guild.id}).then(result => {
-        let duck = new pre({
-            _id: new mongoose.Types.ObjectId(),
-            name: "prefix",
-            preid: message.guild.id,
+if(!guildResult) {
+let duck = new guilds({
+            _id: message.guild.id,
+            name: "guilds",
             prefix: prefix
           })
         const embed = new MessageEmbed()
@@ -34,11 +33,13 @@ pre.findOne({name: "prefix", preid: message.guild.id}).then(result => {
         .setDescription(`The new prefix for the server is \`${prefix}\`.`)
         .setColor("#ffbf00")
         message.channel.send(embed);
-        if(!result || result == []) {
- duck.save().catch(console.error);
-        }else{
-          pre.deleteOne({name: "prefix", preid: message.guild.id}).catch(console.error)          
-          duck.save().catch(console.error)
         }
-      })
-        }}
+else {
+    await require('./../../Mongodb/guilds.js').updateOne({ _id: message.author.id }, { prefix: prefix });
+    const embed = new MessageEmbed()
+        .setTitle("Prefix Changed")
+        .setDescription(`The new prefix for the server is \`${prefix}\`.`)
+        .setColor("#ffbf00")
+        message.channel.send(embed); 
+    }
+    }}
