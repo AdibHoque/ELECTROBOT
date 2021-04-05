@@ -171,7 +171,7 @@ client.on("message", async message => {
       );
     message.channel.send(`${message.author}`, embed);
   }
-  const res = await guilds.findOne({name: "guilds", preid: message.guild.id})
+  const res = await pre.findOne({name: "prefix", preid: message.guild.id})
   let prefix = res ? res.prefix : "e!";
  // const nsfwembed = new MessageEmbed().setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`).setColor(`#ff0000`);
 
