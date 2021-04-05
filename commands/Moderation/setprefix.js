@@ -37,7 +37,7 @@ await duck.save()
         message.channel.send(embed);
         }
 else {
-    await require('./../../Mongodb/guilds.js').updateOne({ _id: message.author.id }, { prefix: prefix });
+    await require('./../../Mongodb/guilds.js').updateOne({ preid: message.author.id }, { prefix: prefix });
     const embed = new MessageEmbed()
         .setTitle("Prefix Changed")
         .setDescription(`The new prefix for the server is \`${prefix}\`.`)
