@@ -20,7 +20,7 @@ if(!prefix) return message.channel.send("PLEASE SPECIFY THE PREFIX YOU WANT TO S
 
 mongoose.connect("mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net/Guilds?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
  
-const guildResult = await u.findOne({name: "guilds", _id: message.guild.id})
+const guildResult = await guilds.findOne({name: "guilds", _id: message.guild.id})
 
 if(!guildResult) {
 let duck = new guilds({
