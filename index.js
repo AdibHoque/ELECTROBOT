@@ -76,7 +76,7 @@ let ai = new alexa("aw2plm");
 const Canvas = require("canvas");
 const logs = require('discord-logs');
 const mongoose = require('mongoose');
-const mongodb_guild = require('./Mongodb/guilds');
+const guilds = require('./Mongodb/guilds');
 const pre = require("./Mongodb/prefix")
 const lo = require("./Mongodb/logchannel")
 const u = require("./Mongodb/user")
@@ -171,7 +171,7 @@ client.on("message", async message => {
       );
     message.channel.send(`${message.author}`, embed);
   }
-  const res = await pre.findOne({name: "prefix", preid: message.guild.id})
+  const res = await guilds.findOne({name: "guilds", _id: message.guild.id})
   let prefix = res ? res.prefix : "e!";
  // const nsfwembed = new MessageEmbed().setDescription(`<a:ElectroAdultContentWarning:709467180642730055> **| PLEASE SWITCH TO A NSFW MARKED CHANNEL TO USE THIS COMMAND!**`).setColor(`#ff0000`);
 
