@@ -24,7 +24,8 @@ const guildResult = await guilds.findOne({name: "guilds", _id: message.guild.id}
 
 if(!guildResult) {
 let duck = new guilds({
-            _id: message.guild.id,
+            _id: new mongoose.Types.ObjectId(), 
+            preid: message.guild.id,
             name: "guilds",
             prefix: prefix
           })
