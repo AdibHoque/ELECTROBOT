@@ -28,6 +28,7 @@ let duck = new guilds({
             name: "guilds",
             prefix: prefix
           })
+await duck.save()
         const embed = new MessageEmbed()
         .setTitle("Prefix Changed")
         .setDescription(`The new prefix for the server is \`${prefix}\`.`)
