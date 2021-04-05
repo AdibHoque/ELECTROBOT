@@ -40,7 +40,7 @@ if(!userResult) {
     await require('./../../Mongodb/user.js').updateOne({preid: message.author.id }, { $inc: {dailystreak:1} })
 		return message.channel.send(`:white_check_mark: You got **$${amount}** daily.`);
 	}
-  const g = timeout - (Date.now() - daily) 
+  const g = Date.now() - (daily + timeout) 
   if(g < timeout) {
     await require('./../../Mongodb/user.js').updateOne({preid: message.author.id},{dailystreak: 0});
   }
