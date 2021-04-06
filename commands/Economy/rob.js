@@ -50,6 +50,7 @@ if(u2b < 500) return message.channel.send(`The victim must have atleast $500 to 
 
 	await require('./../../Mongodb/user.js').updateOne({ preid: message.author.id }, { $inc: { balance: amountToAdd }, lastrob:Date.now() });
 	await require('./../../Mongodb/user.js').updateOne({ preid: memberToRob.id }, { $inc: { balance: -amountToAdd }, lastrobbed:Date.now() });
-    message.channel.send(`🤑 You robbed $${amountToAdd} from ${memberToRob.tag}!`)
+    message.channel.send(`🤑 You robbed **$${amountToAdd}** from ${memberToRob.tag}!`)
+    memberToRob.send(`👮‍♂️ Your were robbed by ${message.author.tag} (ID: ${message.author.id}) and lost **$${amountToAdd}**!`)
         }
     } 
