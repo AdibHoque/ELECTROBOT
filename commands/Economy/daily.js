@@ -36,13 +36,13 @@ if(!userResult) {
 		return message.channel.send(`You have already claimed your daily today.\n⏱ You'll be able to use this command again in **${time.hours} hours, ${time.minutes} minutes and ${time.seconds} seconds**!`);
 	} 
   else {
+                const g = Date.now() - (daily + timeout) 
+  if(g < timeout) {
+                await require('./../../Mongodb/user.js').updateOne({preid: message.author.id},{dailystreak: 0});
+  } 
 		await require('./../../Mongodb/user.js').updateOne({ preid: message.author.id }, { $inc: { balance: amount }, lastdaily: Date.now() });
-    await require('./../../Mongodb/user.js').updateOne({preid: message.author.id }, { $inc: {dailystreak:1} })
+                await require('./../../Mongodb/user.js').updateOne({preid: message.author.id }, { $inc: {dailystreak:1} })
 		return message.channel.send(`:white_check_mark: You got **$${amount}** daily.`);
 	}
-  const g = Date.now() - (daily + timeout) 
-  if(g < timeout) {
-    await require('./../../Mongodb/user.js').updateOne({preid: message.author.id},{dailystreak: 0});
-  }
 }
 }
