@@ -15,7 +15,7 @@ module.exports = {
     usage: "rob <@user>",
     run: async(client, message, args, prefix) => {
         const msg = message 
-	const memberToRob = message.mentions.users.first() || client.users.cache.get(args[0]);
+	const memberToRob = message.mentions.users.first() || await client.users.fetch(args[0]);
   if(!memberToRob) return message.channel.send(`You need to mention someone to rob!`);
       const robtimeout = 1800000*2;
       const robbedtimeout = 1800000
