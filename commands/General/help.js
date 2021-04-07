@@ -49,7 +49,7 @@ module.exports = {
         .addField(`<:ElectroFunBadge:680783413065941002> FUN COMMANDS - (${funArr.length})`, `\`${funArr.join('`, `')}\`` )
         .addField(`<:ElectroEconomyBadge:752834145159348294> ECONOMY COMMANDS - (${ecoArr.length})`, `\`${ecoArr.join('`, `')}\``)
         .addField(`<:ElectroNSFWBadge:680783452563439774> NSFW COMMANDS - (${nsfwArr.length})`, "NSFW commands are hidden!\nType `"+prefix+"NSFW` if you're willing to view them!")
-        .addField(`<:ElectroBookmark:668018207549816833> USEFUL LINKS:`, `[ADD BOT](https://discordapp.com/oauth2/authorize?client_id=629323586930212884&permissions=2146827775&redirect_uri=https%3A%2F%2Fdiscord.gg%2dAggRh9&response_type=code&scope=guilds.join%20bot) | [JOIN GUILD](https://discord.gg/dAggRh9) | [VOTE](https://discordbots.org/bot/629323586930212884/vote) | [WEBSITE](https://electro-bot.glitch.me/)`)
+        .addField(`<:ElectroBookmark:668018207549816833> USEFUL LINKS:`, `[ADD BOT](https://discord.com/api/oauth2/authorize?client_id=629323586930212884&permissions=2146827775&scope=bot) | [JOIN GUILD](https://discord.gg/dAggRh9) | [VOTE](https://discordbots.org/bot/629323586930212884/vote) | [WEBSITE](https://electro-bot.glitch.me/)`)
         .setFooter(`© 2020 ELECTRO, Inc.`)
         .setColor("#ffbf00")
        // .setImage(`https://cdn.discordapp.com/attachments/656517276832366595/679975327698649109/ElectroCommandsCategories.gif`) 
