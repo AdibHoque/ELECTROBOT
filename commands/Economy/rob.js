@@ -32,7 +32,7 @@ if (userResult.lastrob !== null && robtimeout - (Date.now() - userResult.lastrob
 		 return message.channel.send(`⏱ You'll be able to use this command again in **${time.hours}H ${time.minutes}M ${time.seconds}S**.`)
 }
 if (user2Result.lastrobbed !== null && robbedtimeout - (Date.now() - user2Result.lastrobbed) > 0) {
-  const time = ms(Date.now() - userResult.lastrobbed - robbedtimeout);
+  const time = ms(robbedtimeout - (Date.now() - user2Result.lastrobbed));
 		return message.channel.send(`This user was already robbed recently.\n⏱ You'll be able to rob this user in **${time.hours}H ${time.minutes}M ${time.seconds}S**.`)
 }
 const u1b = userResult.balance ? userResult.balance : 0;
