@@ -42,15 +42,20 @@ if(u2b < 500) return message.channel.send(`The victim must have atleast $500 to 
   const amountToAdd = Math.floor(Math.random() * (user2Result.balance/100)*30)
   
 	if (memberToRob.bot) return message.channel.send('You can\'t rob a bot account!');
-	
-	const senderINFO = await u.findOne({name: "users", preid: message.author.id})
-	const senderCredits = senderINFO.balance ? senderINFO.balance : 0;
-
 	if (memberToRob.id == message.author.id) return message.channel.send('You can\'t rob yourself!');
-
+     const fined = Math.round(Math.random()*5) == 1 
+     if(fined == true) {
+     const fineAmount = Math.floor(Math.random() * (userResult.balance/100)*25)
+     await require('./../../Mongodb/user.js').updateOne({ preid: message.author.id }, { $inc: { balance: -fineAmount }, lastrob:Date.now() });
+     await require('./../../Mongodb/user.js').updateOne({ preid: memberToRob.id }, { $inc: { balance: Math.round(fineAmount/2) }, lastrobbed:Date.now() });
+    message.channel.send(`👮‍♂️ You were caught while attempting a robbery on ${memberToRob.tag} and have been fined **$${fineAmount}**!`)
+    memberToRob.send(`🤑 You were attempted to be robbed by ${message.author.tag} (ID: ${message.author.id}) but he was caught red handed.\nYou got **$${Math.round(fineAmount/2)}** for the trouble you had to face!`)
+     }
+     if(fined == false) {
 	await require('./../../Mongodb/user.js').updateOne({ preid: message.author.id }, { $inc: { balance: amountToAdd }, lastrob:Date.now() });
 	await require('./../../Mongodb/user.js').updateOne({ preid: memberToRob.id }, { $inc: { balance: -amountToAdd }, lastrobbed:Date.now() });
     message.channel.send(`🤑 You robbed **$${amountToAdd}** from ${memberToRob.tag}!`)
     memberToRob.send(`👮‍♂️ You were robbed by ${message.author.tag} (ID: ${message.author.id}) and lost **$${amountToAdd}**!`)
+	     }
         }
     } 
