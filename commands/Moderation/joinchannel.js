@@ -42,7 +42,8 @@ const embed = new MessageEmbed()
         }
       else{
           result.joinchannel = cArgs
-          await result.save()
+          result.save().catch(console.error);
+
           const embed = new MessageEmbed()
         .setTitle("Join Channel Set")
         .setDescription(`Greetings Text Will Be Deliverd To <#${cArgs}> Everytime Someone Joins.`)
