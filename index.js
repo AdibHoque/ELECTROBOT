@@ -76,7 +76,7 @@ let ai = new alexa("aw2plm");
 const Canvas = require("canvas");
 const logs = require('discord-logs');
 const mongoose = require('mongoose');
-const guilds = require('./Mongodb/guilds');
+const guildData = require('./Mongodb/guild');
 const pre = require("./Mongodb/prefix")
 const lo = require("./Mongodb/logchannel")
 const u = require("./Mongodb/user")
@@ -286,11 +286,12 @@ msg.guild.channels.cache.get(logchannel).send(embed)
 })
 
 client.on("guildMemberAdd", async member => {
-  let wChan = await db.fetch(`jc${member.guild.id}`);
+const res = await guildData.findOne({name: "guild", preid: message.guild.id})
+if(!res) return; 
 
-  if (wChan == null) return;
-
+  let wChan = res.joinchannel;
   if (!wChan) return;
+	
   try {
     // Background language
     let canvas = Canvas.createCanvas(1024, 450),
@@ -363,11 +364,12 @@ client.on("guildMemberAdd", async member => {
 });
 
 client.on("guildMemberRemove", async member => {
-  let lChan = await db.fetch(`lc${member.guild.id}`);
-
-  if (lChan == null) return;
-
+const res = await guildData.findOne({name: "guild", preid: message.guild.id})
+if(!res) return; 
+	
+  let lChan = res.leavechannel;
   if (!lChan) return;
+	
   try {
     // Background language
     let canvas = Canvas.createCanvas(1024, 450),
