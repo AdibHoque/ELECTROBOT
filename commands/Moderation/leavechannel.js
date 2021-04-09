@@ -31,22 +31,22 @@ let duck = new guildData({
             _id: new mongoose.Types.ObjectId(),
             name: "guild",
             preid: message.guild.id,
-            leavechannel: cArgs
+            leavechannel: cArgs.id
           }) 
  duck.save().catch(console.error);
 const embed = new MessageEmbed()
         .setTitle("Leave Channel Set")
-        .setDescription(`Goodbye Text Will Be Deliverd To <#${cArgs}> Everytime Someone Leaves.`)
+        .setDescription(`Goodbye Text Will Be Deliverd To <#${cArgs.id}> Everytime Someone Leaves.`)
         .setColor("#ffbf00")
        return message.channel.send(embed); 
         }
       else{
-          result.leavechannel = cArgs
+          result.leavechannel = cArgs.id
           result.save().catch(console.error);
 
           const embed = new MessageEmbed()
         .setTitle("Join Channel Set")
-        .setDescription(`Goodbye Text Will Be Deliverd To <#${cArgs}> Everytime Someone Leaves.`)
+        .setDescription(`Goodbye Text Will Be Deliverd To <#${cArgs.id}> Everytime Someone Leaves.`)
         .setColor("#ffbf00")
         return message.channel.send(embed); 
         }
