@@ -3,6 +3,7 @@ const productSchema = mongoose.Schema({
   _id: {type: mongoose.Schema.Types.ObjectId, required: true},
   preid: {type:Number, required:true},
   name: {type:String, default: 'guild'},
+  prefix: {type:String, required:false},
   logchannel: {type:String, required:false},
   joinchannel: {type:String, required:false},
   leavechannel: {type:String, required:false}
