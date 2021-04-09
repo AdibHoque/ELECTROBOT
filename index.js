@@ -286,7 +286,7 @@ msg.guild.channels.cache.get(logchannel).send(embed)
 })
 
 client.on("guildMemberAdd", async member => {
-const res = await guildData.findOne({name: "guild", preid: message.guild.id})
+const res = await guildData.findOne({name: "guild", preid: member.guild.id})
 if(!res) return; 
 
   let wChan = res.joinchannel;
@@ -364,7 +364,7 @@ if(!res) return;
 });
 
 client.on("guildMemberRemove", async member => {
-const res = await guildData.findOne({name: "guild", preid: message.guild.id})
+const res = await guildData.findOne({name: "guild", preid: member.guild.id})
 if(!res) return; 
 	
   let lChan = res.leavechannel;
