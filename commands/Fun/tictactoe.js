@@ -10,6 +10,8 @@ module.exports = {
     aliases: ["ttt"],
     usage: "ttt",
     run: async(client, message, args) => {
+return; 
+/*
        if(!message.author.id == "496978159724396545") return; 
         let a = '🇦'
         let b = '🇧'
@@ -35,6 +37,6 @@ module.exports = {
             //db.set(`ttt${user1.id}${collected.first().author.id}${message.channel.id}`, {})
               }
         })
-       })
+       })*/
         }
     }  
