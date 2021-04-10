@@ -27,7 +27,7 @@ mongoose.connect("mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net
             _id: new mongoose.Types.ObjectId(),
             name: "logchannel",
             preid: message.guild.id,
-            prefix: logchannel.id
+            logchannel: logchannel.id
           })
 duck.save().catch(console.error);
 })
