@@ -11,7 +11,7 @@ module.exports = {
     usage: "ttt",
     run: async(client, message, args) => {
         return; 
-       /* let a = '🇦'
+        /*let a = '🇦'
         let b = '🇧'
         let c = '🇨'
         let d = '🇩'
@@ -31,8 +31,8 @@ module.exports = {
 	}).then(async collected => {
 		if (!collected.first()) return;
 		if (collected.first().content.toLowerCase() == 'join') {
-            message.channel.send(`⬛ ⬛ ⬛\n⬛ ⬛ ⬛\n⬛ ⬛ ⬛`)
-            db.set(`ttt${user1.id}${collected.first().author.id}${message.channel.id}`, {})
+            message.channel.send(`Arrange 3 of your tile in a line within the board to win!\n🇦 🇧 🇨\n🇩 🇪 🇫\n🇬 🇭 🇮\n\n${user1.username}: ❌\n${collected.first().author.username}: ⭕\It\'s your turn <@${message.author.id}>`)
+            //db.set(`ttt${user1.id}${collected.first().author.id}${message.channel.id}`, {})
         })*/
 
  
