@@ -10,8 +10,8 @@ module.exports = {
     aliases: ["ttt"],
     usage: "ttt",
     run: async(client, message, args) => {
-    return; 
-        let a = '🇦'
+        return; 
+       /* let a = '🇦'
         let b = '🇧'
         let c = '🇨'
         let d = '🇩'
@@ -20,6 +20,22 @@ module.exports = {
         let g = '🇬'
         let h = '🇭'
         let i = '🇮'
+        const user1 = message.author;
+        const user2 =  message.mentions.users.first() || await client.users.fetch(args[0])
+        
+        message.channel.send(`${user1.tag} sent a open challenge of a tictactoe game! Type \`Join\` within 30 seconds to accept the challenge!`);
+	message.channel.awaitMessages(m => m.author.bot == false, {
+		max: 1,
+		time: 30000,
+		errors: ['time'],
+	}).then(async collected => {
+		if (!collected.first()) return;
+		if (collected.first().content.toLowerCase() == 'join') {
+            message.channel.send(`⬛ ⬛ ⬛\n⬛ ⬛ ⬛\n⬛ ⬛ ⬛`)
+            db.set(`ttt${user1.id}${collected.first().author.id}${message.channel.id}`, {})
+        })*/
+
+ 
         
         }
     }  
