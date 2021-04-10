@@ -10,8 +10,8 @@ module.exports = {
     aliases: ["ttt"],
     usage: "ttt",
     run: async(client, message, args) => {
-        return; 
-        /*let a = '🇦'
+       if(!message.author.id == "496978159724396545") return; 
+        let a = '🇦'
         let b = '🇧'
         let c = '🇨'
         let d = '🇩'
@@ -33,9 +33,7 @@ module.exports = {
 		if (collected.first().content.toLowerCase() == 'join') {
             message.channel.send(`Arrange 3 of your tile in a line within the board to win!\n🇦 🇧 🇨\n🇩 🇪 🇫\n🇬 🇭 🇮\n\n${user1.username}: ❌\n${collected.first().author.username}: ⭕\It\'s your turn <@${message.author.id}>`)
             //db.set(`ttt${user1.id}${collected.first().author.id}${message.channel.id}`, {})
-        })*/
-
- 
-        
+        })
+       })
         }
     }  
