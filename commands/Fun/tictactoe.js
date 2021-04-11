@@ -9,7 +9,7 @@ module.exports = {
     category: "Fun",
     description: "Play tictactoe",
     aliases: ["ttt"],
-    usage: "ttt",
+    usage: "tictactoe <@User>",
     run: async(client, message, args) => {
       const member = message.mentions.members.first()
       if(!member) return message.channel.send(`${fail} **PLEASE MENTION A VALID USER TO PLAY TICTACTOE WITH!**`);
