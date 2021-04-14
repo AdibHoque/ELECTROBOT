@@ -17,7 +17,7 @@ module.exports = {
     run: async(client, message, args) => {
       const userResult = await u.findOne({name: "users", preid: message.author.id})
         const msg = message 
-if(!args[0] || args[0] == "1" || args[0] = "2") {
+if(!args[0] || args[0] == "1" || args[0] == "2") {
         let arr1 = []
         let arr2 = []
 	const res = await u.find( {balance: {$exists: true}}).sort([['balance', 'descending']]).limit(15)
