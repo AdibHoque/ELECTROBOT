@@ -29,7 +29,7 @@ arr1.push(`**${res.indexOf(r)+1}. ${r.usertag ? r.usertag : r.preid}** - $${r.ba
 })
 	
 res2.forEach(r => {
-arr2.push(`**${res2.indexOf(r)+1}. ${r.usertag ? r.usertag : r.preid}** - $${r.balance}`)
+arr2.push(`**${res2.indexOf(r)+16}. ${r.usertag ? r.usertag : r.preid}** - $${r.balance}`)
 })
 	    const embed1 = new Discord.MessageEmbed()
 	    .setTitle("Leaderboard")
@@ -44,7 +44,7 @@ arr2.push(`**${res2.indexOf(r)+1}. ${r.usertag ? r.usertag : r.preid}** - $${r.b
             .setFooter("Page 2 out of 2")
 	    	
 	    const pages = [embed1, embed2];
-            const textPageChange = true;
+            const textPageChange = false;
             const emojis = ["⏪", "⏩"];
             const time = 30000;
             ReactionPages(message, pages, textPageChange, emojis, time); 
