@@ -1,7 +1,5 @@
 const {Discord, MessageEmbed} = require("discord.js");
-const RichEmbed = MessageEmbed
-let alexa = require("alexa-bot-api");
-let ai = new alexa("aw2plm"); 
+const { chatBot } = require("reconlx"); 
 
 module.exports = {
     name: "chatbot",
@@ -24,17 +22,8 @@ module.exports = {
       msg.channel.send(em);
     } else {
       msg.channel.startTyping();
-      const reply = await ai.getReply(kwargs);
+      chatBot(message, kwargs); 
       msg.channel.stopTyping();
-      var Google = ["#0F9D58", "#DB4437", "#4285F4", "#FFBF00"];
-      var gcolor = Google[Math.round(Math.random() * (Google.length - 1))];
-      const embed = new RichEmbed()
-        .setColor(gcolor)
-        .setFooter(
-          `${reply}`,
-          "https://cdn.discordapp.com/emojis/646994210939076618.gif"
-        );
-      msg.channel.send(`${msg.author}`, embed);
     } 
         }
     }  
