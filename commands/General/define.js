@@ -12,7 +12,7 @@ module.exports = {
     aliases: ["urban", "df", "ud"],
     usage: "define <word>",
     run: async(client, message, args) => {
-	    return message.channel.send("This command is on maintenance")
+	    //return message.channel.send("This command is on maintenance")
         let word = args.join("+");
     if (!word) {
       return message.channel.send("Specify a word to define!");
