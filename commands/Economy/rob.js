@@ -43,7 +43,7 @@ if(u2b < 500) return message.channel.send(`The victim must have atleast $500 to 
   
 	if (memberToRob.bot) return message.channel.send('You can\'t rob a bot account!');
 	if (memberToRob.id == message.author.id) return message.channel.send('You can\'t rob yourself!');
-     const fined = Math.round(Math.random()*5) == 1 
+     const fined = Math.round(Math.random()*10) == 1 
      if(fined == true) {
      const fineAmount = Math.floor(Math.random() * (userResult.balance/100)*25)
      await require('./../../Mongodb/user.js').updateOne({ preid: message.author.id }, { $inc: { balance: -fineAmount }, lastrob:Date.now() });
