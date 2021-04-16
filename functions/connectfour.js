@@ -83,7 +83,7 @@ class Board{
       .setTitle("Connect Four Game")
       .setColor("#ffbf00")
       .setDescription(str)
-    this.m.edit(embed)
+    this.m.edit('C O N N E C T  F O U R',embed)
     this.channel.stopTyping()
   }
 
@@ -94,7 +94,7 @@ class Player {
     this.channel = channel
     this.id = id
     this.color = color
-    this.name = channel.guild.members.cache.get(id).nickname
+    this.name = channel.guild.members.cache.get(id).user.username
     this.m = m
     this.mex = mex
   }
