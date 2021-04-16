@@ -22,7 +22,6 @@
     "reddit-simple": "^1.1.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
-    "query-string": "^6.13.1",
     "alexa-bot-api": "^0.1.2",
     "pornhub.js": "github:pionxzh/pornhub.js",
     "snekfetch": "^4.0.4",
@@ -41,7 +40,8 @@
     "nekobot-api": "^1.3.3",
     "parse-ms": "^2.0.0",
     "blapi": "^2.0.1",
-    "reconlx": "github:AdibHoque/reconlx-api"
+    "reconlx": "github:AdibHoque/reconlx-api",
+    "translate-google": "^1.4.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
