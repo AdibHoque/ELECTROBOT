@@ -79,9 +79,9 @@ class Board{
       }
       str += "\n"
     }
-    let embed = new Discord.RichEmbed()
+    let embed = new Discord.MessageEmbed()
       .setTitle("Connect Four Game")
-      .setColor("#eb4034")
+      .setColor("#ffbf00")
       .setDescription(str)
     this.m.edit(embed)
     this.channel.stopTyping()
