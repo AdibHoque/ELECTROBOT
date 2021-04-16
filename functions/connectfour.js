@@ -94,7 +94,7 @@ class Player {
     this.channel = channel
     this.id = id
     this.color = color
-    this.name = channel.guild.members.get(id).nickname
+    this.name = channel.guild.members.cache.get(id).nickname
     this.m = m
     this.mex = mex
   }
