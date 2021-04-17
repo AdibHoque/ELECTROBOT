@@ -102,13 +102,12 @@ class Player {
 turn(){
   this.mex.edit(this.name + " turn :"+this.color+"_circle:")
     this.m.react('1⃣')
-    .then(() => this.m.react('2⃣'))
-    .then(() => this.m.react('3⃣'))
-    .then(() => this.m.react('4⃣'))
-    .then(() => this.m.react('5⃣'))
-    .then(() => this.m.react('6⃣'))
-    .then(() => this.m.react('7⃣'))
-    .catch(console.log("One emoji failed to react"))
+    this.m.react('2⃣'))
+    this.m.react('3⃣'))
+    this.m.react('4⃣'))
+    this.m.react('5⃣'))
+    this.m.react('6⃣'))
+    this.m.react('7⃣'))
 
 const filter = (reaction, user) => {
     return ['1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣'].includes(reaction.emoji.name) && user.id === this.id;
