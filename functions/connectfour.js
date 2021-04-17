@@ -17,7 +17,7 @@ class Board{
       this.channel.send("The game is loading, please wait...").then(mex => {
         this.mex = mex
         this.player1 = new Player(player1, "red", channel, this.m, this.mex)
-        this.player1 = new Player(player1, "blue", channel, this.m, this.mex)
+        this.player2 = new Player(player2, "blue", channel, this.m, this.mex)
         this.print()
         this.game()
       })
