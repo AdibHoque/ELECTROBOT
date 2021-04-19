@@ -15,13 +15,13 @@ module.exports = {
       if(!member) {
 message.channel.send(`**Play a TicTacToe match**\nArrange 3 of your tile in a line within the board!\n\n☑  ${message.author.username}
 Needs at least 1 more player\n\nType \`${prefix}play\` to play against them!`)
-message.channel.awaitMessages(m => !m.author.bot && m.content == prefix+'join', {
+message.channel.awaitMessages(m => !m.author.bot && m.content == prefix+'play', {
 		max: 1,
 		time: 30000,
 		errors: ['time'],
 	}).then(async collected => {
 		if (!collected.first()) return;
-		if (collected.first().content.toLowerCase() == prefix+'join') {
+		if (collected.first().content.toLowerCase() == prefix+'play') {
 return new tictactoe({
     message: collected.first((,
     player_two: message.member,
