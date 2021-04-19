@@ -22,10 +22,11 @@ message.channel.awaitMessages(m => !m.author.bot && m.content == prefix+'play', 
 	}).then(async collected => {
 		if (!collected.first()) return;
 		if (collected.first().content.toLowerCase() == prefix+'play') {
-return new tictactoe({
-    message: collected.first((,
+new tictactoe({
+    message: collected.first(),
     player_two: message.member,
-}); 
+}) 
+return; 
 }
 
 })
