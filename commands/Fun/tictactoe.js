@@ -29,7 +29,7 @@ return;
 
 })
 }
-else {
+if(args) {
 const member = message.mentions.members.first()
 if(!member) return message.channel.send("Invalid member")
 	
