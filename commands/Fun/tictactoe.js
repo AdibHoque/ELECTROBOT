@@ -11,8 +11,7 @@ module.exports = {
     aliases: ["ttt"],
     usage: "tictactoe <@User>",
     run: async(client, message, args) => {
-      const member = message.mentions.members.first()
-      if(!member) {
+         if(!args) {
 message.channel.send(`**Play a TicTacToe match**\nArrange 3 of your tile in a line within the board!\n\n☑  ${message.author.username}
 Needs at least 1 more player\n\nType \`${prefix}play\` to play against them!`)
 message.channel.awaitMessages(m => !m.author.bot && m.content == prefix+'play', {
@@ -24,18 +23,21 @@ message.channel.awaitMessages(m => !m.author.bot && m.content == prefix+'play', 
 		if (collected.first().content.toLowerCase() == prefix+'play') {
 new tictactoe({
     message: collected.first(),
-    player_two: message.member,
-}) 
+    player_two: message.member,}) 
 return; 
 }
 
 })
 }
-
+else {
+const member = message.mentions.members.first()
+if(!member) return message.channel.send("Invalid member")
+	
 new tictactoe({
     message: message,
     player_two: member,
 }); 
-
+return;
+}
         }
     }  
