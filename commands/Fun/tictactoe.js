@@ -10,7 +10,7 @@ module.exports = {
     description: "Play tictactoe",
     aliases: ["ttt"],
     usage: "tictactoe <@User>",
-    run: async(client, message, args) => {
+    run: async(client, message, args, prefix) => {
          if(!args) {
 message.channel.send(`**Play a TicTacToe match**\nArrange 3 of your tile in a line within the board!\n\n☑  ${message.author.username}
 Needs at least 1 more player\n\nType \`${prefix}play\` to play against them!`)
