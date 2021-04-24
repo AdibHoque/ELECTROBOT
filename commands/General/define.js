@@ -28,7 +28,7 @@ if(!body.list.length) return message.channel.send("Word not found!")
 let pages = []
 	    
 body.list.forEach(d => {    
-    const embed = new MessageEmbed().setTitle(d.word).setAuthor(d.author).setURL(d.permalink).addField("Definition", "```" + d.definition.substr(0, 1500) + "```").addField("Example", "```" + d.example + "```").setFooter(`Page ${body.list.indexOf(d)+1} of ${body.list.length}`).setColor(`#FFBF00`);
+    const embed = new MessageEmbed().setTitle(d.word).setAuthor(d.author).setURL(d.permalink).addField("Definition", "```" + d.definition.substr(0, 1500) + "```").addField("Example", "```" + d.example + "```").setFooter(`Page ${body.list.indexOf(d)+1} of ${body.list.length} - 👍` + d.thumbs_up + ` | ` + `👎` + d.thumbs_down).setColor(`#FFBF00`);
     pages.push(embed)
 });
     const textPageChange = false;
