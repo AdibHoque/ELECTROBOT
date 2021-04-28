@@ -7,6 +7,10 @@ const mongoose = require('mongoose') ;
 mongoose.connect("mongodb+srv://ELECTRO:electrobot6969@electro-jbqon.mongodb.net/Guilds?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 const u = require("./../../Mongodb/user")
 
+Array.prototype.random = function(){
+  return this[Math.floor(Math.random()*this.length)];
+}  
+
 module.exports = {
     name: "pick",
     category: "Economy",
@@ -22,6 +26,8 @@ module.exports = {
       userResult.balance = userResult.balance+amount
       await userResult.save()
       await db.delete(`wallet${message.channel.id}`)
-      message.channel.send(`You picked up the wallet & got **$${amount}**!`)
+      const arr = ['chatbot', 'define', 'snipe', 'editanipe', 'invite', 'invite', 'invite', 'math', 'avatar', 'hug', 'cuddle', 'meme', 'meme', 'meme', 'meme', 'meme', 'joke', 'joke', 'joke', 'joke', 'joke', 'howgay', 'slap', 'tictactoe', 'tictactoe', 'tictactoe', 'triggered', 'wasted', 'profile', 'daily', 'checklist'] 
+      const cmdname = arr.random()
+message.channel.send(`You picked up the wallet & got **$${amount}**!\n\n**TIP:** Try checking out our \`${prefix+cmdname}\` Command.`)
         }
     }  
