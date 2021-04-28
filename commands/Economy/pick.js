@@ -26,7 +26,7 @@ module.exports = {
       userResult.balance = userResult.balance+amount
       await userResult.save()
       await db.delete(`wallet${message.channel.id}`)
-      const arr = ['chatbot', 'define', 'snipe', 'editanipe', 'invite', 'invite', 'invite', 'math', 'avatar', 'hug', 'cuddle', 'meme', 'meme', 'meme', 'meme', 'meme', 'joke', 'joke', 'joke', 'joke', 'joke', 'howgay', 'slap', 'tictactoe', 'tictactoe', 'tictactoe', 'triggered', 'wasted', 'profile', 'daily', 'checklist'] 
+      const arr = ['chatbot', 'define', 'snipe', 'editsnipe', 'invite', 'invite', 'invite', 'math', 'avatar', 'hug', 'cuddle', 'meme', 'meme', 'meme', 'meme', 'meme', 'joke', 'joke', 'joke', 'joke', 'joke', 'howgay', 'slap', 'tictactoe', 'tictactoe', 'tictactoe', 'triggered', 'wasted', 'profile', 'daily', 'checklist'] 
       const cmdname = arr.random()
 message.channel.send(`You picked up the wallet & got **$${amount}**!\n\n**TIP:** Try checking out our \`${prefix+cmdname}\` Command.`)
         }
