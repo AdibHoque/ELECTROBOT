@@ -199,7 +199,7 @@ client.on("message", async message => {
     }*/
   await db.add(`tms${message.channel.id}`,1)
   let totalMessagesSent = await db.get(`tms${message.channel.id}`);
-	if ((Math.floor(Math.random() * 50 + 50) < totalMessagesSent)) {
+	if ((Math.floor(Math.random() * 40 + 30) < totalMessagesSent)) {
 		if (!message.channel.permissionsFor(message.guild.me).has('ATTACH_FILES')) return;
 		if (!message.channel.permissionsFor(message.guild.me).has('EMBED_LINKS')) return;
 		await dropWallet(prefix, message.channel, message.author);
