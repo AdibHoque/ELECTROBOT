@@ -24,7 +24,7 @@ module.exports = {
       
       const embed = new MessageEmbed()
         .setTitle(title) 
-        .setURL(permalink) 
+        .setURL(thumb) 
         .setImage(thumb)
         .setFooter(`👍 ${ups} | 💬 ${comments} - r/${sub}`)
       message.channel.send(embed);
