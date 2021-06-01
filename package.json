@@ -40,7 +40,8 @@
     "nekobot-api": "^1.3.3",
     "parse-ms": "^2.0.0",
     "blapi": "^2.0.1",
-    "reconlx": "github:AdibHoque/reconlx-api"
+    "reconlx": "github:AdibHoque/reconlx-api",
+    "discord-buttons": "^3.0.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
