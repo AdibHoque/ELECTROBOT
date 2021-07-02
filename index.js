@@ -66,6 +66,7 @@ if(c2) c2.send(p)
 const { Discord, MessageEmbed, Util} = require("discord.js");
 const Client = require("./Classes/Client");
 const client = new Client();
+require('discord-buttons')(client) 
 const loadCMD = require("./functions/loadCMD");
 loadCMD(client); 
 const db = require("quick.db");
