@@ -58,7 +58,7 @@ module.exports = {
             }
         }
         let { MessageButton, MessageActionRow } = require('discord-buttons')
-        let msg = await message.channel.send(`**TicTacToe** | <@!${Args.userid}>'s turn (⭕)`)
+        let msg = await message.channel.send(`**TicTacToe** | <@!${fighters[0]}>(⭕) vs <@!${fighters[1]}>(❌)\n<@!${Args.userid}>'s turn (⭕)`)
         tictactoe(msg)
         async function tictactoe(m) {
             Args.userid=fighters[Args.user]
