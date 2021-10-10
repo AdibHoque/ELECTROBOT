@@ -139,7 +139,7 @@ module.exports = {
             if (Args.c1.label == "❌" && Args.c2.label == "❌" && Args.c3.label == "❌") won["❌"] = true
             if (won["❌"] != false) return m.edit('❌ won!', buttons)
             
-            m.edit(`**TicTacToe** |\n <@!${fighters[0]}>(⭕) vs <@!${fighters[1]}>(❌)\n<@!${Args.userid}>'s turn (${Args.user == 0 ? "⭕" : "❌"})`, buttons)
+            m.edit(`**TicTacToe** | <@!${fighters[0]}>(⭕) vs <@!${fighters[1]}>(❌)\n<@!${Args.userid}>'s turn (${Args.user == 0 ? "⭕" : "❌"})`, buttons)
             const filter = (button) => button.clicker.user.id === Args.userid;
             const collector = m.createButtonCollector(filter, { max: 1, time: 30000 });
 
