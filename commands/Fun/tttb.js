@@ -173,7 +173,7 @@ module.exports = {
                         .filter(key => predicate(obj[key]))
                         .reduce((res, key) => (res[key] = obj[key], res), {});
                 let Brgs = objectFilter(map(Args, (_, fruit) => fruit.label == "➖"), num => num == true);
-                if (Object.keys(Brgs).length == 0) return m.edit('It\'s a tie!')
+                if (Object.keys(Brgs).length == 0) return m.edit(`Game over!\n**TicTacToe** | <@!${fighters[0]}>(⭕) vs <@!${fighters[1]}>(❌)\nIt's a tie!`)
                 tictactoe(m)
             });
             collector.on('end', collected => {
