@@ -128,7 +128,7 @@ module.exports = {
             if (Args.a1.label == "⭕" && Args.a2.label == "⭕" && Args.a3.label == "⭕") won["⭕"] = true
             if (Args.b1.label == "⭕" && Args.b2.label == "⭕" && Args.b3.label == "⭕") won["⭕"] = true
             if (Args.c1.label == "⭕" && Args.c2.label == "⭕" && Args.c3.label == "⭕") won["⭕"] = true
-            if (won["⭕"] != false) return m.edit(`Game over!\n**TicTacToe** | <@!${fighters[0]}>(⭕) vs <@!${fighters[1]}>\n<@!${fighters[0]}>(⭕) won!`, buttons)
+            if (won["⭕"] != false) return m.edit(`Game over!\n**TicTacToe** | <@!${fighters[0]}>(⭕) vs <@!${fighters[1]}>(❌)\n<@!${fighters[0]}>(⭕) won!`, buttons)
             if (Args.a1.label == "❌" && Args.b1.label == "❌" && Args.c1.label == "❌") won["❌"] = true
             if (Args.a2.label == "❌" && Args.b2.label == "❌" && Args.c2.label == "❌") won["❌"] = true
             if (Args.a3.label == "❌" && Args.b3.label == "❌" && Args.c3.label == "❌") won["❌"] = true
@@ -137,7 +137,7 @@ module.exports = {
             if (Args.a1.label == "❌" && Args.a2.label == "❌" && Args.a3.label == "❌") won["❌"] = true
             if (Args.b1.label == "❌" && Args.b2.label == "❌" && Args.b3.label == "❌") won["❌"] = true
             if (Args.c1.label == "❌" && Args.c2.label == "❌" && Args.c3.label == "❌") won["❌"] = true
-            if (won["❌"] != false) return m.edit(`Game over!\n**TicTacToe** | <@!${fighters[0]}>(⭕) vs <@!${fighters[1]}>\n<@!${fighters[1]}>(❌) won!`, buttons)
+            if (won["❌"] != false) return m.edit(`Game over!\n**TicTacToe** | <@!${fighters[0]}>(⭕) vs <@!${fighters[1]}>(❌)\n<@!${fighters[1]}>(❌) won!`, buttons)
             
             m.edit(`**TicTacToe** | <@!${fighters[0]}>(⭕) vs <@!${fighters[1]}>(❌)\n<@!${Args.userid}>'s turn (${Args.user == 0 ? "⭕" : "❌"})`, buttons)
             const filter = (button) => button.clicker.user.id === Args.userid;
