@@ -52,7 +52,7 @@ module.exports = {
         .addField(`<:ElectroBookmark:668018207549816833> USEFUL LINKS:`, `[ADD BOT](https://discord.com/api/oauth2/authorize?client_id=629323586930212884&permissions=2146827775&scope=bot) | [JOIN GUILD](https://discord.gg/dAggRh9) | [VOTE](https://discordbots.org/bot/629323586930212884/vote) | [WEBSITE](https://electro-bot.glitch.me/)`)
         .setFooter(`© 2020 ELECTRO, Inc.`)
         .setColor("#ffbf00")
-       // .setImage(`https://cdn.discordapp.com/attachments/656517276832366595/679975327698649109/ElectroCommandsCategories.gif`) 
+        .setImage(`https://media.discordapp.net/attachments/656517276832366595/682253149402300527/20200226_214807.gif`) 
       message.channel.send(embed);
     }
   }
