@@ -7,9 +7,9 @@ app.get("/", (request, response) => {
   response.sendStatus(200);
 });
 app.listen(process.env.PORT);
-/*setInterval(() => {
-  http.get(`https://electr.herokuapp.com/`);
-}, 280000);*/
+etInterval(
+
+
 
 const { Discord, MessageEmbed, Util} = require("discord.js");
 const Client = require("./Classes/Client");
